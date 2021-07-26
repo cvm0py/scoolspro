@@ -17,6 +17,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/provider/notification_provider.dart';
+import 'package:infixedu/utils/widget/bottom_navbar.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -488,6 +489,14 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.add_circle_sharp), label: '1'),
+            BottomNavigationBarItem(icon: Icon(Icons.settings), label: '2'),
+            BottomNavigationBarItem(icon: Icon(Icons.list), label: '3'),
+          ],
         ),
       ),
     );

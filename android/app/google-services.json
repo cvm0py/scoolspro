@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "636666845268",
-    "project_id": "infixedu-app",
-    "storage_bucket": "infixedu-app.appspot.com"
+    "project_number": "245055879465",
+    "project_id": "scoolsprosmart",
+    "storage_bucket": "scoolsprosmart.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:636666845268:android:abe44f1089d0316ad3b5c1",
+        "mobilesdk_app_id": "1:245055879465:android:774be88e50a9774e905f38",
         "android_client_info": {
           "package_name": "com.edu.infix.infixedu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "636666845268-urk14jmk9hesfgge64cngei3qo09fjkk.apps.googleusercontent.com",
+          "client_id": "245055879465-04437m83425a0uimhau3upkrssqgf4et.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADf-SJ2o6YXHoMJ92Q-Vc2yCvOIKd0F-c"
+          "current_key": "AIzaSyAerREw2yNnt9vKZY9PYdjexgT639Qiicw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "636666845268-urk14jmk9hesfgge64cngei3qo09fjkk.apps.googleusercontent.com",
+              "client_id": "245055879465-04437m83425a0uimhau3upkrssqgf4et.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "245055879465-0llrt0vmt1eod802f24civoev7d6147s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.edu.infix.infixedu"
+              }
             }
           ]
         }
