@@ -34,6 +34,7 @@ import 'package:infixedu/screens/student/TransportScreen.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
 import 'package:infixedu/screens/student/examination/ScheduleScreen.dart';
+import 'package:infixedu/screens/student/gallery/gallery.dart';
 import 'package:infixedu/screens/student/homework/StudentHomework.dart';
 import 'package:infixedu/screens/student/leave/LeaveListStudent.dart';
 import 'package:infixedu/screens/student/leave/LeaveStudentApply.dart';
@@ -526,6 +527,9 @@ class AppFunction {
             ScaleRoute(
                 page: LeaveStudentHome(studentLeaves, studentLeavesIcons,
                     id: id)));
+        break;
+      case 'Gallery':
+         Navigator.push(context, ScaleRoute(page: Gallery(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
