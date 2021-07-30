@@ -29,6 +29,7 @@ class Login {
     String isAdministrator;
     String zoom;
     String token;
+    String classId;
 
     Response response = await get(Uri.parse(InfixApi.login(email, password)));
     if (response.statusCode == 200) {
@@ -40,7 +41,9 @@ class Login {
       schoolId = user['data']['user']['school_id'];
       isAdministrator = user['data']['user']['is_administrator'];
       token = user['data']['accessToken'];
+      classId = user['data']['userDetails']['class_id'].toString();
       print(user['data']['device_token']);
+      print('Class ID ->' + classId);
       // print('Access token: $token');
       // print("RULE: $rule");
 
@@ -70,7 +73,9 @@ class Login {
       // print("IMAMMMAMA : $image");
       if (isSuccessed) {
         saveBooleanValue('isLogged', isSuccessed);
+        //saveBooleanValue('classId', classId.toString());
         saveStringValue('email', email);
+        saveStringValue('classId', classId);
         saveStringValue('password', password);
         saveStringValue('id', '$id');
         saveStringValue('rule', '$rule');
@@ -90,6 +95,7 @@ class Login {
     dynamic id;
     dynamic rule;
     dynamic schoolId;
+    String classId;
     String image;
     String isAdministrator;
     String zoom;
@@ -111,6 +117,7 @@ class Login {
         var user = response.data;
         isSuccessed = user['success'];
         message = user['message'];
+        classId = user['data']['userDetails']['class_id'].toString();
         id = user['data']['user']['id'];
         rule = user['data']['user']['role_id'];
         schoolId = user['data']['user']['school_id'];
@@ -120,13 +127,13 @@ class Login {
         // print("ZOOM: ${user['data']['system_settings']}");
         zoom = user['data']['system_settings'] == null
             ? '1'
-            : user['data']['system_settings'][0]
-        ['Zoom'].toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
+            : user['data']['system_settings'][0]['Zoom']
+                .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
 
-        print("STUDENT PHOTO: ${user['data']['userDetails']}");
+        print("STUDENT DATA: ${user['data']['userDetails']}");
+        print('classId -> ' + classId);
 
-        if (rule == 1 ||
-            rule == 4 ) {
+        if (rule == 1 || rule == 4) {
           image = isNullOrEmpty(user['data']['userDetails']['staff_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['staff_photo'].toString();
@@ -134,7 +141,7 @@ class Login {
           image = isNullOrEmpty(user['data']['userDetails']['student_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['student_photo'].toString();
-        } else if (rule == 3 ) {
+        } else if (rule == 3) {
           image = isNullOrEmpty(user['data']['userDetails']['guardian_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
               : user['data']['userDetails']['guardian_photo'].toString();
@@ -146,6 +153,7 @@ class Login {
           saveStringValue('id', '$id');
           saveStringValue('rule', '$rule');
           saveStringValue('schoolId', '$schoolId');
+          saveStringValue('classId', classId);
           saveStringValue('image', '$image');
           saveStringValue('isAdministrator', '$isAdministrator');
           saveStringValue('lang', 'en');
@@ -153,6 +161,7 @@ class Login {
           saveStringValue('zoom', zoom.toString());
           AppFunction.getFunctions(context, rule.toString(), zoom.toString());
         }
+        
         return message;
       }
     } catch (e) {

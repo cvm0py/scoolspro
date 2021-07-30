@@ -42,7 +42,7 @@ class _LeaveStudentApplyState extends State<LeaveStudentApply> {
   TextEditingController reasonController = TextEditingController();
   DateTime date;
   String maxDateTime = '2031-11-25';
-  String initDateTime = '2019-05-17';
+  String initDateTime = '2029-07-29';
   String _format = 'yyyy-MMMM-dd';
   DateTime _dateTime;
   DateTimePickerLocale _locale = DateTimePickerLocale.en_us;

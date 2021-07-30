@@ -35,10 +35,11 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
-    Utils.getStringValue('id').then((value) {
+    print('CLASS ID FROM SHARED PREFERENCES -> ' +
+        Utils.getStringValue('classId').toString());
+    Utils.getStringValue('classId').then((String value) {
       setState(() {
-        syllabuses = fetchSyllabus(
-            widget.id != null ? int.parse(widget.id) : int.parse(value));
+        syllabuses = fetchSyllabus(value);
       });
     });
     super.initState();
@@ -65,7 +66,7 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
           future: syllabuses,
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot != null) {
-              if(snapshot.data.uploadedContents.length > 0){
+              if (snapshot.data.uploadedContents.length > 0) {
                 return ListView.builder(
                   itemCount: snapshot.data.uploadedContents.length,
                   itemBuilder: (context, index) {
@@ -73,7 +74,7 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
                         snapshot.data.uploadedContents[index]);
                   },
                 );
-              }else{
+              } else {
                 return Utils.noDataWidget();
               }
             } else {
@@ -85,13 +86,15 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
     );
   }
 
-  Future<UploadedContentList> fetchSyllabus(int id) async {
-    final response = await http.get(Uri.parse(InfixApi.getStudentSyllabus(id)),headers: Utils.setHeader(_token.toString()));
+  Future<UploadedContentList> fetchSyllabus(String id) async {
+    print('id _> ' + id.toString());
+    final response = await http.get(Uri.parse(InfixApi.getStudentSyllabus(id)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-
-      return UploadedContentList.fromJson(jsonData['data']['uploadContents']);
+      print('Syllabus ->' + jsonData['data'].toString());
+      return UploadedContentList.fromJson(jsonData['data']);
     } else {
       throw Exception('failed to load');
     }

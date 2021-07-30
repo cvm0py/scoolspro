@@ -31,6 +31,7 @@ import 'package:infixedu/utils/model/UserNotifications.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 import '../main.dart';
 import 'ChangePassword.dart';
+import 'SettingsScreen.dart';
 
 //notificatiopn handler
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -493,7 +494,8 @@ class _HomeState extends State<Home> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.add_circle_sharp), label: '1'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle_sharp), label: '1'),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: '2'),
             BottomNavigationBarItem(icon: Icon(Icons.list), label: '3'),
           ],
@@ -520,7 +522,7 @@ class _HomeState extends State<Home> {
                   decoration:
                       BoxDecoration(shape: BoxShape.rectangle, boxShadow: [
                     BoxShadow(
-                      color: Colors.deepPurple,
+                      color: Colors.blueAccent,
                       blurRadius: 20.0,
                     ),
                   ]),
@@ -730,7 +732,7 @@ class _HomeState extends State<Home> {
                                             ),
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.deepPurple,
+                                        primary: Colors.blueAccent,
                                       ),
                                     ),
                                   ],
@@ -821,7 +823,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height / 7,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -829,7 +831,7 @@ class _HomeState extends State<Home> {
                       //color: const Color(0xFF66BB6A),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.deepPurple,
+                          color: Colors.blueAccent,
                           blurRadius: 20.0,
                         ),
                       ]),
@@ -842,14 +844,14 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, top: 20.0, right: 15.0),
+                            left: 10.0, top: 20.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
                             InkWell(
                               child: SizedBox(
                                 child: Text(
                                   "Profile",
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                               ),
@@ -862,6 +864,9 @@ class _HomeState extends State<Home> {
                                     )));
                               },
                             ),
+                            SizedBox(
+                              height: 8,
+                            ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
@@ -870,23 +875,46 @@ class _HomeState extends State<Home> {
                               child: SizedBox(
                                 child: Text(
                                   "Change Password",
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                               ),
+                            ),
+                            SizedBox(
+                              height: 8,
                             ),
                             InkWell(
                               child: SizedBox(
                                 child: Text(
                                   "Logout",
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.headline5,
                                 ),
                               ),
                               onTap: () {
                                 showAlertDialog(context);
                               },
-                            )
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            //Navigator.push(context, ScaleRoute(page: SettingScreen()));
+                            InkWell(
+                              child: SizedBox(
+                                child: Text(
+                                  "Settings",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline5,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context, ScaleRoute(page: SettingScreen()));
+                              },
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
                           ],
                         ),
                       ),
@@ -914,7 +942,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 6,
+                  //height: MediaQuery.of(context).size.height / 10,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -922,7 +950,7 @@ class _HomeState extends State<Home> {
                       //color: const Color(0xFF66BB6A),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.deepPurple.shade300,
+                          //color: Colors.lightBlueAccent,
                           blurRadius: 20.0,
                         ),
                       ]),

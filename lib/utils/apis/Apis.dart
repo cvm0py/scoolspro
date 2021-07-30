@@ -399,8 +399,8 @@ class InfixApi {
     return baseApi + "studentAssignment/$id";
   }
 
-  static String getStudentSyllabus(int id) {
-    return baseApi + "studentSyllabus/$id";
+  static String getStudentSyllabus(String id) {
+    return baseApi + "syllabus-list/$id";
   }
 
   static String getStudentOtherDownloads(int id) {

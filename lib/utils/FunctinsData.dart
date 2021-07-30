@@ -31,10 +31,10 @@ import 'package:infixedu/screens/student/StudentTeacher.dart';
 import 'package:infixedu/screens/student/SubjectScreen.dart';
 import 'package:infixedu/screens/student/TimeLineScreen.dart';
 import 'package:infixedu/screens/student/TransportScreen.dart';
+import 'package:infixedu/screens/student/album/album.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
 import 'package:infixedu/screens/student/examination/ScheduleScreen.dart';
-import 'package:infixedu/screens/student/gallery/gallery.dart';
 import 'package:infixedu/screens/student/homework/StudentHomework.dart';
 import 'package:infixedu/screens/student/leave/LeaveListStudent.dart';
 import 'package:infixedu/screens/student/leave/LeaveStudentApply.dart';
@@ -81,18 +81,18 @@ class AppFunction {
     'Attendance',
     'Examination',
     'Online Exam',
-    'Leave',
+    //'Leave',
     'School News',
     'Subjects',
     'Teacher',
     'Digital Library',
     'Transport',
-    'Zoom',
+    //'Zoom',
     //  'Settings',
     'Gallery',
-    'Calender',
-    'Events',
-    'Results'
+    //'Calender',
+    //'Events',
+    //'Results'
   ];
   static var studentIcons = [
     'assets/images/profile.png',
@@ -103,7 +103,7 @@ class AppFunction {
     'assets/images/attendance.png',
     'assets/images/examination.png',
     'assets/images/onlineexam.png',
-    'assets/images/leave.png',
+    //'assets/images/leave.png',
     'assets/images/notice.png',
     'assets/images/subjects.png',
     'assets/images/teacher.png',
@@ -112,7 +112,7 @@ class AppFunction {
     'assets/images/addhw.png',
     //  'assets/images/gallery.png'
     //  'assets/images/calender.png'
-    'assets/images/addhw.png',
+    //'assets/images/addhw.png',
     'assets/images/addhw.png',
     'assets/images/addhw.png',
     'assets/images/addhw.png',
@@ -197,7 +197,7 @@ class AppFunction {
     'Students',
     'Academic',
     'Attendance',
-    'Leave',
+    //'Leave',
     'Contents',
     'Notice',
     'Library',
@@ -426,7 +426,7 @@ class AppFunction {
     'assets/images/searchattendance.png',
   ];
 
-  static var downloadLists = ['Assignment', 'Syllabus', 'Other Downloads'];
+  static var downloadLists = ['Assignment', 'Syllabus'];
   static var downloadListIcons = [
     'assets/images/fees_icon.png',
     'assets/images/fees_icon.png',
@@ -529,7 +529,7 @@ class AppFunction {
                     id: id)));
         break;
       case 'Gallery':
-         Navigator.push(context, ScaleRoute(page: Gallery(id: id)));
+        Navigator.push(context, ScaleRoute(page: Albums(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
