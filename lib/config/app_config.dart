@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 class AppConfig {
   static String domainName =
       'https://admin.scoolspro.com'; //TODO:: Replace with your domain name
@@ -15,4 +17,6 @@ class AppConfig {
   static String appToolbarBackground = 'assets/config/blueClip.png';
 
   static String quicksandFont = 'QuickSand';
+
+  static Color primary =  Color(0xff3575B6);
 }

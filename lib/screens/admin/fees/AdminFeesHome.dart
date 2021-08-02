@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CardItem.dart';
@@ -40,7 +41,7 @@ class _AdminFeesHomeState extends State<AdminFeesHome> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(

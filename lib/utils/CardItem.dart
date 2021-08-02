@@ -32,8 +32,11 @@ class CustomWidget extends StatefulWidget {
 class _CustomWidgetState extends State<CustomWidget> {
   String title;
 
+
   @override
   Widget build(BuildContext context) {
+ //print(widget.icon.toString());
+
     Utils.getStringValue('lang').then((value) {
       if (value == null) {
         Utils.getTranslatedLanguage('en', widget.headline).then((val) {
@@ -85,43 +88,57 @@ class _CustomWidgetState extends State<CustomWidget> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
+              child:Column(
+                children: [
+
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       Text(
+                      title != null ? " " + title : '...',
+                      style: TextStyle(
+                        fontFamily: "QuickSand",
+                        letterSpacing: 1.3,
+                        color: Colors.white,
+                        fontSize: ScreenUtil().setSp(14),
+                        fontWeight: FontWeight.w300,
+                      ),
+                      // maxLines: 1,
+                    ),
+                    SizedBox(width: 1,),
+                     ],
+                   ), 
+                  
+                   Row(
+                     
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-              
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            title != null ? " " + title : '...',
-                            style: TextStyle(
-                              fontFamily: "QuickSand",
-                              letterSpacing: 1.3,
-                              color: Colors.white,
-                              fontSize: ScreenUtil().setSp(14),
-                              fontWeight: FontWeight.w300,
-                            ),
-                            // maxLines: 1,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset(
-                            widget.icon.toString(),
-                            color: Colors.white,
-                            width: 25.w,
-                            height: 25.h,
-                          ),
-
-                        ),
-                      ],
+                  SizedBox(width: 4,),
+                    Container(
+                      //color: Colors.green,
+                      height: 45,
+                      width: 45,
+                      child: Image.asset(
+                        //widget.icon.toString(),
+                       // 'assets/images/profile_unseen.gif',
+                       //'assets/images/attendance.gif',
+                        widget.icon.toString(),
+                        color: Colors.white,
+                        
+                        // width: 75,
+                        // height: 75,
+                        fit: BoxFit.fill,
+                      ),
                     ),
+                    //child: Image.network('https://drive.google.com/file/d/1_lJeRPe2lHIQVST1I6oS-XJpcr8U-ygb/view?usp=sharing',),
+                  
+                ],
+              ),
+                ],
+              ),
+              
             ),
-               
-            ),
-          
+          ),
         ),
       ),
     );

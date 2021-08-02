@@ -15,6 +15,7 @@ import 'package:dio/dio.dart';
 import 'package:file_utils/file_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permissions_plugin/permissions_plugin.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -104,7 +105,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(

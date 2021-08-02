@@ -13,6 +13,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -50,7 +51,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -370,7 +371,7 @@ class _BankOrChequeState extends State<BankOrCheque> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(

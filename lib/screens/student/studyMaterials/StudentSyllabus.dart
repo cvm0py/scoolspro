@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -54,7 +55,7 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(

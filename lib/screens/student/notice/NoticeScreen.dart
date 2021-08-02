@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -46,13 +47,13 @@ class _NoticeScreenState extends State<NoticeScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        appBar: CustomAppBarWidget(title: 'Notice'),
+        appBar: CustomAppBarWidget(title: 'School News'),
         backgroundColor: Colors.white,
         body: FutureBuilder<NoticeList>(
           future: notices,
