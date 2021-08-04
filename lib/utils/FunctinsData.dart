@@ -96,26 +96,23 @@ class AppFunction {
   ];
   static var studentIcons = [
     //'assets/images/profile.jpg',
-    'assets/images/fees_icon.jpg',
-    'assets/images/routine.jpg',
-    'assets/images/homework.jpg',
-    'assets/images/downloads.jpg',
-    'assets/images/attendance.jpg',
-    'assets/images/examination.jpg',
-    'assets/images/onlineexam.jpg',
+    'assets/images/payments.png',
+    'assets/images/class_schedule.png',
+    'assets/images/homework.png',
+    'assets/images/study_material.png',
+    'assets/images/attendance.png',
+    'assets/images/examination.png',
+    'assets/images/online_exam.png',
     //'assets/images/leave.png',
-    'assets/images/notice.jpg',
-    'assets/images/subjects.jpg',
-    'assets/images/teacher.jpg',
-    'assets/images/library.jpg',
+    'assets/images/school_news.png',
+    'assets/images/subjects.png',
+    'assets/images/teacher.png',
+    'assets/images/library.png',
    // 'assets/images/transport.jpg',
     //'assets/images/addhw.png',
-      'assets/images/gallery.jpg'
+      'assets/images/gallery.png'
     //  'assets/images/calender.png'
     //'assets/images/addhw.png',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.jpg',
   ];
   static var students2 = [
    // 'Profile',
@@ -137,16 +134,16 @@ class AppFunction {
   ];
   static var studentIcons2 = [
    // 'assets/images/profile.png',
-    'assets/images/fees_icon.png',
-    'assets/images/routine.jpeg',
+    'assets/images/payments.png',
+    'assets/images/class_schedule.png',
     'assets/images/homework.png',
-    'assets/images/downloads.png',
+    'assets/images/study_naterials.png',
     'assets/images/timeline.png',
     'assets/images/attendance.png',
     'assets/images/examination.png',
-    'assets/images/onlineexam.png',
+    'assets/images/online_exam.png',
     'assets/images/leave.png',
-    'assets/images/notice.png',
+    'assets/images/school_news.png',
     'assets/images/subjects.png',
     'assets/images/teacher.png',
     'assets/images/library.png',
@@ -175,12 +172,12 @@ class AppFunction {
   ];
 
   static var teachersIcons = [
-    'assets/images/students.jpg',
-    'assets/images/academics.jpg',
-    'assets/images/attendance.jpg',
-    'assets/images/leave.jpg',
+    'assets/images/students.png',
+    'assets/images/academics.png',
+    'assets/images/attendance.png',
+    'assets/images/leave.png',
     'assets/images/contents.jpg',
-    'assets/images/notice.jpg',
+    'assets/images/school_news.png',
     'assets/images/library.jpg',
     'assets/images/homework.jpg',
     'assets/images/addhw.jpg',
