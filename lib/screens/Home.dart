@@ -260,7 +260,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
-    final double statusBarHeight = MediaQuery.of(context).padding.top - 3;
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)

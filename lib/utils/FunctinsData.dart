@@ -74,44 +74,46 @@ import 'package:infixedu/utils/widget/ScaleRoute.dart';
 class AppFunction {
   static var students = [
    // 'Profile',
-    'Payment',
+    'Calender',
+    'School News',
     'Class Schedule',
-    'Homework',
-    'Study Materials',
+    'Payment',
     'Attendance',
+    'Homework',
+    
     'Examination',
     'Online Exam',
     //'Leave',
-    'School News',
+    'Gallery',
     'Subjects',
-    'Teacher',
+    'Study Materials',
     'Digital Library',
+    'Teacher',
   //  'Transport',
     //'Zoom',
     //  'Settings',
-    'Gallery',
-    //'Calender',
-    //'Events',
+    
+    'Events',
     //'Results'
   ];
   static var studentIcons = [
-    //'assets/images/profile.jpg',
-    'assets/images/payments.png',
+    //'assets/images/profile.jpg',  
+      'assets/images/calender.png'
+    'assets/images/school_news.png',
     'assets/images/class_schedule.png',
-    'assets/images/homework.png',
-    'assets/images/study_material.png',
+    'assets/images/payments.png',
     'assets/images/attendance.png',
+    'assets/images/homework.png',
     'assets/images/examination.png',
     'assets/images/online_exam.png',
-    //'assets/images/leave.png',
-    'assets/images/school_news.png',
-    'assets/images/subjects.png',
-    'assets/images/teacher.png',
-    'assets/images/library.png',
-   // 'assets/images/transport.jpg',
-    //'assets/images/addhw.png',
       'assets/images/gallery.png'
-    //  'assets/images/calender.png'
+    'assets/images/subjects.png',
+    //'assets/images/leave.png',
+    'assets/images/study_material.png',
+    'assets/images/library.png',
+    'assets/images/teacher.png',
+    'assets/images/events.png',
+    //'assets/images/addhw.png',
     //'assets/images/addhw.png',
   ];
   static var students2 = [
@@ -137,7 +139,7 @@ class AppFunction {
     'assets/images/payments.png',
     'assets/images/class_schedule.png',
     'assets/images/homework.png',
-    'assets/images/study_naterials.png',
+    'assets/images/study_material.png',
     'assets/images/timeline.png',
     'assets/images/attendance.png',
     'assets/images/examination.png',
@@ -176,18 +178,18 @@ class AppFunction {
     'assets/images/academics.png',
     'assets/images/attendance.png',
     'assets/images/leave.png',
-    'assets/images/contents.jpg',
+    'assets/images/contents.png',
     'assets/images/school_news.png',
-    'assets/images/library.jpg',
-    'assets/images/homework.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/about.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/about.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.jpg',
+    'assets/images/library.png',
+    'assets/images/homework.png',
+    'assets/images/zoom.png',
+    'assets/images/about.png',
+    'assets/images/gallery.png',
+    'assets/images/calendar.png',
+    'assets/images/results.png',
+    'assets/images/events.png',
+    'assets/images/online_exam.png',
+    'assets/images/class_schedule.png',
   ];
 
   static var teachers2 = [
@@ -204,15 +206,15 @@ class AppFunction {
   ];
 
   static var teachersIcons2 = [
-    'assets/images/students.jpg',
-    'assets/images/academics.jpg',
-    'assets/images/attendance.jpg',
-    'assets/images/leave.jpg',
-    'assets/images/contents.jpg',
-    'assets/images/notice.jpg',
-    'assets/images/library.jpg',
-    'assets/images/homework.jpg',
-    'assets/images/about.jpg',
+    'assets/images/students.png',
+    'assets/images/academics.png',
+    'assets/images/attendance.png',
+    'assets/images/leave.png',
+    'assets/images/contents.png',
+    'assets/images/school_news.png',
+    'assets/images/library.png',
+    'assets/images/homework.png',
+    'assets/images/about.png',
     // 'assets/images/addhw.png',
   ];
 
@@ -220,52 +222,52 @@ class AppFunction {
     'Students',
     'Leave',
     'Staff',
-    'Dormitory',
+    //'Dormitory',
     'Attendance',
     'Fees',
     'Contents',
     'Library',
     //'Transport',
     'Zoom',
-    'Settings',
+   // 'Settings',
   ];
   static var adminIcons = [
-    'assets/images/students.jpg',
-    'assets/images/leave.jpg',
-    'assets/images/staff.jpg',
-    'assets/images/dormitory.jpg',
-    'assets/images/attendance.jpg',
-    'assets/images/fees_icon.jpg',
-    'assets/images/contents.jpg',
-    'assets/images/library.jpg',
+    'assets/images/students.png',
+    'assets/images/leave.png',
+    'assets/images/staff.png',
+    //'assets/images/dormitory.jpg',
+    'assets/images/attendance.png',
+    'assets/images/payments.png',
+    'assets/images/contents.png',
+    'assets/images/library.png',
     //'assets/images/transport.jpg',
-    'assets/images/addhw.jpg',
-    'assets/images/addhw.png',
+    'assets/images/zoom.png',
+   // 'assets/images/addhw.png',
   ];
 
   static var admins2 = [
     'Students',
     'Leave',
     'Staff',
-    'Dormitory',
+   // 'Dormitory',
     'Attendance',
     'Fees',
     'Contents',
     'Library',
-    'Transport',
-    'Settings',
+    //'Transport',
+   // 'Settings',
   ];
   static var adminIcons2 = [
     'assets/images/students.png',
     'assets/images/leave.png',
     'assets/images/staff.png',
-    'assets/images/dormitory.png',
+  //  'assets/images/dormitory.png',
     'assets/images/attendance.png',
-    'assets/images/fees_icon.png',
+    'assets/images/payments.png',
     'assets/images/contents.png',
     'assets/images/library.png',
-    'assets/images/transport.png',
-    'assets/images/addhw.png',
+   // 'assets/images/transport.png',
+   // 'assets/images/addhw.png',
   ];
 
   static var parent = [
@@ -277,11 +279,11 @@ class AppFunction {
     // 'Settings',
   ];
   static var parentIcons = [
-    'assets/images/mychild.png',
+    'assets/images/students.png',
     'assets/images/about.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/zoom.png',
+    'assets/images/gallery.png',
+    'assets/images/calendar.png',
     //'assets/images/addhw.png',
   ];
 
@@ -292,7 +294,7 @@ class AppFunction {
   ];
 
   static var parentIcons2 = [
-    'assets/images/mychild.png',
+    'assets/images/students.png',
     'assets/images/about.png',
     // 'assets/images/addhw.png',
   ];
@@ -306,7 +308,7 @@ class AppFunction {
   static var adminTransportIcons = [
     'assets/images/transport.png',
     'assets/images/transport.png',
-    'assets/images/addhw.png',
+    'assets/images/transport.png',
     'assets/images/transport.png',
   ];
 
@@ -316,8 +318,8 @@ class AppFunction {
     'Room List',
   ];
   static var adminDormitoryIcons = [
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/no_image.png',
+    'assets/images/no_image.png',
     'assets/images/dormitory.png',
   ];
 
@@ -326,16 +328,16 @@ class AppFunction {
     'Books Issued',
   ];
   static var libraryIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/payments.png',
+    'assets/images/payments.png',
   ];
   static var examinations = [
     'Schedule',
     'Result',
   ];
   static var examinationIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/payments.png',
+    'assets/images/results.png',
   ];
 
   static var onlineExaminations = [
@@ -343,8 +345,8 @@ class AppFunction {
     'Exam Result',
   ];
   static var onlineExaminationIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/examination.png',
+    'assets/images/results.png',
   ];
 
   static var homework = [
@@ -352,8 +354,8 @@ class AppFunction {
     'HW List',
   ];
   static var homeworkIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/homework.png',
+    'assets/images/homework.png',
   ];
 
   static var zoomMeeting = [
@@ -361,8 +363,8 @@ class AppFunction {
     'meeting',
   ];
   static var zoomMeetingIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/zoom.png',
+    'assets/images/zoom.png',
   ];
 
   static var contents = [
@@ -370,8 +372,8 @@ class AppFunction {
     'Content List',
   ];
   static var contentsIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/contents.png',
+    'assets/images/contents.png',
   ];
 
   static var leaves = [
@@ -379,8 +381,8 @@ class AppFunction {
     'Leave List',
   ];
   static var leavesIcons = [
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/leave.png',
+    'assets/images/leave.png',
   ];
 
   static var adminFees = [
@@ -388,8 +390,8 @@ class AppFunction {
     'Fee List',
   ];
   static var adminFeeIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/addhw.png',
+    'assets/images/payments.png',
+    'assets/images/payments.png',
   ];
 
   static var adminLibrary = [
@@ -398,9 +400,9 @@ class AppFunction {
     'Add Member',
   ];
   static var adminLibraryIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/books.png',
+    'assets/images/books.png',
+    'assets/images/students.png',
   ];
 
   static var academics = [
@@ -409,8 +411,8 @@ class AppFunction {
     'Subjects',
   ];
   static var academicsIcons = [
-    'assets/images/myroutine.png',
-    'assets/images/classroutine.png',
+    'assets/images/class_schedule.png',
+    'assets/images/class_schedule.png',
     'assets/images/subjects.png',
   ];
 
@@ -419,15 +421,15 @@ class AppFunction {
     'Search Atten',
   ];
   static var attendanceIcons = [
-    'assets/images/classattendance.png',
-    'assets/images/searchattendance.png',
+    'assets/images/attendance.png',
+    'assets/images/search_attendance.png',
   ];
 
   static var downloadLists = ['Assignment', 'Syllabus'];
   static var downloadListIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/books.png',
+    'assets/images/study_material.png',
+    'assets/images/payments.png',
   ];
 
   static var studentLeaves = [
@@ -436,8 +438,8 @@ class AppFunction {
   ];
 
   static var studentLeavesIcons = [
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/leave.png',
+    'assets/images/leave.png',
   ];
 
   static void getFunctions(BuildContext context, String rule, String zoom) {
