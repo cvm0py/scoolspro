@@ -32,10 +32,9 @@ class CustomWidget extends StatefulWidget {
 class _CustomWidgetState extends State<CustomWidget> {
   String title;
 
-
   @override
   Widget build(BuildContext context) {
- //print(widget.icon.toString());
+    //print(widget.icon.toString());
 
     Utils.getStringValue('lang').then((value) {
       if (value == null) {
@@ -88,55 +87,59 @@ class _CustomWidgetState extends State<CustomWidget> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child:Column(
+              child: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        title != null ? " " + title : '...',
+                        style: TextStyle(
+                          fontFamily: "QuickSand",
+                          letterSpacing: 1.4,
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(14),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        // maxLines: 1,
+                      ),
+                      SizedBox(
+                        width: 1,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Container(
+                        //color: Colors.green,
+                        color: Color(0xff3575B6),
+                        height: 45,
+                        width: 45,
+                        child: Image.asset(
+                          //widget.icon.toString(),
+                          // 'assets/images/profile_unseen.gif',
+                          //'assets/images/attendance.gif',
+                            widget.icon.toString(),
+                          // 'assets/images/students.png',
 
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                       Text(
-                      title != null ? " " + title : '...',
-                      style: TextStyle(
-                        fontFamily: "QuickSand",
-                        letterSpacing: 1.3,
-                        color: Colors.white,
-                        fontSize: ScreenUtil().setSp(14),
-                        fontWeight: FontWeight.w300,
+                         // 'assets/images/about_us.png',
+
+                         //color: Colors.green,
+
+                          // width: 75,
+                          // height: 75,
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      // maxLines: 1,
-                    ),
-                    SizedBox(width: 1,),
-                     ],
-                   ), 
-                  
-                   Row(
-                     
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  SizedBox(width: 4,),
-                    Container(
-                      //color: Colors.green,
-                      height: 45,
-                      width: 45,
-                      child: Image.asset(
-                        //widget.icon.toString(),
-                       // 'assets/images/profile_unseen.gif',
-                       //'assets/images/attendance.gif',
-                        widget.icon.toString(),
-                        color: Colors.white,
-                        
-                        // width: 75,
-                        // height: 75,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    //child: Image.network('https://drive.google.com/file/d/1_lJeRPe2lHIQVST1I6oS-XJpcr8U-ygb/view?usp=sharing',),
-                  
+                      //child: Image.network('https://drive.google.com/file/d/1_lJeRPe2lHIQVST1I6oS-XJpcr8U-ygb/view?usp=sharing',),
+                    ],
+                  ),
                 ],
               ),
-                ],
-              ),
-              
             ),
           ),
         ),
