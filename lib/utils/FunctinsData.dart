@@ -74,7 +74,7 @@ import 'package:infixedu/utils/widget/ScaleRoute.dart';
 class AppFunction {
   static var students = [
    // 'Profile',
-    'Calender',
+    'Calendar',
     'School News',
     'Class Schedule',
     'Payment',
@@ -118,8 +118,8 @@ class AppFunction {
   ];
   static var students2 = [
    // 'Profile',
-    'Fees',
-    'Routine',
+    'Payment',
+    'Class Schedule',
     'Homework',
     'Study Materials',
     'Timeline',
@@ -127,11 +127,12 @@ class AppFunction {
     'Examination',
     'Online Exam',
     'Leave',
-    'Notice',
+    'School news',
     'Subjects',
     'Teacher',
-    'Library',
-    'Transport',
+    'Digital Library',
+    'Events'
+    //'Transport',
     //  'Settings',
   ];
   static var studentIcons2 = [
@@ -149,7 +150,7 @@ class AppFunction {
     'assets/images/subjects.png',
     'assets/images/teacher.png',
     'assets/images/library.png',
-   // 'assets/images/transport.png',
+    'assets/images/events.png',
     //  'assets/images/addhw.png',
   ];
 

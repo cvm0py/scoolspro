@@ -495,10 +495,25 @@ class _HomeState extends State<Home> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add_circle_sharp), label: '1'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: '2'),
-            BottomNavigationBarItem(icon: Icon(Icons.list), label: '3'),
+            BottomNavigationBarItem(icon : Container(
+              
+              height: MediaQuery.of(context).size.width * 1/16,
+              width: MediaQuery.of(context).size.width * 1/16,
+              child: Image.asset("assets/images/dashboard.png")
+              ),
+              label: "Home"),
+            BottomNavigationBarItem(icon: Container(
+              
+              
+              height: MediaQuery.of(context).size.width * 1/16,
+              width: MediaQuery.of(context).size.width * 1/16,
+              child: Image.asset("assets/images/profile.png")),
+            label: "Profile"),
+            BottomNavigationBarItem(icon: Container(
+              height: MediaQuery.of(context).size.width * 1/16,
+              width: MediaQuery.of(context).size.width * 1/16,
+              child: Image.asset("assets/images/settings.png")),
+             label: "Settings"), 
           ],
         ),
       ),
