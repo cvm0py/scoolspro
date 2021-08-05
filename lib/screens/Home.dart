@@ -267,43 +267,42 @@ class _HomeState extends State<Home> {
     ));
 
     return Padding(
-      padding: EdgeInsets.only(top: statusBarHeight),
+      padding: EdgeInsets.only(
+          //top: statusBarHeight
+          top: 0),
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(30.h),
-          child: AppBar(
-            backgroundColor: Colors.white70,
-            centerTitle: false,
-            flexibleSpace: Container(
-              height: 70,
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     image: AssetImage(AppConfig.appToolbarBackground),
-              //     fit: BoxFit.fill,
-              //   ),
-              //   color: Colors.blueAccent,
-              // ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Image.asset(
-                      AppConfig.appLogo_blue,
-                      width: ScreenUtil().setWidth(65.0),
-                    ),
+        appBar: AppBar(
+          backgroundColor: Colors.white70,
+          centerTitle: false,
+          flexibleSpace: Container(
+            height: 70,
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     image: AssetImage(AppConfig.appToolbarBackground),
+            //     fit: BoxFit.fill,
+            //   ),
+            //   color: Colors.blueAccent,
+            // ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Image.asset(
+                    AppConfig.appLogo_blue,
+                    width: ScreenUtil().setWidth(65.0),
                   ),
-                  Container(
-                    child: Text(
-                      "SCOOLSPRO SCHOOL",
-                      style:
-                          TextStyle(color: Color(0xff3575B6), fontSize: 16.w),
-                    ),
+                ),
+                Container(
+                  child: Text(
+                    "SCOOLSPRO SCHOOL",
+                    style: TextStyle(color: Color(0xff3575B6), fontSize: 16.w),
                   ),
-                  Expanded(child: Container()),
-                  /*  Container(
+                ),
+                Expanded(child: Container()),
+                /*  Container(
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setHeight(50),
                     child: FutureBuilder(
@@ -421,25 +420,23 @@ class _HomeState extends State<Home> {
                           }
                         }),
                   ), */
-                  // SizedBox(
-                  //   width: 5,
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: FutureBuilder(
-                      future: Utils.getStringValue('email'),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<String> snapshot) {
-                        return getProfileImage(
-                            context, _email, _password, _rule);
-                      },
-                    ),
+                // SizedBox(
+                //   width: 5,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: FutureBuilder(
+                    future: Utils.getStringValue('email'),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      return getProfileImage(context, _email, _password, _rule);
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            elevation: 0.0,
           ),
+          elevation: 0.0,
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -456,8 +453,7 @@ class _HomeState extends State<Home> {
             child: GridView.builder(
               itemCount: _titles.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                   childAspectRatio: (1.8 / 0.9)),
+                  crossAxisCount: 2, childAspectRatio: (1.8 / 1.05)),
               itemBuilder: (context, index) {
                 return CustomWidget(
                   index: index,
@@ -495,25 +491,24 @@ class _HomeState extends State<Home> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: [
-            BottomNavigationBarItem(icon : Container(
-              
-              height: MediaQuery.of(context).size.width * 1/16,
-              width: MediaQuery.of(context).size.width * 1/16,
-              child: Image.asset("assets/images/dashboard.png")
-              ),
-              label: "Home"),
-            BottomNavigationBarItem(icon: Container(
-              
-              
-              height: MediaQuery.of(context).size.width * 1/16,
-              width: MediaQuery.of(context).size.width * 1/16,
-              child: Image.asset("assets/images/profile.png")),
-            label: "Profile"),
-            BottomNavigationBarItem(icon: Container(
-              height: MediaQuery.of(context).size.width * 1/16,
-              width: MediaQuery.of(context).size.width * 1/16,
-              child: Image.asset("assets/images/settings.png")),
-             label: "Settings"), 
+            BottomNavigationBarItem(
+                icon: Container(
+                    height: MediaQuery.of(context).size.width * 1 / 16,
+                    width: MediaQuery.of(context).size.width * 1 / 16,
+                    child: Image.asset("assets/images/dashboard.png")),
+                label: "Home"),
+            BottomNavigationBarItem(
+                icon: Container(
+                    height: MediaQuery.of(context).size.width * 1 / 16,
+                    width: MediaQuery.of(context).size.width * 1 / 16,
+                    child: Image.asset("assets/images/profile.png")),
+                label: "Profile"),
+            BottomNavigationBarItem(
+                icon: Container(
+                    height: MediaQuery.of(context).size.width * 1 / 16,
+                    width: MediaQuery.of(context).size.width * 1 / 16,
+                    child: Image.asset("assets/images/settings.png")),
+                label: "Settings"),
           ],
         ),
       ),
@@ -839,7 +834,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 7,
+                  height: MediaQuery.of(context).size.height / 5,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -860,7 +855,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, top: 20.0, right: 10.0),
+                            left: 10.0, top: 10.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
                             InkWell(

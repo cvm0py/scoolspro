@@ -32,6 +32,7 @@ import 'package:infixedu/screens/student/SubjectScreen.dart';
 import 'package:infixedu/screens/student/TimeLineScreen.dart';
 import 'package:infixedu/screens/student/TransportScreen.dart';
 import 'package:infixedu/screens/student/album/album.dart';
+import 'package:infixedu/screens/student/events/Events.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
 import 'package:infixedu/screens/student/examination/ScheduleScreen.dart';
@@ -73,14 +74,14 @@ import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
 class AppFunction {
   static var students = [
-   // 'Profile',
+    // 'Profile',
     'Calendar',
     'School News',
     'Class Schedule',
     'Payment',
     'Attendance',
     'Homework',
-    
+
     'Examination',
     'Online Exam',
     //'Leave',
@@ -89,25 +90,25 @@ class AppFunction {
     'Study Materials',
     'Digital Library',
     'Teacher',
-  //  'Transport',
+    //  'Transport',
     //'Zoom',
     //  'Settings',
-    
+
     'Events',
     //'Results'
   ];
   static var studentIcons = [
-    //'assets/images/profile.jpg',  
-      'assets/images/calender.png'
-    'assets/images/school_news.png',
+    //'assets/images/profile.jpg',
+    'assets/images/calender.png'
+        'assets/images/school_news.png',
     'assets/images/class_schedule.png',
     'assets/images/payments.png',
     'assets/images/attendance.png',
     'assets/images/homework.png',
     'assets/images/examination.png',
     'assets/images/online_exam.png',
-      'assets/images/gallery.png'
-    'assets/images/subjects.png',
+    'assets/images/gallery.png'
+        'assets/images/subjects.png',
     //'assets/images/leave.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
@@ -117,7 +118,7 @@ class AppFunction {
     //'assets/images/addhw.png',
   ];
   static var students2 = [
-   // 'Profile',
+    // 'Profile',
     'Payment',
     'Class Schedule',
     'Homework',
@@ -136,7 +137,7 @@ class AppFunction {
     //  'Settings',
   ];
   static var studentIcons2 = [
-   // 'assets/images/profile.png',
+    // 'assets/images/profile.png',
     'assets/images/payments.png',
     'assets/images/class_schedule.png',
     'assets/images/homework.png',
@@ -230,7 +231,7 @@ class AppFunction {
     'Library',
     //'Transport',
     'Zoom',
-   // 'Settings',
+    // 'Settings',
   ];
   static var adminIcons = [
     'assets/images/students.png',
@@ -243,32 +244,32 @@ class AppFunction {
     'assets/images/library.png',
     //'assets/images/transport.jpg',
     'assets/images/zoom.png',
-   // 'assets/images/addhw.png',
+    // 'assets/images/addhw.png',
   ];
 
   static var admins2 = [
     'Students',
     'Leave',
     'Staff',
-   // 'Dormitory',
+    // 'Dormitory',
     'Attendance',
     'Fees',
     'Contents',
     'Library',
     //'Transport',
-   // 'Settings',
+    // 'Settings',
   ];
   static var adminIcons2 = [
     'assets/images/students.png',
     'assets/images/leave.png',
     'assets/images/staff.png',
-  //  'assets/images/dormitory.png',
+    //  'assets/images/dormitory.png',
     'assets/images/attendance.png',
     'assets/images/payments.png',
     'assets/images/contents.png',
     'assets/images/library.png',
-   // 'assets/images/transport.png',
-   // 'assets/images/addhw.png',
+    // 'assets/images/transport.png',
+    // 'assets/images/addhw.png',
   ];
 
   static var parent = [
@@ -334,7 +335,7 @@ class AppFunction {
   ];
   static var examinations = [
     'Schedule',
-    'Result',
+    'Performance',
   ];
   static var examinationIcons = [
     'assets/images/payments.png',
@@ -505,6 +506,10 @@ class AppFunction {
               id: id,
               image: image,
             )));
+        break;
+      case 'Events':
+        print('hey');
+        Navigator.push(context, ScaleRoute(page: Events()));
         break;
       case 'Payment':
         Navigator.push(context, ScaleRoute(page: FeeScreen(id: id)));
@@ -786,6 +791,19 @@ class AppFunction {
       case 'Students':
         Navigator.push(context, ScaleRoute(page: StudentSearch()));
         break;
+      case 'Gallery':
+        Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
+        break;
+      case 'Events':
+        print('hey');
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: Events(
+              profileName: 'Teachers',
+            )));
+        break;
+
       case 'Academic':
         Navigator.push(context,
             ScaleRoute(page: AcademicHomeScreen(academics, academicsIcons)));
