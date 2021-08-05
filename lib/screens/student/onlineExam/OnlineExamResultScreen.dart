@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/ONlineExamResult.dart';
 import 'package:infixedu/utils/widget/OnlineExamResultRow.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class OnlineExamResultScreen extends StatefulWidget {
   var id;
@@ -70,6 +72,8 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Result'),
         backgroundColor: Colors.white,
         body: FutureBuilder<OnlineExamNameList>(

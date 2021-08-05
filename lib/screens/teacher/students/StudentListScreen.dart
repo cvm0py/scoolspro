@@ -16,6 +16,8 @@ import 'package:infixedu/utils/model/Student.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 import 'package:infixedu/utils/widget/StudentSearchRow.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentListScreen extends StatefulWidget {
   int classCode;
@@ -81,6 +83,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Student List'),
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,

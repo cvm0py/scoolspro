@@ -18,6 +18,8 @@ import 'package:infixedu/utils/model/ClassExam.dart';
 import 'package:infixedu/utils/model/ClassExamSchedule.dart';
 import 'package:infixedu/utils/widget/ClassExamResultRow.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class ClassExamResultScreen extends StatefulWidget {
   var id;
@@ -71,7 +73,9 @@ class _ClassExamResultScreenState extends State<ClassExamResultScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        appBar: CustomAppBarWidget(title: 'Exam Result'),
+        
+        bottomNavigationBar: MainScreen(),
+        appBar: CustomAppBarWidget(title: 'Exam Performance'),
         backgroundColor: Colors.white,
         body: FutureBuilder<ClassExamList>(
           future: exams,

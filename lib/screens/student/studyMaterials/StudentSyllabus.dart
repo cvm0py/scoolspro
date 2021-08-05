@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/UploadedContent.dart';
 import 'package:infixedu/utils/widget/StudyMaterial_row.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentSyllabus extends StatefulWidget {
   String id;
@@ -61,6 +63,8 @@ class _StudentSyllabusState extends State<StudentSyllabus> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Syllabus'),
         backgroundColor: Colors.white,
         body: FutureBuilder<UploadedContentList>(

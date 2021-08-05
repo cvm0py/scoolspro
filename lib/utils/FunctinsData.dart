@@ -168,7 +168,7 @@ class AppFunction {
     'Gallery',
     'Calender',
     //   'Settings',
-    'Results',
+    'Performance',
     'Events',
     'Online Exam',
     'Class Schedule'
@@ -334,10 +334,10 @@ class AppFunction {
   ];
   static var examinations = [
     'Schedule',
-    'Result',
+    'Performance',
   ];
   static var examinationIcons = [
-    'assets/images/payments.png',
+    'assets/images/class_schedule.png',
     'assets/images/results.png',
   ];
 
@@ -786,6 +786,9 @@ class AppFunction {
       case 'Students':
         Navigator.push(context, ScaleRoute(page: StudentSearch()));
         break;
+      case 'Gallery':
+        Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
+        break;
       case 'Academic':
         Navigator.push(context,
             ScaleRoute(page: AcademicHomeScreen(academics, academicsIcons)));
@@ -965,7 +968,7 @@ class AppFunction {
               id: id,
             )));
         break;
-      case 'Result':
+      case 'Performance':
         Navigator.push(
             context,
             ScaleRoute(

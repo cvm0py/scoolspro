@@ -18,6 +18,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Subject.dart';
 import 'package:infixedu/utils/widget/SubjectRowLayout.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class SubjectScreen extends StatefulWidget {
   String id;
@@ -62,6 +64,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Subjects'),
         backgroundColor: Colors.white,
         body: Container(

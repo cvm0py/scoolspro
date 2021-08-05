@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
+import '../../nav_main.dart';
+
 class Photos extends StatefulWidget {
   String id;
 
@@ -30,6 +32,7 @@ class _PhotosState extends State<Photos> {
   Widget build(BuildContext context) {
     loadData();
     return Scaffold(
+        bottomNavigationBar: MainScreen(),
       appBar: CustomAppBarWidget(title: 'Gallery'),
       body: Container(
         child: Padding(

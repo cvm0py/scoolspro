@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/ActiveOnlineExam.dart';
 import 'package:infixedu/utils/widget/ActiveOnlineExam.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class ActiveOnlineExamScreen extends StatefulWidget {
   var id;
@@ -66,6 +68,8 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Active Exam'),
         backgroundColor: Colors.white,
         body: FutureBuilder<ActiveExamList>(

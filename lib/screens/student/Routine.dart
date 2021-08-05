@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/nav_main.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -17,6 +18,7 @@ class Routine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
@@ -25,6 +27,7 @@ class Routine extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Class Schedule'),
         backgroundColor: Colors.white,
         body: Padding(

@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Transport.dart';
 import 'package:infixedu/utils/widget/TransportRow.dart';
 
+import '../nav_main.dart';
+
 class TransportScreen extends StatefulWidget {
   @override
   _TransportState createState() => _TransportState();
@@ -48,6 +50,8 @@ class _TransportState extends State<TransportScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
           appBar: CustomAppBarWidget(title: 'Transport'),
           backgroundColor: Colors.white,
           body: FutureBuilder<TransportList>(

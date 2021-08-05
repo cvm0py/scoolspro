@@ -13,6 +13,8 @@ import 'package:infixedu/utils/server/FeesService.dart';
 import 'package:infixedu/utils/widget/Fees_row_layout.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class FeeScreen extends StatefulWidget {
   String id;
@@ -44,6 +46,8 @@ class _FeeScreenState extends State<FeeScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         // appBar: CustomAppBarWidget(title: 'Fees'),
         appBar: CustomAppBarWidget(
           title: 'Payment',

@@ -9,6 +9,8 @@ import 'package:infixedu/utils/CardItem.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class ChildHome extends StatefulWidget {
   var _titles;
@@ -53,6 +55,7 @@ class _ChildHomeState extends State<ChildHome> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: _name + ' Dashboard',
         ),

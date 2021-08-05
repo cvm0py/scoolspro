@@ -8,6 +8,8 @@ import 'package:infixedu/utils/CustomAppBarWidget.dart';
 // import 'package:infixedu/utils/pdf_flutter.dart';
 import 'package:pdf_flutter/pdf_flutter.dart';
 
+import '../../nav_main.dart';
+
 class DownloadViewer extends StatefulWidget {
   final String title;
   final String filePath;
@@ -28,6 +30,8 @@ class _DownloadViewerState extends State<DownloadViewer> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: widget.title),
         body: PDF.network(
           widget.filePath,

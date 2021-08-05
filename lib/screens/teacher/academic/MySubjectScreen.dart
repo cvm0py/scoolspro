@@ -17,6 +17,8 @@ import 'package:infixedu/utils/model/TeacherSubject.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 import 'package:infixedu/utils/widget/TeacherSubjectRow.dart';
 
+import '../../nav_main.dart';
+
 class MySubjectScreen extends StatefulWidget {
   @override
   _MySubjectScreenState createState() => _MySubjectScreenState();
@@ -50,6 +52,8 @@ class _MySubjectScreenState extends State<MySubjectScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Subjects'),
         backgroundColor: Colors.white,
         body: Container(

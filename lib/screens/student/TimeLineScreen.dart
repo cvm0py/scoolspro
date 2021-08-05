@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Timeline.dart';
 import 'package:infixedu/utils/widget/TimeLineView.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class TimelineScreen extends StatefulWidget {
   String id;
@@ -59,6 +61,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Timeline'),
         backgroundColor: Colors.white,
         body: FutureBuilder<TimelineList>(

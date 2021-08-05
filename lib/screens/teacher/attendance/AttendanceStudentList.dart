@@ -20,6 +20,8 @@ import 'package:infixedu/utils/model/Student.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 import 'package:infixedu/utils/widget/StudentAttendanceRow.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentListAttendance extends StatefulWidget {
   int classCode;
@@ -80,6 +82,8 @@ class _StudentListAttendanceState extends State<StudentListAttendance> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         key: _key,
         appBar: CustomAppBarWidget(
           title: 'Set Attendance',

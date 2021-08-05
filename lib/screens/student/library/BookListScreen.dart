@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Book.dart';
 import 'package:infixedu/utils/widget/BookRowLayout.dart';
 
+import '../../nav_main.dart';
+
 class BookListScreen extends StatefulWidget {
   @override
   _BookListState createState() => _BookListState();
@@ -49,6 +51,7 @@ class _BookListState extends State<BookListScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Book List'),
         backgroundColor: Colors.white,
         body: Padding(

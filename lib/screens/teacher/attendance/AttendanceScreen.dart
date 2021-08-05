@@ -8,6 +8,8 @@ import 'package:infixedu/utils/CardItem.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 
+import '../../nav_main.dart';
+
 class AttendanceHomeScreen extends StatefulWidget {
   final _titles;
   final _images;
@@ -43,6 +45,7 @@ class _HomeState extends State<AttendanceHomeScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'Attendance',
         ),
