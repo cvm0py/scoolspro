@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
+import '../../nav_main.dart';
+
 class Albums extends StatefulWidget {
   String id;
 
@@ -26,6 +28,7 @@ class _AlbumsState extends State<Albums> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: MainScreen(),
       appBar: CustomAppBarWidget(title: 'Gallery'),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

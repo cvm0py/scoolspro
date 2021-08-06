@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Child.dart';
 import 'package:infixedu/utils/widget/ChildRow.dart';
 
+import '../nav_main.dart';
+
 class ChildListScreen extends StatefulWidget {
   @override
   _ChildListScreenState createState() => _ChildListScreenState();
@@ -52,6 +54,7 @@ class _ChildListScreenState extends State<ChildListScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'Child List',
         ),

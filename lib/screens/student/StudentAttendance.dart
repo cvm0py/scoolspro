@@ -19,6 +19,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/StudentAttendance.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentAttendanceScreen extends StatefulWidget {
   var id;
@@ -81,6 +83,7 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Attendance'),
         backgroundColor: Colors.white,
         body: Column(

@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/StudentHomework.dart';
 import 'package:infixedu/utils/widget/Homework_row.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentHomework extends StatefulWidget {
   String id;
@@ -60,6 +62,7 @@ class _StudentHomeworkState extends State<StudentHomework> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Homework'),
         backgroundColor: Colors.white,
         body: Padding(

@@ -18,6 +18,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/StudentAttendance.dart';
 
+import '../nav_main.dart';
+
 class TeacherAttendanceScreen extends StatefulWidget {
   @override
   _TeacherAttendanceScreenState createState() =>
@@ -59,6 +61,7 @@ class _TeacherAttendanceScreenState extends State<TeacherAttendanceScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBarWidget(title: 'My Atten'),
         backgroundColor: Colors.white,

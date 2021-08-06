@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Notice.dart';
 import 'package:infixedu/utils/widget/NoticeRow.dart';
 
+import '../../nav_main.dart';
+
 class NoticeScreen extends StatefulWidget {
   @override
   _NoticeScreenState createState() => _NoticeScreenState();
@@ -53,6 +55,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'School News'),
         backgroundColor: Colors.white,
         body: FutureBuilder<NoticeList>(

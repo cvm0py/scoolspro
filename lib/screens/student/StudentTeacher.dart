@@ -18,6 +18,8 @@ import 'package:infixedu/utils/model/Teacher.dart';
 import 'package:infixedu/utils/server/About.dart';
 import 'package:infixedu/utils/widget/Student_teacher_row_layout.dart';
 
+import '../nav_main.dart';
+
 // ignore: must_be_immutable
 class StudentTeacher extends StatefulWidget {
   String id;
@@ -71,6 +73,7 @@ class _StudentTeacherState extends State<StudentTeacher>
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Teacher'),
         backgroundColor: Colors.white,
         body: Container(

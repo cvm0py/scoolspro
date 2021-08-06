@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Content.dart';
 import 'package:infixedu/utils/widget/Content_row.dart';
 
+import '../../nav_main.dart';
+
 class ContentListScreen extends StatefulWidget {
   @override
   _ContentListScreenState createState() => _ContentListScreenState();
@@ -49,6 +51,8 @@ class _ContentListScreenState extends State<ContentListScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'Contents',
         ),

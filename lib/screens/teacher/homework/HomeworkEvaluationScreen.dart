@@ -20,6 +20,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/HomeworkEvaluation.dart';
 import 'package:infixedu/utils/widget/HomeWorkEvaluationDetailsRow.dart';
 
+import '../../nav_main.dart';
+
 class HomeworkEvaluationScreen extends StatefulWidget {
   HomeworkEvaluationScreen({this.classId, this.sectionId, this.homeworkId});
 
@@ -64,6 +66,7 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Homework Evaluation'),
         backgroundColor: Colors.white,
         body: Padding(

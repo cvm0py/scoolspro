@@ -8,6 +8,8 @@ import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/widget/TeacherMyRoutineItem.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class TeacherMyRoutineScreen extends StatelessWidget {
   List<String> weeks = AppFunction.weeks;
@@ -22,6 +24,8 @@ class TeacherMyRoutineScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'My Routine'),
         backgroundColor: Colors.white,
         body: ListView.builder(

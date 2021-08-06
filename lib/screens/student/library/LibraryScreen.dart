@@ -8,6 +8,8 @@ import 'package:infixedu/utils/CardItem.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class LibraryHome extends StatefulWidget {
   var _titles;
@@ -45,6 +47,8 @@ class _HomeState extends State<LibraryHome> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Digital Library'),
         backgroundColor: Colors.white,
         body: Container(

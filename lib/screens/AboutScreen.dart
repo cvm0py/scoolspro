@@ -12,6 +12,8 @@ import 'package:infixedu/utils/model/InfixMap.dart';
 import 'package:infixedu/utils/server/About.dart';
 import 'package:infixedu/utils/widget/ProfileListRow.dart';
 
+import 'nav_main.dart';
+
 // ignore: must_be_immutable
 class AboutScreen extends StatefulWidget {
   @override
@@ -43,6 +45,7 @@ class _AboutScreenState extends State<AboutScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'About',
         ),

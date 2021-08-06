@@ -8,6 +8,8 @@ import 'package:infixedu/utils/CardItem.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class ExaminationHome extends StatefulWidget {
   var _titles;
@@ -46,6 +48,7 @@ class _HomeState extends State<ExaminationHome> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Examination'),
         backgroundColor: Colors.white,
         body: Container(

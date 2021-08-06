@@ -169,7 +169,7 @@ class AppFunction {
     'Gallery',
     'Calender',
     //   'Settings',
-    'Results',
+    'Performance',
     'Events',
     'Online Exam',
     'Class Schedule'
@@ -338,7 +338,7 @@ class AppFunction {
     'Performance',
   ];
   static var examinationIcons = [
-    'assets/images/payments.png',
+    'assets/images/class_schedule.png',
     'assets/images/results.png',
   ];
 
@@ -794,6 +794,7 @@ class AppFunction {
       case 'Gallery':
         Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
         break;
+
       case 'Events':
         print('hey');
         Navigator.push(
@@ -983,7 +984,7 @@ class AppFunction {
               id: id,
             )));
         break;
-      case 'Result':
+      case 'Performance':
         Navigator.push(
             context,
             ScaleRoute(

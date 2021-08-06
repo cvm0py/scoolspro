@@ -18,6 +18,7 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Classes.dart';
 import 'package:infixedu/utils/model/Section.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
+import '../../nav_main.dart';
 import 'StudentListScreen.dart';
 
 // ignore: must_be_immutable
@@ -81,6 +82,7 @@ class _StudentSearchState extends State<StudentSearch> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
         appBar: status == 'attendance'
             ? CustomAppBarWidget(title: 'Attendance search')
             : CustomAppBarWidget(title: 'Student search'),

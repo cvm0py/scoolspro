@@ -8,6 +8,7 @@ import 'package:infixedu/config/app_config.dart';
 // Project imports:
 import '../../../utils/CustomAppBarWidget.dart';
 import '../../../utils/model/Notice.dart';
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class NoticDetailsLayout extends StatefulWidget {
@@ -34,6 +35,7 @@ class _NoticDetailsLayoutState extends State<NoticDetailsLayout> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Notice Details'),
         backgroundColor: Colors.white,
         body: Padding(

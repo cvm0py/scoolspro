@@ -17,6 +17,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/provider/notification_provider.dart';
+import 'package:infixedu/screens/SplashScreen.dart';
+import 'package:infixedu/screens/nav_main.dart';
 import 'package:infixedu/utils/widget/bottom_navbar.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -259,7 +261,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
+
+
+    //print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
@@ -439,6 +443,7 @@ class _HomeState extends State<Home> {
           elevation: 0.0,
         ),
         body: Container(
+         
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           child:
@@ -453,7 +458,11 @@ class _HomeState extends State<Home> {
             child: GridView.builder(
               itemCount: _titles.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+
                   crossAxisCount: 2, childAspectRatio: (1.8 / 1.05)),
+
+                  
+
               itemBuilder: (context, index) {
                 return CustomWidget(
                   index: index,
@@ -488,6 +497,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: [
@@ -511,6 +521,10 @@ class _HomeState extends State<Home> {
                 label: "Settings"),
           ],
         ),
+=======
+      bottomNavigationBar : MainScreen(),
+         
+
       ),
     );
   }

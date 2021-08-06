@@ -17,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/BookIssued.dart';
 import 'package:infixedu/utils/widget/BookIssuedRow.dart';
 
+import '../../nav_main.dart';
+
 // ignore: must_be_immutable
 class BookIssuedScreen extends StatefulWidget {
   var id;
@@ -61,6 +63,8 @@ class _BookIssuedScreenState extends State<BookIssuedScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Book Issued'),
         backgroundColor: Colors.white,
         body: FutureBuilder<BookIssuedList>(
