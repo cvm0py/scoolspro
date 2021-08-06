@@ -19,6 +19,7 @@ class InfixApi {
   static String zoomMakeMeeting = "zoom-make-meeting";
   static String zoomMakeMeetingUrl = "zoom-meeting-room";
   static String getAlbum = baseApi + "album-list";
+  static String getEvents = baseApi + "events";
 
   static String login(String email, String password) {
     print('hi');
@@ -47,8 +48,8 @@ class InfixApi {
   static String getStudentTeacherUrl(int id) {
     return baseApi + "studentTeacher/$id";
   }
-  static String getPhotos(String id) {
 
+  static String getPhotos(String id) {
     //TODO :: Set API call
     return baseApi + "get-album/$id";
   }

@@ -28,7 +28,7 @@ class StudentHomeworkRow extends StatefulWidget {
   Homework homework;
   String type;
 
-  StudentHomeworkRow(this.homework,this.type);
+  StudentHomeworkRow(this.homework, this.type);
 
   @override
   _StudentHomeworkRowState createState() => _StudentHomeworkRowState();
@@ -70,19 +70,17 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                   Expanded(
                     child: Text(
                       widget.homework.subjectName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(),
+                      style: Theme.of(context).textTheme.headline6.copyWith(),
                     ),
                   ),
                   Container(
                     child: GestureDetector(
                       onTap: () {
-                        showAlertDialog(context);
+                        //showAlertDialog(context);
                       },
                       child: Text(
-                        'View',
+                        // 'View',
+                        '',
                         textAlign: TextAlign.end,
                         style: Theme.of(context).textTheme.headline6.copyWith(
                             color: Colors.deepPurpleAccent,
@@ -196,51 +194,53 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
               SizedBox(
                 height: 10.0,
               ),
-              widget.homework.obtainedMarks == "" ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Marks',
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    widget.homework.marks == null
-                        ? 'not assigned'
-                        : widget.homework.marks.toString(),
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                ],
-              ): Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Obtained Marks',
-                    maxLines: 1,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    widget.homework.obtainedMarks == null
-                        ? 'not assigned'
-                        : widget.homework.obtainedMarks.toString(),
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                ],
-              ),
+              widget.homework.obtainedMarks == ""
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Marks',
+                          maxLines: 1,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          widget.homework.marks == null
+                              ? 'not assigned'
+                              : widget.homework.marks.toString(),
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Obtained Marks',
+                          maxLines: 1,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          widget.homework.obtainedMarks == null
+                              ? 'not assigned'
+                              : widget.homework.obtainedMarks.toString(),
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ],
+                    ),
               Container(
                 height: 0.5,
                 margin: EdgeInsets.only(top: 10.0),
@@ -287,15 +287,18 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                               style: Theme.of(context).textTheme.headline5,
                             ),
                           ),
-                          widget.homework.obtainedMarks == "" ? Text(
-                            "Marks: " + widget.homework.marks,
-                            style: Theme.of(context).textTheme.headline5,
-                            maxLines: 1,
-                          ) : Text(
-                            "Obtained Marks: " + widget.homework.obtainedMarks,
-                            style: Theme.of(context).textTheme.headline5,
-                            maxLines: 1,
-                          )
+                          widget.homework.obtainedMarks == ""
+                              ? Text(
+                                  "Marks: " + widget.homework.marks,
+                                  style: Theme.of(context).textTheme.headline5,
+                                  maxLines: 1,
+                                )
+                              : Text(
+                                  "Obtained Marks: " +
+                                      widget.homework.obtainedMarks,
+                                  style: Theme.of(context).textTheme.headline5,
+                                  maxLines: 1,
+                                )
                         ],
                       ),
                       Padding(
@@ -376,25 +379,30 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                 ],
                               ),
                             ),
-                            widget.type == 'student' ? Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Status',
-                                    maxLines: 1,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4
-                                        .copyWith(fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  getStatus(context, widget.homework.status),
-                                ],
-                              ),
-                            ): Container()
+                            widget.type == 'student'
+                                ? Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          'Status',
+                                          maxLines: 1,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline4
+                                              .copyWith(
+                                                  fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(
+                                          height: 10.0,
+                                        ),
+                                        getStatus(
+                                            context, widget.homework.status),
+                                      ],
+                                    ),
+                                  )
+                                : Container()
                           ],
                         ),
                       ),
@@ -411,7 +419,10 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                 widget.homework.description == null
                                     ? ''
                                     : widget.homework.description,
-                                style: Theme.of(context).textTheme.headline4.copyWith(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    .copyWith(),
                               ),
                             ],
                           ),
@@ -447,7 +458,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                             width: 10,
                                           ),
                                           Text(
-                                           progress,
+                                            progress,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline5
@@ -462,42 +473,52 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                           context, widget.homework.subjectName);
                                     },
                                   ),
-                            widget.type == 'student' ? widget.homework.status == "incompleted" ? InkWell(
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: ScreenUtil().setWidth(145),
-                                height: ScreenUtil().setHeight(40),
-                                decoration: Utils.gradientBtnDecoration,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Icon(Icons.cloud_upload),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Upload",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline5
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              onTap: () {
-                                showDialog<void>(
-                                  barrierDismissible: true,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return UploadHomework(homework: widget.homework,userID: _id,);
-                                  },
-                                );
-                              },
-                            ) : Container(): Container()
+                            widget.type == 'student'
+                                ? widget.homework.status == "incompleted"
+                                    ? InkWell(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: ScreenUtil().setWidth(145),
+                                          height: ScreenUtil().setHeight(40),
+                                          decoration:
+                                              Utils.gradientBtnDecoration,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Icon(Icons.cloud_upload),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                "Upload",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline5
+                                                    .copyWith(
+                                                        color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          showDialog<void>(
+                                            barrierDismissible: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return UploadHomework(
+                                                homework: widget.homework,
+                                                userID: _id,
+                                              );
+                                            },
+                                          );
+                                        },
+                                      )
+                                    : Container()
+                                : Container()
                           ],
                         ),
                       ),
