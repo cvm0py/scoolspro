@@ -66,13 +66,17 @@ class _AboutScreenState extends State<AboutScreen> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${snapshot.data[0].value}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontSize: ScreenUtil().setSp(15), color: Colors.deepPurple),
-                  ),
+                  // child: Text(
+                  //   '${snapshot.data[0].value}',
+                  //   style: Theme.of(context)
+                  //       .textTheme
+                  //       .headline4
+                  //       .copyWith(fontSize: ScreenUtil().setSp(15), color: Colors.deepPurple),
+                  // ),
+                 child: Text("SCOOLSPRO has all in one place. You 'll find everything what you are looking for in the Education Management System software. We care user will never bothered in our real eye catchyuser friendly UI and UX interface design. Smart Idea always comes to well planners.And our SCOOLSPRO is smart for its well Documentation. Explore in new Supportworld. It's now faster and quicker.You 'll find us on Support Ticket, Email,Skype. ", style: Theme.of(context)
+                         .textTheme
+                         .headline4
+                         .copyWith(fontSize: ScreenUtil().setSp(15), color: Colors.deepPurple)),
                 ),
                 Expanded(
                   child: ListView.builder(
