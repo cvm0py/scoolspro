@@ -351,7 +351,7 @@ class InfixApi {
   static String adminAddDormitory = baseApi + "add-dormitory";
 
   static String setToken(String id, String token) {
-    return baseApi + "set-fcm-token?id=$id&token=$token";
+    return baseApi + "set-token?id=$id&token=$token";
   }
 
   static String sentNotificationForAll(int role, String title, String body) {

@@ -202,7 +202,7 @@ class _HomeState extends State<Home> {
     });
     print('User granted permission: ${settings.authorizationStatus}');
 
-    // sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
+     sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       // print('Got a message whilst in the foreground!');
