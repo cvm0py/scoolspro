@@ -59,7 +59,7 @@ class _SettingScreenState extends State<SettingScreen> {
             BottomLine(),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.deepPurpleAccent,
+                backgroundColor: AppConfig.primary,
                 child: Icon(
                   Icons.language,
                   color: Colors.white,
@@ -76,10 +76,10 @@ class _SettingScreenState extends State<SettingScreen> {
                 },
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.redAccent,
+                        color: AppConfig.primary,
                         borderRadius: BorderRadius.circular(8)),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         'Language',
                         style: Theme.of(context)
@@ -111,10 +111,10 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
           ),
           ToggleButtons(
-            borderColor: Colors.deepPurple,
-            fillColor: Colors.deepPurple.shade200,
+            borderColor: Colors.blueAccent,
+            fillColor: AppConfig.primary,
             borderWidth: 2,
-            selectedBorderColor: Colors.deepPurple,
+            selectedBorderColor: AppConfig.primary,
             selectedColor: Colors.white,
             borderRadius: BorderRadius.circular(0),
             children: <Widget>[

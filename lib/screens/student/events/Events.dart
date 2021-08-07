@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/screens/student/album/photos.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -18,12 +21,15 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
+  
   loadData() async {
     var response = await http.get(Uri.parse(InfixApi.getEvents));
     Map<String, dynamic> decodedJson = json.decode(response.body);
     List<dynamic> responseData = decodedJson['data'];
     return responseData;
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {

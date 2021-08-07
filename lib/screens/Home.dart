@@ -264,6 +264,8 @@ class _HomeState extends State<Home> {
 
 
     //print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
+
+    
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
@@ -272,8 +274,8 @@ class _HomeState extends State<Home> {
 
     return Padding(
       padding: EdgeInsets.only(
-          //top: statusBarHeight
-          top: 0),
+          top: statusBarHeight
+          ),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white70,
@@ -498,31 +500,7 @@ class _HomeState extends State<Home> {
           ),
         ),
 
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(
-                icon: Container(
-                    height: MediaQuery.of(context).size.width * 1 / 16,
-                    width: MediaQuery.of(context).size.width * 1 / 16,
-                    child: Image.asset("assets/images/dashboard.png")),
-                label: "Home"),
-            BottomNavigationBarItem(
-                icon: Container(
-                    height: MediaQuery.of(context).size.width * 1 / 16,
-                    width: MediaQuery.of(context).size.width * 1 / 16,
-                    child: Image.asset("assets/images/profile.png")),
-                label: "Profile"),
-            BottomNavigationBarItem(
-                icon: Container(
-                    height: MediaQuery.of(context).size.width * 1 / 16,
-                    width: MediaQuery.of(context).size.width * 1 / 16,
-                    child: Image.asset("assets/images/settings.png")),
-                label: "Settings"),
-          ],
-        ),
-=======
-      bottomNavigationBar : MainScreen(),
+        bottomNavigationBar: MainScreen(),
          
 
       ),
@@ -872,26 +850,26 @@ class _HomeState extends State<Home> {
                             left: 10.0, top: 10.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
-                            InkWell(
-                              child: SizedBox(
-                                child: Text(
-                                  "Profile",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    ScaleRoute(
-                                        page: Profile(
-                                      id: _id,
-                                    )));
-                              },
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
+                            // InkWell(
+                            //   // child: SizedBox(
+                            //   //   child: Text(
+                            //   //     "Profile",
+                            //   //     textAlign: TextAlign.center,
+                            //   //     style: Theme.of(context).textTheme.headline5,
+                            //   //   ),
+                            //   // ),
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         ScaleRoute(
+                            //             page: Profile(
+                            //           id: _id,
+                            //         )));
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   height: 8,
+                            // ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)

@@ -77,7 +77,7 @@ class _AdminStaffListState extends State<AdminStaffList> {
       child: GridView.builder(
         itemCount: data.members.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: (2 / 1)),
+            crossAxisCount: 2, childAspectRatio: (2 / 1.1)),
         itemBuilder: (context, index) {
           return CustomWidget(
             index: index,

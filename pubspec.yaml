@@ -74,11 +74,11 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/config/app_icon.jpg"
+  image_path: "assets/config/logo_blue.png"
 
 # flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  image: assets/config/splash_logo.png
+  image: assets/config/logo_blue.png
   fullscreen: true
   color: "FFFFFF"
 

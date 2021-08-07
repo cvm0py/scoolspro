@@ -54,7 +54,7 @@ class _HomeState extends State<HomeworkHomeScreen> {
           child: GridView.builder(
             itemCount: _titles.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: (2 / 1)),
+                crossAxisCount: 2, childAspectRatio: (2 / 1.1)),
             itemBuilder: (context, index) {
               return CustomWidget(
                 index: index,

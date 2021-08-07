@@ -29,7 +29,7 @@ class _AlbumsState extends State<Albums> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: MainScreen(),
-      appBar: CustomAppBarWidget(title: 'Gallery'),
+      appBar: CustomAppBarWidget(title: 'Albums'),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Container(

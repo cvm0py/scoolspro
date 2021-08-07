@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Package imports:
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:infixedu/config/app_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils {
@@ -81,12 +82,14 @@ class Utils {
 
   static BoxDecoration gradientBtnDecoration = BoxDecoration(
       borderRadius: BorderRadius.circular(25.0),
-      gradient: LinearGradient(
-        colors: [
-          Color(0xff0000ff),
-          Color(0xffccccff),
-        ],
-      ));
+      // gradient: LinearGradient(
+      //   colors: [
+      //     Color(0xff0000ff),
+      //     Color(0xffccccff),
+      //   ],
+      // )
+      color:AppConfig.primary,
+      );
 
   static Text checkTextValue(text, value) {
     return Text(

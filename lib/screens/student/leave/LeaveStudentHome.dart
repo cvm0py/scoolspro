@@ -49,7 +49,6 @@ class _LeaveStudentHomeState extends State<LeaveStudentHome> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        
         bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Leave'),
         backgroundColor: Colors.white,
@@ -58,7 +57,7 @@ class _LeaveStudentHomeState extends State<LeaveStudentHome> {
           child: GridView.builder(
             itemCount: _titles.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: (2 / 1)),
+                crossAxisCount: 2, childAspectRatio: (2 / 1.1)),
             itemBuilder: (context, index) {
               return CustomWidget(
                 index: index,
