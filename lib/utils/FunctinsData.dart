@@ -98,7 +98,7 @@ class AppFunction {
   ];
   static var studentIcons = [
     //'assets/images/profile.jpg',
-    'assets/images/calender.png',
+    'assets/images/calendar.png',
     'assets/images/school_news.png',
     'assets/images/class_schedule.png',
     'assets/images/payments.png',
@@ -118,8 +118,8 @@ class AppFunction {
   ];
   static var students2 = [
     // 'Profile',
-    'Calender',
-    'School news',
+    'Calendar',
+    'School News',
     'Class Schedule',
     'Payment',
     'Attendance',
@@ -132,8 +132,8 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     'Events',
-   // 'Timeline',
-   // 'Leave',
+    // 'Timeline',
+    // 'Leave',
     //'Transport',
     //  'Settings',
   ];
@@ -153,13 +153,13 @@ class AppFunction {
     'assets/images/teacher.png',
     'assets/images/events.png',
     //'assets/images/timeline.png',
-   // 'assets/images/leave.png',
+    // 'assets/images/leave.png',
     //  'assets/images/addhw.png',
   ];
 
   static var teachers = [
     'Students',
-    'Calender',
+    'Calendar',
     'School News',
     'Class Schedule',
     'Academic',
@@ -167,12 +167,12 @@ class AppFunction {
     'Attendance',
     'Homework',
     'Online Exam',
-    'Gallery',  
+    'Gallery',
     'Digital Library',
-   // 'Leave',
+    // 'Leave',
     'Contents',
     //'Zoom',
-   // 'About',
+    // 'About',
     //   'Settings',
     'Events',
   ];
@@ -183,17 +183,17 @@ class AppFunction {
     'assets/images/school_news.png',
     'assets/images/class_schedule.png',
     'assets/images/academics.png',
-    'assets/images/results.png',  //performance
+    'assets/images/results.png', //performance
     'assets/images/attendance.png',
     'assets/images/homework.png',
-   // 'assets/images/leave.png',
+    // 'assets/images/leave.png',
     'assets/images/online_exam.png',
     'assets/images/gallery.png',
     'assets/images/library.png',
     'assets/images/contents.png',
     //'assets/images/zoom.png',
     //'assets/images/about.png',
-   // 'assets/images/results.png',
+    // 'assets/images/results.png',
     'assets/images/events.png',
   ];
 
@@ -217,13 +217,13 @@ class AppFunction {
     'assets/images/calendar.png',
     'assets/images/academics.png',
     'assets/images/attendance.png',
-   // 'assets/images/leave.png',
+    // 'assets/images/leave.png',
     'assets/images/contents.png',
     'assets/images/school_news.png',
     'assets/images/gallery.png',
     'assets/images/library.png',
     'assets/images/homework.png',
-  //  'assets/images/about.png',
+    //  'assets/images/about.png',
     // 'assets/images/addhw.png',
   ];
 
@@ -237,7 +237,7 @@ class AppFunction {
     'Contents',
     'Library',
     //'Transport',
-   // 'Zoom',
+    // 'Zoom',
     // 'Settings',
   ];
   static var adminIcons = [
@@ -250,7 +250,7 @@ class AppFunction {
     'assets/images/contents.png',
     'assets/images/library.png',
     //'assets/images/transport.jpg',
-   // 'assets/images/zoom.png',
+    // 'assets/images/zoom.png',
     // 'assets/images/addhw.png',
   ];
 
@@ -281,16 +281,16 @@ class AppFunction {
 
   static var parent = [
     'Child',
-    'Calender',
-   // 'About',
-   // 'Zoom',
+    'Calendar',
+    // 'About',
+    // 'Zoom',
     'Gallery',
     // 'Settings',
   ];
   static var parentIcons = [
     'assets/images/students.png',
     'assets/images/calendar.png',
-   // 'assets/images/about.png',
+    // 'assets/images/about.png',
     //'assets/images/zoom.png',
     'assets/images/gallery.png',
     //'assets/images/calendar.png',
@@ -516,7 +516,7 @@ class AppFunction {
             )));
         break;
       case 'Events':
-        print('hey');
+        // print('hey');
         Navigator.push(context, ScaleRoute(page: Events()));
         break;
       case 'Payment':
@@ -587,6 +587,7 @@ class AppFunction {
         break;
       case 'School News':
         Navigator.push(context, ScaleRoute(page: NoticeScreen()));
+        print("School News Called");
         break;
       case 'Timeline':
         Navigator.push(context, ScaleRoute(page: TimelineScreen(id: id)));
@@ -805,7 +806,7 @@ class AppFunction {
       case 'Gallery':
         Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
         break;
-       case 'Online Exam':
+      case 'Online Exam':
         Navigator.push(
             context,
             ScaleRoute(
@@ -834,7 +835,7 @@ class AppFunction {
             )));
         break;
       case 'Events':
-      //  print('hey');
+        //  print('hey');
         Navigator.push(
             context,
             ScaleRoute(
@@ -896,6 +897,9 @@ class AppFunction {
         break;
       case 'About':
         Navigator.push(context, ScaleRoute(page: AboutScreen()));
+        break;
+      case 'Gallery':
+        Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
         break;
       case 'Settings':
         Navigator.push(context, ScaleRoute(page: SettingScreen()));
@@ -996,6 +1000,7 @@ class AppFunction {
     switch (title) {
       case 'Content List':
         Navigator.push(context, ScaleRoute(page: ContentListScreen()));
+        //print("content List getting called");
         break;
       case 'Add Content':
         Navigator.push(context, ScaleRoute(page: AddContentScreeen()));
