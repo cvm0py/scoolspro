@@ -69,7 +69,7 @@ class _ContentListScreenState extends State<ContentListScreen> {
                     snapshot.data.contents[index],
                     animation,
                     onPressed: () async{
-//                     snapshot.data.contents.removeAt(index);
+            //         snapshot.data.contents.removeAt(index);
                       Utils.showToast('${snapshot.data.contents[index].title} deleted');
                       _removeItem(index, snapshot.data.contents);
                     },

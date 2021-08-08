@@ -163,7 +163,7 @@ class AppFunction {
     'School News',
     'Class Schedule',
     'Academic',
-    'Performance',
+  //  'Performance',
     'Attendance',
     'Homework',
     'Online Exam',
@@ -183,7 +183,7 @@ class AppFunction {
     'assets/images/school_news.png',
     'assets/images/class_schedule.png',
     'assets/images/academics.png',
-    'assets/images/results.png', //performance
+  //  'assets/images/results.png', //performance
     'assets/images/attendance.png',
     'assets/images/homework.png',
     // 'assets/images/leave.png',
@@ -379,11 +379,11 @@ class AppFunction {
 
   static var contents = [
     'Add Content',
-    'Content List',
+    //'Content List',
   ];
   static var contentsIcons = [
     'assets/images/add_content.png',
-    'assets/images/content_list.png',
+   // 'assets/images/content_list.png',
   ];
 
   static var leaves = [
@@ -798,7 +798,8 @@ class AppFunction {
       BuildContext context, String title, String uid) {
     switch (title) {
       case 'Class Schedule':
-        Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
+        //Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
+        Navigator.push(context, ScaleRoute(page: TeacherMyRoutineScreen()));
         break;
       case 'Students':
         Navigator.push(context, ScaleRoute(page: StudentSearch()));
@@ -830,8 +831,10 @@ class AppFunction {
         Navigator.push(
             context,
             ScaleRoute(
-                page: ClassExamResultScreen(
+               page: OnlineExamResultScreen(
               id: uid,
+               // page: ClassExamResultScreen(
+             // id: uid,
             )));
         break;
       case 'Events':
@@ -1000,7 +1003,7 @@ class AppFunction {
     switch (title) {
       case 'Content List':
         Navigator.push(context, ScaleRoute(page: ContentListScreen()));
-        //print("content List getting called");
+        print("content List getting called");
         break;
       case 'Add Content':
         Navigator.push(context, ScaleRoute(page: AddContentScreeen()));

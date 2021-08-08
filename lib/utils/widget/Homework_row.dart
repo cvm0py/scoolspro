@@ -194,8 +194,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
               SizedBox(
                 height: 10.0,
               ),
-              widget.homework.obtainedMarks == ""
-                  ? Column(
+              Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
@@ -217,30 +216,32 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                           style: Theme.of(context).textTheme.headline4,
                         ),
                       ],
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Obtained Marks',
-                          maxLines: 1,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          widget.homework.obtainedMarks == null
-                              ? 'not assigned'
-                              : widget.homework.obtainedMarks.toString(),
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
                     ),
+              // widget.homework.obtainedMarks == ""
+              //     ? 
+              //     : Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: <Widget>[
+              //           Text(
+              //             'Obtained Marks',
+              //             maxLines: 1,
+              //             style: Theme.of(context)
+              //                 .textTheme
+              //                 .headline4
+              //                 .copyWith(fontWeight: FontWeight.w500),
+              //           ),
+              //           SizedBox(
+              //             height: 10.0,
+              //           ),
+              //           Text(
+              //             widget.homework.obtainedMarks == null
+              //                 ? 'not assigned'
+              //                 : widget.homework.obtainedMarks.toString(),
+              //             maxLines: 1,
+              //             style: Theme.of(context).textTheme.headline4,
+              //           ),
+              //         ],
+              //       ),
               Container(
                 height: 0.5,
                 margin: EdgeInsets.only(top: 10.0),
@@ -287,18 +288,19 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                               style: Theme.of(context).textTheme.headline5,
                             ),
                           ),
-                          widget.homework.obtainedMarks == ""
-                              ? Text(
+                          Text(
                                   "Marks: " + widget.homework.marks,
                                   style: Theme.of(context).textTheme.headline5,
                                   maxLines: 1,
                                 )
-                              : Text(
-                                  "Obtained Marks: " +
-                                      widget.homework.obtainedMarks,
-                                  style: Theme.of(context).textTheme.headline5,
-                                  maxLines: 1,
-                                )
+                          // widget.homework.obtainedMarks == ""
+                          //     ? 
+                          //     : Text(
+                          //         "Obtained Marks: " +
+                          //             widget.homework.obtainedMarks,
+                          //         style: Theme.of(context).textTheme.headline5,
+                          //         maxLines: 1,
+                          //       )
                         ],
                       ),
                       Padding(

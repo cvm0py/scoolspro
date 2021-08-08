@@ -177,7 +177,7 @@ class InfixApi {
   static String about = baseApi + "parent-about";
 
   static String getHomeWorkListUrl(int id) {
-    return baseApi + "homework-list/$id";
+    return baseApi + "homework-list"; //TODO add id
   }
 
   static String getLeaveList(int id) {

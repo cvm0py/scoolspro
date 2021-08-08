@@ -202,7 +202,7 @@ class _HomeState extends State<Home> {
     });
     print('User granted permission: ${settings.authorizationStatus}');
 
-     sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
+    sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       // print('Got a message whilst in the foreground!');
@@ -261,11 +261,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
-
     //print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
 
-    
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
@@ -273,9 +270,7 @@ class _HomeState extends State<Home> {
     ));
 
     return Padding(
-      padding: EdgeInsets.only(
-          top: statusBarHeight
-          ),
+      padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white70,
@@ -445,7 +440,6 @@ class _HomeState extends State<Home> {
           elevation: 0.0,
         ),
         body: Container(
-         
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           child:
@@ -460,11 +454,7 @@ class _HomeState extends State<Home> {
             child: GridView.builder(
               itemCount: _titles.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-
                   crossAxisCount: 2, childAspectRatio: (1.8 / 1.05)),
-
-                  
-
               itemBuilder: (context, index) {
                 return CustomWidget(
                   index: index,
@@ -499,10 +489,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-
         bottomNavigationBar: MainScreen(),
-         
-
       ),
     );
   }
@@ -876,10 +863,15 @@ class _HomeState extends State<Home> {
                                     .push(ScaleRoute(page: ChangePassword()));
                               },
                               child: SizedBox(
-                                child: Text(
-                                  "Change Password",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.vpn_key,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Change Password",
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                             ),
@@ -888,10 +880,14 @@ class _HomeState extends State<Home> {
                             ),
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Logout",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.power_settings_new,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Logout",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
@@ -904,10 +900,14 @@ class _HomeState extends State<Home> {
                             //Navigator.push(context, ScaleRoute(page: SettingScreen()));
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Settings",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Settings",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
@@ -1014,9 +1014,8 @@ class _HomeState extends State<Home> {
           Utils.saveStringValue('image', snapshot.data);
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
+              //showOthersProfileDialog(context);
             },
             child: Container(
               alignment: Alignment.center,

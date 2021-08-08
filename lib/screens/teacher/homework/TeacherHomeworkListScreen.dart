@@ -79,11 +79,12 @@ class _TeacherHomeworkState extends State<TeacherHomework> {
 
   Future<HomeworkList> fetchHomework(int id) async {
     print(InfixApi.getHomeWorkListUrl(id));
-    final response = await http.get(Uri.parse(InfixApi.getHomeWorkListUrl(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(Uri.parse(InfixApi.getHomeWorkListUrl(id)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-      print('HOMEWORK $jsonData');
+      print('HOMEWORK ->' + jsonData['data']['homeworkLists'].toString());
 
       return HomeworkList.fromJson(jsonData['data']['homeworkLists']);
     } else {
