@@ -469,7 +469,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   }
 
   showOthersProfileDialog(BuildContext context) {
-    print(123);
+  print(123);
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -556,11 +556,8 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   : showOthersProfileDialog(context);
             },
             child: Container(
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.menu,
-                  color: Color(0xff3575B6),
-                )
+              alignment: Alignment.center,
+                child: Icon(Icons.menu,color: Color(0xff3575B6),)
                 /*CachedNetworkImage(
                   imageUrl: InfixApi.root + snapshot.data,
                   imageBuilder: (context, imageProvider) => Container(
@@ -589,7 +586,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ),
               */
-                ),
+            ),
           );
         } else {
           return GestureDetector(
@@ -776,7 +773,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       ),
                     ),
                   ),
-                  /*  Container(
+                /*  Container(
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setHeight(50),
                     child: FutureBuilder(
@@ -911,6 +908,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ],
               ),
+              
             ),
           );
         },

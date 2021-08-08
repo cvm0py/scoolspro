@@ -813,7 +813,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height / 4,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape

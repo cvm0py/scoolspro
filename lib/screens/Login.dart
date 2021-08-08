@@ -72,18 +72,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 flex: 3,
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.3,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage(AppConfig.loginBackground),
-                    fit: BoxFit.fill,
-                  )),
+                  // decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //   image: AssetImage(AppConfig.loginBackground),
+                  //   fit: BoxFit.fill,
+                 // )),
                   child: Center(
                     child: Container(
                       height: 150.0,
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage(AppConfig.appLogo),
+                        image: AssetImage(AppConfig.appLogo_blue),
                       )),
                     ),
                   ),
@@ -95,97 +95,85 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: ListView(
                     children: <Widget>[
-                      // Row(
-                      //   children: <Widget>[
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           user = 'student';
-                      //           futureEmail = getEmail(user);
-                      //           futureEmail.then((value) {
-                      //             setState(() {
-                      //               email = value;
-                      //               emailController.text = email;
-                      //               passwordController.text = password;
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.only(
-                      //                 topLeft: Radius.circular(8.0),
-                      //                 bottomLeft: Radius.circular(8.0),
-                      //               ),
-                      //             )),
-                      //         child: Text(
-                      //           "Student",
-                      //           style: Theme.of(context)
-                      //               .textTheme
-                      //               .headline4
-                      //               .copyWith(color: Colors.white),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           setState(() {
-                      //             user = 'teacher';
-                      //             futureEmail = getEmail(user);
-                      //             futureEmail.then((value) {
-                      //               setState(() {
-                      //                 email = value;
-                      //                 emailController.text = email;
-                      //                 passwordController.text = password;
-                      //               });
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.all(
-                      //                 Radius.circular(0.0),
-                      //               ),
-                      //             )),
-                      //         child: Text("Teacher",
-                      //             style: Theme.of(context)
-                      //                 .textTheme
-                      //                 .headline4
-                      //                 .copyWith(color: Colors.white)),
-                      //       ),
-                      //     ),
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //         onPressed: () {
-                      //           user = 'parent';
-                      //           futureEmail = getEmail(user);
-                      //           futureEmail.then((value) {
-                      //             setState(() {
-                      //               email = value;
-                      //               emailController.text = email;
-                      //               passwordController.text = password;
-                      //             });
-                      //           });
-                      //         },
-                      //         style: ElevatedButton.styleFrom(
-                      //             primary: Colors.purpleAccent,
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.only(
-                      //                 topRight: Radius.circular(8.0),
-                      //                 bottomRight: Radius.circular(8.0),
-                      //               ),
-                      //             )),
-                      //         child: Text("Parents",
-                      //             style: Theme.of(context)
-                      //                 .textTheme
-                      //                 .headline4
-                      //                 .copyWith(color: Colors.white)),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                    email = 'student@student.com';
+                                    emailController.text = email;
+                                    passwordController.text = password;
+                                  });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: AppConfig.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8.0),
+                                      bottomLeft: Radius.circular(8.0),
+                                    ),
+                                  )),
+                              child: Text(
+                                "Student",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                   setState(() {
+                                    email = 'Teacher2@gmail.com';
+                                    emailController.text = email;
+                                    passwordController.text = password;
+                                  });
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: AppConfig.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(0.0),
+                                    ),
+                                  )),
+                              child: Text("Teacher",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(color: Colors.white)),
+                            ),
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                    email = 'Guardian4@scoolspro.com';
+                                    emailController.text = email;
+                                    passwordController.text = password;
+                                  });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: AppConfig.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(8.0),
+                                      bottomRight: Radius.circular(8.0),
+                                    ),
+                                  )),
+                              child: Text("Parents",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(color: Colors.white)),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 30,
                       ),

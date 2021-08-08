@@ -69,7 +69,7 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
         bottomNavigationBar: MainScreen(),
-        appBar: CustomAppBarWidget(title: 'Active Exam'),
+        appBar: CustomAppBarWidget(title: 'Online Exam'),
         backgroundColor: Colors.white,
         body: FutureBuilder<ActiveExamList>(
           future: exams,

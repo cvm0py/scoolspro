@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:infixedu/screens/AboutScreen.dart';
+import 'package:infixedu/screens/Calender.dart';
 import 'package:infixedu/screens/Home.dart';
 import 'package:infixedu/screens/SettingsScreen.dart';
 import 'package:infixedu/screens/admin/AdminAttendanceScreen.dart';
@@ -163,7 +164,7 @@ class AppFunction {
     'School News',
     'Class Schedule',
     'Academic',
-  //  'Performance',
+    //  'Performance',
     'Attendance',
     'Homework',
     'Online Exam',
@@ -183,7 +184,7 @@ class AppFunction {
     'assets/images/school_news.png',
     'assets/images/class_schedule.png',
     'assets/images/academics.png',
-  //  'assets/images/results.png', //performance
+    //  'assets/images/results.png', //performance
     'assets/images/attendance.png',
     'assets/images/homework.png',
     // 'assets/images/leave.png',
@@ -383,7 +384,7 @@ class AppFunction {
   ];
   static var contentsIcons = [
     'assets/images/add_content.png',
-   // 'assets/images/content_list.png',
+    // 'assets/images/content_list.png',
   ];
 
   static var leaves = [
@@ -506,6 +507,12 @@ class AppFunction {
   static void getDashboardPage(BuildContext context, String title,
       {var id, String image, int zoom, String token}) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: Calendar()));
+        break;
       case 'Profile':
         Navigator.push(
             context,
@@ -797,6 +804,12 @@ class AppFunction {
   static void getTeacherDashboardPage(
       BuildContext context, String title, String uid) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: Calendar()));
+        break;
       case 'Class Schedule':
         //Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
         Navigator.push(context, ScaleRoute(page: TeacherMyRoutineScreen()));
@@ -831,10 +844,10 @@ class AppFunction {
         Navigator.push(
             context,
             ScaleRoute(
-               page: OnlineExamResultScreen(
+                page: OnlineExamResultScreen(
               id: uid,
-               // page: ClassExamResultScreen(
-             // id: uid,
+              // page: ClassExamResultScreen(
+              // id: uid,
             )));
         break;
       case 'Events':
@@ -895,6 +908,12 @@ class AppFunction {
   static void getParentDashboardPage(
       BuildContext context, String title, String uid) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: Calendar()));
+        break;
       case 'Child':
         Navigator.push(context, ScaleRoute(page: ChildListScreen()));
         break;
