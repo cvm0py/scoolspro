@@ -813,7 +813,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 4,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -886,7 +886,8 @@ class _HomeState extends State<Home> {
                                   title: Text(
                                     "Logout",
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.headline5,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                 ),
                               ),
@@ -906,7 +907,8 @@ class _HomeState extends State<Home> {
                                   title: Text(
                                     "Settings",
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.headline5,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
                                   ),
                                 ),
                               ),
@@ -1055,9 +1057,8 @@ class _HomeState extends State<Home> {
         } else {
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
+              //: showOthersProfileDialog(context);
             },
             child: CircleAvatar(
               radius: 22,

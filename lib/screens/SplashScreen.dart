@@ -96,12 +96,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             Container(
               alignment: Alignment.topCenter,
               height: 10.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(AppConfig.splashTopLine),
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
             ),
             Align(
               alignment: Alignment.topCenter,

@@ -51,7 +51,7 @@ class _HomeState extends State<LeaveHomeScreen> {
           child: GridView.builder(
             itemCount: _titles.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: (2 / 1.1)),
+                crossAxisCount: 2, childAspectRatio: (2 / 1.2)),
             itemBuilder: (context, index) {
               return CustomWidget(
                 index: index,

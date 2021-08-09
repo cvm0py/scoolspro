@@ -11,12 +11,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/SettingsScreen.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 // Project imports:
 import 'package:infixedu/main.dart';
 import 'package:infixedu/screens/ChangePassword.dart';
-import 'package:infixedu/screens/student/Profile.dart';
+
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/UserNotifications.dart';
@@ -374,6 +375,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   }
 
   showStudentProfileDialog(BuildContext context) {
+    print('here');
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -386,7 +388,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -394,7 +396,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       //color: const Color(0xFF66BB6A),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.deepPurple,
+                          color: Colors.blueAccent,
                           blurRadius: 20.0,
                         ),
                       ]),
@@ -407,53 +409,92 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, top: 20.0, right: 15.0),
+                            left: 10.0, top: 10.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
-                            InkWell(
-                              child: SizedBox(
-                                child: Text(
-                                  "Profile",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  ScaleRoute(
-                                    page: Profile(
-                                      id: _id,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
+                            // InkWell(
+                            //   // child: SizedBox(
+                            //   //   child: Text(
+                            //   //     "Profile",
+                            //   //     textAlign: TextAlign.center,
+                            //   //     style: Theme.of(context).textTheme.headline5,
+                            //   //   ),
+                            //   // ),
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         ScaleRoute(
+                            //             page: Profile(
+                            //           id: _id,
+                            //         )));
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   height: 8,
+                            // ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
                                     .push(ScaleRoute(page: ChangePassword()));
                               },
                               child: SizedBox(
-                                child: Text(
-                                  "Change Password",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.vpn_key,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Change Password",
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 8,
+                            ),
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Logout",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.power_settings_new,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Logout",
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
                                 showAlertDialog(context);
                               },
-                            )
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            //Navigator.push(context, ScaleRoute(page: SettingScreen()));
+                            InkWell(
+                              child: SizedBox(
+                                child: ListTile(
+                                  leading: Icon(Icons.settings,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    "Settings",
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context, ScaleRoute(page: SettingScreen()));
+                              },
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
                           ],
                         ),
                       ),
@@ -469,7 +510,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   }
 
   showOthersProfileDialog(BuildContext context) {
-  print(123);
+    print(123);
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -551,13 +592,14 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
           Utils.saveStringValue('image', snapshot.data);
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
             },
             child: Container(
-              alignment: Alignment.center,
-                child: Icon(Icons.menu,color: Color(0xff3575B6),)
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.menu,
+                  color: Color(0xff3575B6),
+                )
                 /*CachedNetworkImage(
                   imageUrl: InfixApi.root + snapshot.data,
                   imageBuilder: (context, imageProvider) => Container(
@@ -586,14 +628,12 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ),
               */
-            ),
+                ),
           );
         } else {
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
             },
             child: Container(
               alignment: Alignment.center,
@@ -773,7 +813,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       ),
                     ),
                   ),
-                /*  Container(
+                  /*  Container(
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setHeight(50),
                     child: FutureBuilder(
@@ -908,7 +948,6 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ],
               ),
-              
             ),
           );
         },

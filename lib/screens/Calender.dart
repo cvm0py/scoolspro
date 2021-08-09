@@ -11,12 +11,11 @@ import 'package:http/http.dart' as http;
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
-
-
 class Calendar extends StatefulWidget {
+  Calendar({this.id});
+
   String id;
 
-  Calendar({this.id});
   @override
   _CalendarState createState() => _CalendarState();
 }
@@ -57,9 +56,7 @@ class _CalendarState extends State<Calendar> {
                   onDayPressed: (DateTime date, List<Calendar> events) {
                     this.setState(() => _currentDate = date);
                   },
-                  onCalendarChanged: (DateTime date) {
-                    
-                  },
+                  onCalendarChanged: (DateTime date) {},
                   weekendTextStyle: Theme.of(context).textTheme.headline6,
                   thisMonthDayBorderColor: Colors.grey,
                   daysTextStyle: Theme.of(context).textTheme.headline4,
@@ -74,8 +71,6 @@ class _CalendarState extends State<Calendar> {
                       .copyWith(
                           fontSize: ScreenUtil().setSp(15.0),
                           fontWeight: FontWeight.w500),
-                  
-                  
                   weekFormat: false,
                   markedDatesMap: _markedDateMap,
                   selectedDateTime: _currentDate,
@@ -88,10 +83,9 @@ class _CalendarState extends State<Calendar> {
                       .copyWith(color: Colors.white)),
             ),
             SizedBox(height: 30),
-            Expanded(
-              child: Center(child: Text('No Events to display', style: TextStyle(fontSize : 16)))
-            ),
-            
+            // Expanded(
+            //   child: Center(child: Text('No Events to display', style: TextStyle(fontSize : 16)))
+            // ),
           ],
         ),
       ),

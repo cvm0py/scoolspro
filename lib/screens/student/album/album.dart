@@ -26,7 +26,6 @@ class _AlbumsState extends State<Albums> {
     List<dynamic> responseData = decodedJson['data'];
     return responseData;
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +36,8 @@ class _AlbumsState extends State<Albums> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-          bottomNavigationBar: MainScreen(),
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Albums'),
-        
         body: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Container(
@@ -49,9 +47,10 @@ class _AlbumsState extends State<Albums> {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 1,
-                            childAspectRatio: 1,
+                            childAspectRatio: 0.9,
                           ),
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
@@ -83,8 +82,9 @@ class _AlbumsState extends State<Albums> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .width *
@@ -130,7 +130,8 @@ class _AlbumsState extends State<Albums> {
                                             padding:
                                                 const EdgeInsets.only(left: 20),
                                             child: Text(
-                                              snapshot.data[index]['description']
+                                              snapshot.data[index]
+                                                      ['description']
                                                   .toString(),
                                               style: TextStyle(
                                                 color: Color(0xff3575B6),

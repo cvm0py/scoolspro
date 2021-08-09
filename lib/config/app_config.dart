@@ -8,15 +8,15 @@ class AppConfig {
 
   static String appLogo_blue = 'assets/config/logo_blue.png';
 
-  static String splashScreenBackground = 'assets/config/splash_bg.png';
+  //static String splashScreenBackground = 'assets/config/splash_bg.png';
 
-  static String splashTopLine = 'assets/config/splash_top_line.png';
+  //static String splashTopLine = 'assets/config/splash_top_line.png';
 
-  static String loginBackground = 'assets/config/login_bg.png';
+  //static String loginBackground = 'assets/config/login_bg.png';
 
-  static String appToolbarBackground = 'assets/config/blueClip.png';
+  //static String appToolbarBackground = 'assets/config/blueClip.png';
 
   static String quicksandFont = 'QuickSand';
 
-  static Color primary =  Color(0xff3575B6);
+  static Color primary = Color(0xff3575B6);
 }

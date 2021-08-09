@@ -72,7 +72,7 @@ dev_dependencies:
 
 # flutter pub run flutter_launcher_icons:main
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/config/logo_blue.png"
 

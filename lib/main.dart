@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                                   return Scaffold(
                                     body: Splash(),
                                   );
-                                }  
+                                }
                                 return CircularProgressIndicator();
                               }),
                         ],

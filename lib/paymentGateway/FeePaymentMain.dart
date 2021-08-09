@@ -81,7 +81,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                     child: Container(
                       width: ScreenUtil().setWidth(25),
                       child: Image.asset(
-                        'assets/images/fees_icon.png',
+                        'assets/images/bank_payment.png',
                       ),
                     ),
                   ),
@@ -113,7 +113,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                     child: Container(
                       width: ScreenUtil().setWidth(25),
                       child: Image.asset(
-                        'assets/images/fees_icon.png',
+                        'assets/images/check_payment.png',
                       ),
                     ),
                   ),
