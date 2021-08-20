@@ -31,6 +31,7 @@ class _VirtualClassScreenState extends State<VirtualClassScreen> {
   String classID;
   String sectionID;
   String notAvailable = "Not available";
+  String onlineClass = "Online Class";
 
   @override
   void initState() {
@@ -50,7 +51,12 @@ class _VirtualClassScreenState extends State<VirtualClassScreen> {
       });
     });
     Utils.getStringValue('lang').then((value) {
-      Utils.getTranslatedLanguage(value, "Not available").then((val) {
+      Utils.getTranslatedLanguage(value, "Online Class").then((val) {
+        setState(() {
+          onlineClass = val;
+        });
+      });
+       Utils.getTranslatedLanguage(value, "Not available").then((val) {
         setState(() {
           notAvailable = val;
         });
@@ -70,7 +76,7 @@ class _VirtualClassScreenState extends State<VirtualClassScreen> {
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
         appBar: CustomAppBarWidget(
-          title: 'Online class',
+          title: onlineClass,
         ),
         backgroundColor: Colors.white,
         body: FutureBuilder<ZoomMeetingList>(

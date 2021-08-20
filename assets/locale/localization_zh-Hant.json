@@ -238,5 +238,25 @@
   "Would you like to download the file?": "你想下載這份文件嗎？",
   "Would you like to Logout?": "你確定要登出嗎？",
   "Yes": "確定",
-  "You must grant all permission to use this application": "你必須授予所有權限以使用該軟件"
-}
+  "Event Location": "活動地點",
+  "End Date":"結束日期",
+  "Online Classes": "在線課程",
+  "Weather":"天氣",
+  "Please enter your current password":"請輸入您當前的密碼",
+  "Password must be at least 6 digit":"密碼必須至少為 6 位數字",
+  "Please enter a new password":"請輸入新密碼",
+  "Please confirm your password":"请确认您的密码",
+  "not assigned":"未分配",
+  "Running":"跑步",
+  "Pending":"待辦的",
+  "Submitted":"已提交",
+  "Active":"積極的",
+  "Not available":"無法使用",
+  "Items":"項目",
+  "Downloading...":"正在下載...",
+  "no file found":"沒有找到文件",
+  "dialog":"對話",
+  "New password and confirm password must be same.":"新密碼和確認密碼必須相同。",
+  "You must grant all permission to use this application": "你必須授予所有權限以使用該軟件",
+  "Download Completed. File is also available in your download folder.":"下載完成。文件也可在您的下載文件夾中找到。"
+} 

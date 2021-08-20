@@ -6,42 +6,27 @@ import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/screens/student/album/photos.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:http/http.dart' as http;
-import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
-import '../../nav_main.dart';
+import 'nav_main.dart';
 
-class Albums extends StatefulWidget {
+class Weather extends StatefulWidget {
   String id;
 
-  Albums({this.id});
+  Weather({this.id});
   @override
-  _AlbumsState createState() => _AlbumsState();
+  _WeatherState createState() => _WeatherState();
 }
 
-class _AlbumsState extends State<Albums> {
-  String items = "Items";
-
+class _WeatherState extends State<Weather> {
   loadData() async {
-    var response = await http.get(Uri.parse(InfixApi.getAlbum));
+    var response = await http.get(Uri.parse(
+        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warnsum&lang=en"));
+    print(response.runtimeType);
     Map<String, dynamic> decodedJson = json.decode(response.body);
     List<dynamic> responseData = decodedJson['data'];
     return responseData;
-  }
-
-    @override
-  void initState() {
- 
-    Utils.getStringValue('lang').then((language) {
-      Utils.getTranslatedLanguage(language, "Items").then((value) {
-        items = value;
-      });
-
-    
-    });
-  
-    super.initState();
   }
 
   @override
@@ -132,7 +117,7 @@ class _AlbumsState extends State<Albums> {
                                               ),
                                               Center(
                                                   child: _buildChip(
-                                                      items,
+                                                      " Image ",
                                                       snapshot
                                                           .data[index]['photos']
                                                           .length

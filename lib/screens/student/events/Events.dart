@@ -8,6 +8,7 @@ import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/screens/student/album/photos.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
@@ -21,15 +22,46 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
-  
+  String description = "Description";
+  String evntLoc = "Event Location";
+  String startDate = "Start Date";
+  String endDate = "End Date";
+
+  initState() {
+    super.initState();
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Description").then((value) {
+        setState(() {
+          description = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Event Location").then((value) {
+        setState(() {
+          evntLoc = value;
+        });
+      });
+
+       Utils.getTranslatedLanguage(language, "Start Date").then((value) {
+        setState(() {
+          startDate = value;
+        });
+      });
+
+       Utils.getTranslatedLanguage(language, "End Date").then((value) {
+        setState(() {
+          endDate = value;
+        });
+      });
+    });
+  }
+
   loadData() async {
     var response = await http.get(Uri.parse(InfixApi.getEvents));
     Map<String, dynamic> decodedJson = json.decode(response.body);
     List<dynamic> responseData = decodedJson['data'];
     return responseData;
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +83,8 @@ class _EventsState extends State<Events> {
                     print(snapshot.data);
                     if (snapshot.hasData) {
                       return GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 1,
                             childAspectRatio: 0.7,
                           ),
@@ -82,7 +115,8 @@ class _EventsState extends State<Events> {
                                             padding:
                                                 const EdgeInsets.only(left: 20),
                                             child: Text(
-                                              snapshot.data[index]['event_title']
+                                              snapshot.data[index]
+                                                      ['event_title']
                                                   .toString(),
                                               style: TextStyle(
                                                 color: Color(0xff3575B6),
@@ -103,8 +137,9 @@ class _EventsState extends State<Events> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                             ),
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -117,7 +152,8 @@ class _EventsState extends State<Events> {
                                                         '')
                                                 ? ClipRRect(
                                                     borderRadius:
-                                                        BorderRadius.circular(20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                     child: Image.network(
                                                       "https://admin.scoolspro.com/" +
                                                           snapshot.data[index][
@@ -127,7 +163,8 @@ class _EventsState extends State<Events> {
                                                   )
                                                 : ClipRRect(
                                                     borderRadius:
-                                                        BorderRadius.circular(20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                     child: Image.asset(
                                                         'images/assets/event.jpg',
                                                         fit: BoxFit.cover),
@@ -136,7 +173,7 @@ class _EventsState extends State<Events> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text('Description',
+                                          Text(description,
                                               style: TextStyle(
                                                 color: AppConfig.primary,
                                                 fontWeight: FontWeight.bold,
@@ -160,7 +197,7 @@ class _EventsState extends State<Events> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text('Event Location',
+                                          Text(evntLoc,
                                               style: TextStyle(
                                                 color: AppConfig.primary,
                                                 fontWeight: FontWeight.bold,
@@ -183,7 +220,7 @@ class _EventsState extends State<Events> {
                                             ),
                                           ),
                                           SizedBox(height: 5),
-                                          Text('Start Date',
+                                          Text(startDate,
                                               style: TextStyle(
                                                 color: AppConfig.primary,
                                                 fontWeight: FontWeight.bold,
@@ -207,7 +244,7 @@ class _EventsState extends State<Events> {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text('End Date',
+                                          Text(endDate,
                                               style: TextStyle(
                                                 color: AppConfig.primary,
                                                 fontWeight: FontWeight.bold,

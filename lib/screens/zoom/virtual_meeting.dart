@@ -29,14 +29,9 @@ class VirtualMeetingScreen extends StatefulWidget {
 class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
 //
 //  String _id;
-//
-//  @override
-//  void initState() {
-//    Utils.getStringValue('id').then((value){
-//      _id = value;
-//    });
-//    super.initState();
-//  }
+
+  String notAvailable ="Not available";
+
 
   String _token;
   String _id;
@@ -53,6 +48,13 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
         _id = value;
       });
     });
+     Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Not available").then((value) {
+        notAvailable = value;
+      });
+    
+    });
+
 
     super.initState();
   }
@@ -78,7 +80,7 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
               if (snapshot.data.meetings.length < 1) {
                 return Center(
                     child: Text(
-                  "Not available",
+                  notAvailable,
                   style: Theme.of(context).textTheme.subtitle1,
                 ));
               }

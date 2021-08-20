@@ -32,6 +32,7 @@ class ActiveOnlineExamScreen extends StatefulWidget {
 
 class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
   Future<ActiveExamList> exams;
+  String onlineExam = "Online Exam";
   var id;
 
   String _token;
@@ -55,6 +56,13 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
         exams = getAllActiveExam(id);
       });
     });
+
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Online Exam").then((value) {
+        setState(() {});
+        onlineExam = value;
+      });
+    });
   }
 
   @override
@@ -69,7 +77,7 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
         bottomNavigationBar: MainScreen(),
-        appBar: CustomAppBarWidget(title: 'Online Exam'),
+        appBar: CustomAppBarWidget(title: onlineExam),
         backgroundColor: Colors.white,
         body: FutureBuilder<ActiveExamList>(
           future: exams,

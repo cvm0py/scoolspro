@@ -95,6 +95,9 @@ class _HomeState extends State<Home> {
   String changePassword = 'Change Password';
   String logout = 'Logout';
   String settings = 'Settings';
+  String logoutQues = "Would you like to Logout?";
+  String cancel = "Cancel";
+  String yes = "Yes";
 
   String _notificationToken;
 
@@ -111,7 +114,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    print('here23');
+   // print('here23');
     Utils.getStringValue('lang').then((value) {
       Utils.getTranslatedLanguage(value, "Change Password").then((value) {
         setState(() {
@@ -127,7 +130,25 @@ class _HomeState extends State<Home> {
 
       Utils.getTranslatedLanguage(value, 'Logout').then((value) {
         setState(() {
-          logout = value.toString();
+          logout = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Would you like to Logout?').then((value) {
+        setState(() {
+          logoutQues = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Cancel').then((value) {
+        setState(() {
+          cancel = value;
+        });
+      });
+
+        Utils.getTranslatedLanguage(value, 'Yes').then((value) {
+        setState(() {
+          yes = value;
         });
       });
     });
@@ -771,7 +792,7 @@ class _HomeState extends State<Home> {
   showAlertDialog(BuildContext context) {
     Widget cancelButton = TextButton(
       child: Text(
-        "Cancel",
+        cancel,
         style: Theme.of(context).textTheme.headline5.copyWith(
               fontSize: ScreenUtil().setSp(12),
               color: Colors.red,
@@ -783,7 +804,7 @@ class _HomeState extends State<Home> {
     );
     Widget yesButton = TextButton(
       child: Text(
-        "Yes",
+        yes,
         style: Theme.of(context).textTheme.headline5.copyWith(
               fontSize: ScreenUtil().setSp(12),
               color: Colors.green,
@@ -799,16 +820,16 @@ class _HomeState extends State<Home> {
             headers: Utils.setHeader(_token.toString()));
         if (response.statusCode == 200) {
         } else {
-          Utils.showToast('logged-out');
+          Utils.showToast(' ');
         }
       },
     );
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Logout",
+        logout,
         style: Theme.of(context).textTheme.headline5,
       ),
-      content: Text("Would you like to logout?"),
+      content: Text(logoutQues),
       actions: [
         cancelButton,
         yesButton,

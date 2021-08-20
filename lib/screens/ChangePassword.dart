@@ -20,7 +20,16 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   String id;
   String _token;
-
+  String chgPwd = 'Change Password';
+  String currPwd = "Current Password";
+  String enterCurrPwd = 'Please enter your current password';
+  String sixDigitPwd = 'Password must be at least 6 digit';
+  String enterNewPwd = 'Please enter a new password';
+  String newPwd = "New Password";
+  String cnfPwd = 'Please confirm your password';
+  String samePwd = 'New password and confirm password must be same.';
+  String enterCnfPwd = "Confirm Password";
+  String change = "Change";
   bool isResponse = false;
 
   TextEditingController _currentPasswordController = TextEditingController();
@@ -38,6 +47,49 @@ class _ChangePasswordState extends State<ChangePassword> {
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
+
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Change Password").then((value) {
+        chgPwd = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Current Password").then((value) {
+        currPwd = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Please enter your current password").then((value) {
+        enterCurrPwd = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Password must be at least 6 digit").then((value) {
+        sixDigitPwd = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Please enter a new password").then((value) {
+        enterNewPwd = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "New Password").then((value) {
+        newPwd = value;
+      });
+
+            Utils.getTranslatedLanguage(language, "Please confirm your password").then((value) {
+        cnfPwd = value;
+      });
+
+            Utils.getTranslatedLanguage(language, "New password and confirm password must be same.'").then((value) {
+        samePwd = value;
+      });
+
+            Utils.getTranslatedLanguage(language, "Confirm Password").then((value) {
+        enterCnfPwd = value;
+      });
+
+            Utils.getTranslatedLanguage(language, "Change").then((value) {
+        change = value;
+      });
+    });
+
     super.initState();
   }
 
@@ -45,7 +97,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWidget(
-        title: 'Change Password',
+        title: chgPwd,
       ),
       body: Center(
         child: Container(
@@ -66,16 +118,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                     validator: (String value) {
                       // RegExp regExp = new RegExp(r'^[0-9]*$');
                       if (value.isEmpty) {
-                        return 'Please enter your current password';
+                        return enterCurrPwd;
                       }
                       if (value.length < 6) {
-                        return 'Password must be at least 6 digit';
+                        return sixDigitPwd;
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "Current Password",
-                      labelText: "Current Password",
+                      hintText: currPwd,
+                      labelText: currPwd,
                       labelStyle: Theme.of(context).textTheme.headline4,
                       errorStyle:
                           TextStyle(color: Colors.pinkAccent, fontSize: 15.0),
@@ -95,16 +147,16 @@ class _ChangePasswordState extends State<ChangePassword> {
                     validator: (String value) {
                       // RegExp regExp = new RegExp(r'^[0-9]*$');
                       if (value.isEmpty) {
-                        return 'Please enter a new password';
+                        return enterNewPwd;
                       }
                       if (value.length < 6) {
-                        return 'Password must be at least 6 digit';
+                        return sixDigitPwd;
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "New Password",
-                      labelText: "New Password",
+                      hintText: newPwd,
+                      labelText: newPwd,
                       labelStyle: Theme.of(context).textTheme.headline4,
                       errorStyle:
                           TextStyle(color: Colors.pinkAccent, fontSize: 15.0),
@@ -124,19 +176,19 @@ class _ChangePasswordState extends State<ChangePassword> {
                     validator: (String value) {
                       // RegExp regExp = new RegExp(r'^[0-9]*$');
                       if (value.isEmpty) {
-                        return 'Please confirm your password';
+                        return cnfPwd;
                       }
                       if (value.length < 6) {
-                        return 'Password must be at least 6 digit';
+                        return sixDigitPwd;
                       }
                       if (value != _newPasswordController.text) {
-                        return 'New password and confirm password must be same.';
+                        return samePwd;
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "Confirm Password",
-                      labelText: "Confirm Password",
+                      hintText: enterCnfPwd,
+                      labelText: enterCnfPwd,
                       labelStyle: Theme.of(context).textTheme.headline4,
                       errorStyle:
                           TextStyle(color: Colors.pinkAccent, fontSize: 15.0),
@@ -156,7 +208,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       height: 50.0,
                       decoration: Utils.gradientBtnDecoration,
                       child: Text(
-                        "Change",
+                        change,
                         style: Theme.of(context)
                             .textTheme
                             .headline5
@@ -169,11 +221,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                           isResponse = true;
                         });
 
-                        var response = await http.post(Uri.parse(InfixApi.changePassword(
-                            _currentPasswordController.text,
-                            _newPasswordController.text,
-                            _confirmPasswordController.text,
-                            id)),headers: Utils.setHeader(_token.toString()));
+                        var response = await http.post(
+                            Uri.parse(InfixApi.changePassword(
+                                _currentPasswordController.text,
+                                _newPasswordController.text,
+                                _confirmPasswordController.text,
+                                id)),
+                            headers: Utils.setHeader(_token.toString()));
 
                         if (response.statusCode == 200) {
                           Map<String, dynamic> data =

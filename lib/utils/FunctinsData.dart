@@ -69,6 +69,7 @@ import 'package:infixedu/screens/teacher/leave/ApplyLeaveScreen.dart';
 import 'package:infixedu/screens/teacher/leave/LeaveListScreen.dart';
 import 'package:infixedu/screens/teacher/leave/LeaveScreen.dart';
 import 'package:infixedu/screens/teacher/students/StudentSearch.dart';
+import 'package:infixedu/screens/weather.dart';
 import 'package:infixedu/screens/zoom/virtual_class.dart';
 import 'package:infixedu/screens/zoom/virtual_meeting.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
@@ -84,6 +85,7 @@ class AppFunction {
     'Homework',
     'Examination',
     'Online Exam',
+    'Online Classes',
     //'Leave',
     'Gallery',
     'Subjects',
@@ -91,10 +93,10 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     //  'Transport',
-    'Zoom',
     //  'Settings',
 
     'Events',
+    'Weather',
     //'Results'
   ];
   static var studentIcons = [
@@ -107,14 +109,16 @@ class AppFunction {
     'assets/images/homework.png',
     'assets/images/examination.png',
     'assets/images/online_exam.png',
+    'assets/images/zoom.png',
     'assets/images/gallery.png',
     'assets/images/subjects.png',
     //'assets/images/leave.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
     'assets/images/teacher.png',
-    'assets/images/addhw.png',
     'assets/images/events.png',
+    'assets/images/weather.png',
+    
     //'assets/images/addhw.png',
     //'assets/images/addhw.png',
   ];
@@ -134,6 +138,7 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     'Events',
+   // 'Weather',
     //'Zoom'
     // 'Timeline',
     // 'Leave',
@@ -149,12 +154,15 @@ class AppFunction {
     'assets/images/homework.png',
     'assets/images/examination.png',
     'assets/images/online_exam.png',
+    'assets/images/zoom.png',
     'assets/images/gallery.png',
     'assets/images/subjects.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
+   // 'assets/images/weather.png',
+
     //'assets/images/timeline.png',
     // 'assets/images/leave.png',
     //  'assets/images/addhw.png',
@@ -170,14 +178,15 @@ class AppFunction {
     'Attendance',
     'Homework',
     'Online Exam',
+    'Online Classes',
     'Gallery',
     'Digital Library',
     // 'Leave',
     'Contents',
-    'Zoom',
     // 'About',
     //   'Settings',
     'Events',
+    'weather',
   ];
 
   static var teachersIcons = [
@@ -191,6 +200,7 @@ class AppFunction {
     'assets/images/homework.png',
     // 'assets/images/leave.png',
     'assets/images/online_exam.png',
+    'assets/images/zoom.png',
     'assets/images/gallery.png',
     'assets/images/library.png',
     'assets/images/contents.png',
@@ -198,6 +208,8 @@ class AppFunction {
     //'assets/images/about.png',
     // 'assets/images/results.png',
     'assets/images/events.png',
+    
+    'assets/images/weather.png',
   ];
 
   static var teachers2 = [
@@ -550,6 +562,9 @@ class AppFunction {
       case 'Gallery':
         Navigator.push(context, ScaleRoute(page: Albums(id: id)));
         break;
+      case 'Weather':
+        Navigator.push(context, ScaleRoute(page: Weather(id: id)));
+        break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
         break;
@@ -583,7 +598,7 @@ class AppFunction {
               id: id,
             )));
         break;
-      case 'Zoom':
+      case 'Online Classes':
         Navigator.push(
             context,
             ScaleRoute(
