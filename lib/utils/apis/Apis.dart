@@ -26,6 +26,14 @@ class InfixApi {
     return baseApi + 'login?email=' + email + '&password=' + password;
   }
 
+  static String getAllZoomClassesByClass(String classID, String section) {
+    return baseApi + 'zoom-virtual-class/$classID/$section';
+  }
+
+  static String getAllZoomMeetingsByUserID(String userID) {
+    return baseApi + 'zoom-Meeting/$userID';
+  }
+
   static String getFeesUrl(int id) {
     return baseApi + 'fees-collect-student-wise/$id';
   }

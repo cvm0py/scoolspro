@@ -37,6 +37,9 @@ class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
+  String changePassword = 'Change Password';
+  String logout = 'Logout';
+  String settings = 'Settings';
   int i = 0;
   Future notificationCount;
 
@@ -442,7 +445,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                                   leading: Icon(Icons.vpn_key,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Change Password",
+                                    changePassword,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -459,7 +462,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                                   leading: Icon(Icons.power_settings_new,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Logout",
+                                    logout,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -480,7 +483,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                                   leading: Icon(Icons.settings,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Settings",
+                                    settings,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -551,7 +554,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                                   .push(ScaleRoute(page: ChangePassword()));
                             },
                             child: Text(
-                              "Change Password",
+                              changePassword,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -561,7 +564,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                           ),
                           GestureDetector(
                             child: Text(
-                              "Logout",
+                              logout,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -712,6 +715,26 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
 
   @override
   void initState() {
+    //print('hey uya');
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Change Password").then((value) {
+        setState(() {
+          changePassword = value.toString();
+          //print('Change pswd -> ' + changePassword);
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Settings").then((value) {
+        setState(() {
+          settings = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Logout').then((value) {
+        setState(() {
+          logout = value.toString();
+        });
+      });
+    });
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
@@ -739,6 +762,9 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
         rtlValue = value;
       });
     });
+
+    //Language change
+
     super.initState();
   }
 
@@ -748,7 +774,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
       height: 70.h,
       child: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-          if (i < 1) {
+          if (i < 2) {
             //if you don't set any condition here setState call again and again
             Utils.getStringValue('lang').then((value) {
               if (value == null) {

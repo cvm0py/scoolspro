@@ -92,6 +92,10 @@ class _HomeState extends State<Home> {
   var _token;
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  String changePassword = 'Change Password';
+  String logout = 'Logout';
+  String settings = 'Settings';
+
   String _notificationToken;
 
   _HomeState(this._titles, this._images);
@@ -107,6 +111,26 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    print('here23');
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Change Password").then((value) {
+        setState(() {
+          changePassword = value.toString();
+          print('Change pswd -> ' + changePassword);
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Settings").then((value) {
+        setState(() {
+          settings = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Logout').then((value) {
+        setState(() {
+          logout = value.toString();
+        });
+      });
+    });
     super.initState();
     Utils.getStringValue('token').then((value) {
       _token = value;
@@ -801,6 +825,7 @@ class _HomeState extends State<Home> {
   }
 
   showStudentProfileDialog(BuildContext context) {
+    print('12313');
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -867,7 +892,7 @@ class _HomeState extends State<Home> {
                                   leading: Icon(Icons.vpn_key,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Change Password",
+                                    changePassword,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -884,7 +909,7 @@ class _HomeState extends State<Home> {
                                   leading: Icon(Icons.power_settings_new,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Logout",
+                                    logout,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -905,7 +930,7 @@ class _HomeState extends State<Home> {
                                   leading: Icon(Icons.settings,
                                       color: AppConfig.primary),
                                   title: Text(
-                                    "Settings",
+                                    settings,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline5,
@@ -975,7 +1000,7 @@ class _HomeState extends State<Home> {
                                   .push(ScaleRoute(page: ChangePassword()));
                             },
                             child: Text(
-                              "Change Password",
+                              changePassword,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -985,7 +1010,7 @@ class _HomeState extends State<Home> {
                           ),
                           GestureDetector(
                             child: Text(
-                              "Logout",
+                              logout,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),

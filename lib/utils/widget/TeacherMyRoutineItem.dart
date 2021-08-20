@@ -32,6 +32,9 @@ class _ClassRoutineState extends State<TeacherRoutineRow> {
 
   _ClassRoutineState(this.title);
   String _token;
+  String time = "Time";
+  String subject = "Subject";
+  String room = "Room";
 
   @override
   void didChangeDependencies() {
@@ -49,9 +52,33 @@ class _ClassRoutineState extends State<TeacherRoutineRow> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Time").then((val) {
+        setState(() {
+          time = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Subject").then((val) {
+        setState(() {
+          subject = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Room").then((val) {
+        setState(() {
+          room = val;
+        });
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only( left: 10.0, right: 10.0,bottom: 16.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 16.0),
       child: FutureBuilder<TeacherMyRoutineList>(
         future: routine,
         builder: (context, snapshot) {
@@ -73,21 +100,21 @@ class _ClassRoutineState extends State<TeacherRoutineRow> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: Text('Time',
+                          child: Text(time,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4
                                   .copyWith()),
                         ),
                         Expanded(
-                          child: Text('Subject',
+                          child: Text(subject,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4
                                   .copyWith()),
                         ),
                         Expanded(
-                          child: Text('Room',
+                          child: Text(room,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4
@@ -140,7 +167,8 @@ class _ClassRoutineState extends State<TeacherRoutineRow> {
 
   Future<TeacherMyRoutineList> fetchRoutine(int id, String title) async {
     // print(InfixApi.getTeacherMyRoutine(id));
-    final response = await http.get(Uri.parse(InfixApi.getTeacherMyRoutine(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(Uri.parse(InfixApi.getTeacherMyRoutine(id)),
+        headers: Utils.setHeader(_token.toString()));
     // print(response.body);
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);

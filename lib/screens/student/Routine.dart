@@ -12,13 +12,13 @@ import 'package:infixedu/utils/widget/Routine_row.dart';
 // ignore: must_be_immutable
 class Routine extends StatelessWidget {
   List<String> weeks = AppFunction.weeks;
+
   String id;
 
   Routine({this.id});
 
   @override
   Widget build(BuildContext context) {
-
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)

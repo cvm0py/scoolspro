@@ -174,9 +174,9 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
               if (snapshot.hasData) {
                 return ListView(
                   children: <Widget>[
-                    SizedBox(height:20),
+                    SizedBox(height: 20),
                     getContentTypeDropdown(),
-                    SizedBox(height:5),
+                    SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextFormField(
@@ -188,7 +188,8 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
                             labelText: "Title",
                             labelStyle: Theme.of(context).textTheme.headline4,
                             errorStyle: TextStyle(
-                                color: Colors.pinkAccent, fontSize: ScreenUtil().setSp(12)),
+                                color: Colors.pinkAccent,
+                                fontSize: ScreenUtil().setSp(12)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             )),
@@ -296,7 +297,8 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4
-                                      .copyWith(fontSize: ScreenUtil().setSp(12)),
+                                      .copyWith(
+                                          fontSize: ScreenUtil().setSp(12)),
                                 ),
                               ),
                             ),
@@ -333,11 +335,14 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  _file == null ? 'Select file' : _file.path.split('/').last,
+                                  _file == null
+                                      ? 'Select file'
+                                      : _file.path.split('/').last,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4
-                                      .copyWith(fontSize: ScreenUtil().setSp(12)),
+                                      .copyWith(
+                                          fontSize: ScreenUtil().setSp(12)),
                                   maxLines: 2,
                                 ),
                               ),
@@ -393,7 +398,7 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
   Widget getContentTypeDropdown() {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
       child: DropdownButton(
         elevation: 0,
         isExpanded: true,
@@ -401,8 +406,11 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
           return DropdownMenuItem<String>(
             value: item,
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0,bottom: 10),
-              child: Text(item,style: Theme.of(context).textTheme.headline4,),
+              padding: const EdgeInsets.only(left: 8.0, bottom: 10),
+              child: Text(
+                item,
+                style: Theme.of(context).textTheme.headline4,
+              ),
             ),
           );
         }).toList(),
@@ -428,7 +436,7 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
       "created_by": '$_id',
       "all_classes": '$allClasses',
       "content_title": titleController.text,
-      "content_type": _selectedContentType.toLowerCase().substring(0,2),
+      "content_type": _selectedContentType.toLowerCase().substring(0, 2),
       "attach_file":
           await MultipartFile.fromFile(_file.path, filename: _file.path),
     });
@@ -439,8 +447,8 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
       options: Options(
         // contentType: Headers.formUrlEncodedContentType,
         headers: {
-          "Accept":"application/json",
-          "Authorization" : _token.toString(),
+          "Accept": "application/json",
+          "Authorization": _token.toString(),
         },
       ),
       onSendProgress: (received, total) {
@@ -448,7 +456,7 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
           print((received / total * 100).toStringAsFixed(0) + '%');
         }
       },
-    ).catchError((e){
+    ).catchError((e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       print(errorMessage);
     });
@@ -494,7 +502,8 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
   }
 
   Future<SectionList> getAllSection(int id, int classId) async {
-    final response = await http.get(Uri.parse(InfixApi.getSectionById(id, classId)),
+    final response = await http.get(
+        Uri.parse(InfixApi.getSectionById(id, classId)),
         headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
@@ -665,7 +674,7 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
 
   Future pickDocument() async {
     FilePickerResult result = await FilePicker.platform.pickFiles();
-    if(result != null) {
+    if (result != null) {
       setState(() {
         _file = File(result.files.single.path);
       });
@@ -675,11 +684,9 @@ class _AddContentScreeenState extends State<AddContentScreeen> {
   }
 
   void sentNotificationToSection(int classCode, int sectionCode) async {
-    final response = await http.get(Uri.parse(InfixApi.sentNotificationToSection(
-        'Content',
-        'New content request has come',
-        '$classCode',
-        '$sectionCode')));
+    final response = await http.get(Uri.parse(
+        InfixApi.sentNotificationToSection('Content',
+            'New content request has come', '$classCode', '$sectionCode')));
     if (response.statusCode == 200) {}
   }
 

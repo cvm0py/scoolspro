@@ -50,7 +50,7 @@ class _ProfileState extends State<Profile> {
   bool isParents = false;
   bool isTransport = false;
   bool isOthers = false;
-  String section = 'personal';
+  String section = 'Section';
   String _email;
   String _password;
   String id;
@@ -63,6 +63,9 @@ class _ProfileState extends State<Profile> {
   var received;
 
   _ProfileState({this.id, this.image});
+  String personal = 'Personal'.toUpperCase();
+  bool simplifiedChinese = false;
+  String classs = 'Class';
 
   static List<Tab> tabs = <Tab>[
     Tab(
@@ -79,8 +82,174 @@ class _ProfileState extends State<Profile> {
     ),
   ];
 
+  //Lang Strings start
+  String height = 'Height';
+  String weight = 'Weight';
+  String nationalIdNo = "National ID Number";
+  String localIdNo = "Local ID Number";
+  String bankName = 'Bank Name';
+  String bankAccountNo = "Bank Account Number";
+  String documents = "Documents";
+  String father = "Father";
+  String name = "Name";
+  String phone = 'Phone';
+  String occupation = "Occupation";
+  String mother = "Mother";
+  String guardian = "Guardian";
+  String email = "Email";
+  String relation = "Relation";
+  String roll = "Roll";
+  String admission = 'Admission';
+  String no = 'No';
+  String download = "Download";
+  String wouldYouLikeTo = "Would you like to download the file?";
+  String downloading = "Downloading...";
+  String downloadCompleted =
+      "Download Completed. File is also available in your download folder.";
+  String permissionDenied = "Permission denied";
+  String youMust = "You must grant all permission to use this application";
+
+  //Lang String end
   @override
   void initState() {
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Class").then((value) {
+        setState(() {
+          classs = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Section").then((value) {
+        setState(() {
+          section = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Height').then((value) {
+        setState(() {
+          height = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Weight').then((value) {
+        setState(() {
+          weight = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'National ID Number').then((value) {
+        setState(() {
+          nationalIdNo = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Local ID Number").then((value) {
+        setState(() {
+          localIdNo = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Bank Name").then((value) {
+        setState(() {
+          bankName = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Bank Account Number").then((value) {
+        setState(() {
+          bankAccountNo = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Documents").then((value) {
+        setState(() {
+          documents = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Father").then((value) {
+        setState(() {
+          father = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Name").then((value) {
+        setState(() {
+          name = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Phone").then((value) {
+        setState(() {
+          phone = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Occupation").then((value) {
+        setState(() {
+          occupation = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Mother").then((value) {
+        setState(() {
+          mother = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Guardian").then((value) {
+        setState(() {
+          guardian = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Email').then((value) {
+        setState(() {
+          email = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Relation").then((value) {
+        setState(() {
+          relation = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Roll').then((value) {
+        setState(() {
+          roll = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Admission').then((value) {
+        setState(() {
+          admission = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'No').then((value) {
+        setState(() {
+          no = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Download').then((value) {
+        setState(() {
+          download = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Would you like to download the file?")
+          .then((value) {
+        setState(() {
+          wouldYouLikeTo = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Downloading...").then((value) {
+        setState(() {
+          downloading = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value,
+              "Download Completed. File is also available in your download folder.")
+          .then((value) {
+        setState(() {
+          downloadCompleted = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Permission denied").then((value) {
+        setState(() {
+          permissionDenied = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(
+              value, "You must grant all permission to use this application")
+          .then((value) {
+        setState(() {
+          youMust = value.toString();
+        });
+      });
+    });
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
@@ -315,42 +484,42 @@ class _ProfileState extends State<Profile> {
                                 snapshot.data.height == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "Height",
+                                title: height,
                                 value: snapshot.data.height,
                               ),
                         snapshot.data.weight == null ||
                                 snapshot.data.weight == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "Weight",
+                                title: weight,
                                 value: snapshot.data.weight,
                               ),
                         snapshot.data.nationalIdNo == null ||
                                 snapshot.data.nationalIdNo == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "National ID Number",
+                                title: nationalIdNo,
                                 value: snapshot.data.nationalIdNo,
                               ),
                         snapshot.data.localIdNo == null ||
                                 snapshot.data.localIdNo == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "Local ID Number",
+                                title: localIdNo,
                                 value: snapshot.data.localIdNo,
                               ),
                         snapshot.data.bankName == null ||
                                 snapshot.data.bankName == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "Bank Name",
+                                title: bankName,
                                 value: snapshot.data.bankName,
                               ),
                         snapshot.data.bankAccountNo == null ||
                                 snapshot.data.bankAccountNo == ""
                             ? Container()
                             : ProfileDetailsRow(
-                                title: "Bank Account Number",
+                                title: bankAccountNo,
                                 value: snapshot.data.bankAccountNo,
                               ),
                         SizedBox(
@@ -365,7 +534,7 @@ class _ProfileState extends State<Profile> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 8),
                                 child: Text(
-                                  "Documents",
+                                  documents,
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2
@@ -540,7 +709,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          "Father",
+                          father,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2
@@ -590,7 +759,7 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ParentsDetailsRow(
-                                  title: "Name",
+                                  title: name,
                                   value: snapshot.data.fathersName,
                                 ),
                                 GestureDetector(
@@ -602,12 +771,12 @@ class _ProfileState extends State<Profile> {
                                         : throw 'Could not launch ${snapshot.data.fathersMobile}';
                                   },
                                   child: ParentsDetailsRow(
-                                    title: "Phone",
+                                    title: phone,
                                     value: snapshot.data.fathersMobile,
                                   ),
                                 ),
                                 ParentsDetailsRow(
-                                  title: "Occupation",
+                                  title: occupation,
                                   value: snapshot.data.fathersOccupation,
                                 ),
                               ],
@@ -621,7 +790,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          "Mother",
+                          mother,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2
@@ -671,7 +840,7 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ParentsDetailsRow(
-                                  title: "Name",
+                                  title: name,
                                   value: snapshot.data.mothersName,
                                 ),
                                 GestureDetector(
@@ -683,12 +852,12 @@ class _ProfileState extends State<Profile> {
                                         : throw 'Could not launch ${snapshot.data.mothersMobile}';
                                   },
                                   child: ParentsDetailsRow(
-                                    title: "Phone",
+                                    title: phone,
                                     value: snapshot.data.mothersMobile,
                                   ),
                                 ),
                                 ParentsDetailsRow(
-                                  title: "Occupation",
+                                  title: occupation,
                                   value: snapshot.data.mothersOccupation,
                                 ),
                               ],
@@ -702,7 +871,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          "Guardian",
+                          guardian,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2
@@ -748,7 +917,7 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ParentsDetailsRow(
-                                  title: "Name",
+                                  title: name,
                                   value: snapshot.data.guardiansName,
                                 ),
                                 GestureDetector(
@@ -760,7 +929,7 @@ class _ProfileState extends State<Profile> {
                                         : throw 'Could not launch ${snapshot.data.guardiansEmail}';
                                   },
                                   child: ParentsDetailsRow(
-                                    title: "Email",
+                                    title: email,
                                     value: snapshot.data.guardiansEmail,
                                   ),
                                 ),
@@ -773,16 +942,16 @@ class _ProfileState extends State<Profile> {
                                         : throw 'Could not launch ${snapshot.data.guardiansMobile}';
                                   },
                                   child: ParentsDetailsRow(
-                                    title: "Phone",
+                                    title: phone,
                                     value: snapshot.data.guardiansMobile,
                                   ),
                                 ),
                                 ParentsDetailsRow(
-                                  title: "Occupation",
+                                  title: occupation,
                                   value: snapshot.data.guardiansOccupation,
                                 ),
                                 ParentsDetailsRow(
-                                  title: "Relation",
+                                  title: relation,
                                   value: snapshot.data.guardiansRelation,
                                 ),
                               ],
@@ -915,9 +1084,12 @@ class _ProfileState extends State<Profile> {
                       height: 10.h,
                     ),
                     Text(
-                      'Class : ' +
+                      classs +
+                          ' : ' +
                           snapshot1.data[2].value +
-                          ' | Section : ' +
+                          ' | ' +
+                          section +
+                          ' : ' +
                           snapshot1.data[1].value,
                       style: Theme.of(context).textTheme.headline6.copyWith(
                             color: Color(0xFF727FC8),
@@ -929,9 +1101,12 @@ class _ProfileState extends State<Profile> {
                       height: 10.h,
                     ),
                     Text(
-                      'Roll : ' +
+                      roll +
+                          ' : ' +
                           snapshot1.data[3].value +
-                          ' | Admission : ' +
+                          ' | ' +
+                          admission +
+                          ' : ' +
                           snapshot1.data[4].value,
                       style: Theme.of(context).textTheme.headline6.copyWith(
                             color: Color(0xFF727FC8),
@@ -975,13 +1150,13 @@ class _ProfileState extends State<Profile> {
   showDownloadAlertDialog(BuildContext context, String title, String fileUrl) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text(no),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
       },
     );
     Widget yesButton = TextButton(
-      child: Text("Download"),
+      child: Text(download),
       onPressed: () {
         downloadFile(fileUrl, context, title);
         Navigator.of(context, rootNavigator: true).pop('dialog');
@@ -991,10 +1166,10 @@ class _ProfileState extends State<Profile> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Download",
+        download,
         style: Theme.of(context).textTheme.headline5,
       ),
-      content: Text("Would you like to download the file?"),
+      content: Text(wouldYouLikeTo),
       actions: [
         cancelButton,
         yesButton,
@@ -1024,7 +1199,7 @@ class _ProfileState extends State<Profile> {
 
     try {
       FileUtils.mkdir([dirloc]);
-      Utils.showToast("Downloading...");
+      Utils.showToast(downloading);
 
       await dio.download(
           InfixApi.root + url, dirloc + AppFunction.getExtention(url),
@@ -1035,8 +1210,7 @@ class _ProfileState extends State<Profile> {
             ((receivedBytes / totalBytes) * 100).toStringAsFixed(0) + "%";
         if (received == 100.0) {
           if (url.contains('.pdf')) {
-            Utils.showToast(
-                "Download Completed. File is also available in your download folder.");
+            Utils.showToast(downloadCompleted);
             Navigator.push(
                 context,
                 ScaleRoute(
@@ -1047,14 +1221,13 @@ class _ProfileState extends State<Profile> {
                 ? await launch(InfixApi.root + url)
                 : throw 'Could not launch ${InfixApi.root + url}';
           }
-          Utils.showToast(
-              "Download Completed. File is also available in your download folder.");
+          Utils.showToast(downloadCompleted);
         }
       });
     } catch (e) {
       print(e);
     }
-    progress = "Download Completed.Go to the download folder to find the file";
+    progress = downloadCompleted;
   }
 
   Future<void> checkPermissions(BuildContext context) async {
@@ -1088,13 +1261,13 @@ class _ProfileState extends State<Profile> {
         context: context,
         builder: (BuildContext _context) {
           return SimpleDialog(
-            title: const Text("Permission denied"),
+            title: Text(permissionDenied),
             children: <Widget>[
               Container(
                 padding:
                     EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-                child: const Text(
-                  "You must grant all permission to use this application",
+                child: Text(
+                  youMust,
                   style: TextStyle(fontSize: 18, color: Colors.black54),
                 ),
               )

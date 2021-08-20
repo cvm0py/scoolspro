@@ -39,6 +39,7 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
 //  }
 
   String _token;
+  String _id;
 
   @override
   void initState() {
@@ -47,6 +48,12 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
         _token = value;
       });
     });
+    Utils.getStringValue('id').then((value) {
+      setState(() {
+        _id = value;
+      });
+    });
+
     super.initState();
   }
 
@@ -92,16 +99,15 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
   }
 
   Future<ZoomMeetingList> getAllMeeting() async {
-    print('Meeting:' +
-        InfixApi.getMeeting(uid: widget.uid, param: InfixApi.zoomMakeMeeting));
+    print('Meeting:' + InfixApi.getAllZoomMeetingsByUserID(_id));
     final response = await http.get(
-        Uri.parse(InfixApi.getMeeting(uid: widget.uid, param: InfixApi.zoomMakeMeeting)),
+        Uri.parse(InfixApi.getAllZoomMeetingsByUserID('4')),
         headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
 
-      return ZoomMeetingList.fromJson(jsonData['data']['meetings']);
+      return ZoomMeetingList.fromJson(jsonData['data']['meeting']);
     } else {
       throw Exception('Failed to load');
     }

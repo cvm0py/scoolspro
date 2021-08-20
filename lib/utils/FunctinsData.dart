@@ -91,7 +91,7 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     //  'Transport',
-    //'Zoom',
+    'Zoom',
     //  'Settings',
 
     'Events',
@@ -113,6 +113,7 @@ class AppFunction {
     'assets/images/study_material.png',
     'assets/images/library.png',
     'assets/images/teacher.png',
+    'assets/images/addhw.png',
     'assets/images/events.png',
     //'assets/images/addhw.png',
     //'assets/images/addhw.png',
@@ -133,6 +134,7 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     'Events',
+    //'Zoom'
     // 'Timeline',
     // 'Leave',
     //'Transport',
@@ -172,7 +174,7 @@ class AppFunction {
     'Digital Library',
     // 'Leave',
     'Contents',
-    //'Zoom',
+    'Zoom',
     // 'About',
     //   'Settings',
     'Events',
@@ -192,7 +194,7 @@ class AppFunction {
     'assets/images/gallery.png',
     'assets/images/library.png',
     'assets/images/contents.png',
-    //'assets/images/zoom.png',
+    'assets/images/zoom.png',
     //'assets/images/about.png',
     // 'assets/images/results.png',
     'assets/images/events.png',
@@ -238,7 +240,7 @@ class AppFunction {
     'Contents',
     'Library',
     //'Transport',
-    // 'Zoom',
+    'Zoom',
     // 'Settings',
   ];
   static var adminIcons = [
@@ -251,7 +253,7 @@ class AppFunction {
     'assets/images/contents.png',
     'assets/images/library.png',
     //'assets/images/transport.jpg',
-    // 'assets/images/zoom.png',
+    'assets/images/zoom.png',
     // 'assets/images/addhw.png',
   ];
 
@@ -282,18 +284,18 @@ class AppFunction {
 
   static var parent = [
     'Child',
-    'Calendar',
+    //'Calendar',
     // 'About',
-    // 'Zoom',
-    'Gallery',
+    'Zoom',
+    //'Gallery',
     // 'Settings',
   ];
   static var parentIcons = [
     'assets/images/students.png',
-    'assets/images/calendar.png',
+    //'assets/images/calendar.png',
     // 'assets/images/about.png',
-    //'assets/images/zoom.png',
-    'assets/images/gallery.png',
+    'assets/images/zoom.png',
+    //'assets/images/gallery.png',
     //'assets/images/calendar.png',
     //'assets/images/addhw.png',
   ];
@@ -508,10 +510,7 @@ class AppFunction {
       {var id, String image, int zoom, String token}) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(
-            context,
-            ScaleRoute(
-                page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: Calendar()));
         break;
       case 'Profile':
         Navigator.push(
@@ -805,10 +804,7 @@ class AppFunction {
       BuildContext context, String title, String uid) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(
-            context,
-            ScaleRoute(
-                page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: Calendar()));
         break;
       case 'Class Schedule':
         //Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
@@ -909,10 +905,7 @@ class AppFunction {
       BuildContext context, String title, String uid) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(
-            context,
-            ScaleRoute(
-                page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: Calendar()));
         break;
       case 'Child':
         Navigator.push(context, ScaleRoute(page: ChildListScreen()));

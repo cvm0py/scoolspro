@@ -62,15 +62,14 @@ class _StudentAssignmentState extends State<StudentAssignment> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        
         bottomNavigationBar: MainScreen(),
-        appBar: CustomAppBarWidget(title: 'Assignments'),
+        appBar: CustomAppBarWidget(title: 'Assignment'),
         backgroundColor: Colors.white,
         body: FutureBuilder<UploadedContentList>(
           future: assignments,
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot != null) {
-              if(snapshot.data.uploadedContents.length > 0){
+              if (snapshot.data.uploadedContents.length > 0) {
                 return ListView.builder(
                   itemCount: snapshot.data.uploadedContents.length,
                   itemBuilder: (context, index) {
@@ -78,7 +77,7 @@ class _StudentAssignmentState extends State<StudentAssignment> {
                         snapshot.data.uploadedContents[index]);
                   },
                 );
-              }else{
+              } else {
                 return Utils.noDataWidget();
               }
             } else {
@@ -91,7 +90,9 @@ class _StudentAssignmentState extends State<StudentAssignment> {
   }
 
   Future<UploadedContentList> fetchAssignment(int id) async {
-    final response = await http.get(Uri.parse(InfixApi.getStudentAssignment(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(
+        Uri.parse(InfixApi.getStudentAssignment(id)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
