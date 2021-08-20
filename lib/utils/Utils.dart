@@ -81,15 +81,15 @@ class Utils {
   }
 
   static BoxDecoration gradientBtnDecoration = BoxDecoration(
-      borderRadius: BorderRadius.circular(25.0),
-      // gradient: LinearGradient(
-      //   colors: [
-      //     Color(0xff0000ff),
-      //     Color(0xffccccff),
-      //   ],
-      // )
-      color:AppConfig.primary,
-      );
+    borderRadius: BorderRadius.circular(25.0),
+    // gradient: LinearGradient(
+    //   colors: [
+    //     Color(0xff0000ff),
+    //     Color(0xffccccff),
+    //   ],
+    // )
+    color: AppConfig.primary,
+  );
 
   static Text checkTextValue(text, value) {
     return Text(

@@ -104,20 +104,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('Welcome to')
-                            : 'Welcome to',
-                        style: TextStyle(
-                          color: Color(0xFF3575B6),
-                          fontSize: 20.0,
-                          fontFamily: 'popins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
                     AnimatedBuilder(
                       animation: animation,
                       builder: (context, child) {
@@ -131,19 +117,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                           ),
                         );
                       },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 60.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('UNLIMITED EDUCATION ERP')
-                            : 'SCOOLSPRO EDUCATION ERP',
-                        style: TextStyle(
-                            color: Color(0xFF3575B6),
-                            fontSize: 10.0,
-                            fontFamily: 'popins',
-                            fontStyle: FontStyle.normal),
-                      ),
                     ),
                   ],
                 ),

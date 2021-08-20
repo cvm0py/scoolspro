@@ -43,11 +43,129 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
 
   GlobalKey _globalKey = GlobalKey();
   String _id;
+  String created = 'Created';
+  String submission = 'Submission';
+  String evaluation = 'Evaluation';
+  String status = 'Status';
+  String marks = 'Marks';
+  String notassigned = 'not assigned';
+  String upload = 'Upload';
+  String incomplete = 'Incomplete';
+  String completed = 'Completed';
+  String no = 'No';
+  String download = 'Download';
+  String wouldYou = "Would you like to download the file?";
+  String downloading = "Downloading...";
+  String downloadCompleted =
+      "Download Completed. File is also available in your download folder.";
+  String youMust = 'You must grant all permission to use this application';
+  String permissionDenied = 'Permission Denied';
 
   @override
   void initState() {
     Utils.getStringValue('id').then((value) {
       _id = value;
+    });
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, 'Created').then((value) {
+        setState(() {
+          created = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Submission').then((value) {
+        setState(() {
+          submission = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Evaluation').then((value) {
+        setState(() {
+          evaluation = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Status').then((value) {
+        setState(() {
+          status = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Marks').then((value) {
+        setState(() {
+          marks = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'not assigned').then((value) {
+        setState(() {
+          notassigned = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Upload").then((value) {
+        setState(() {
+          upload = value;
+        });
+      });
+      Utils.getTranslatedLanguage(language, "Incomplete").then((value) {
+        setState(() {
+          incomplete = value;
+        });
+      });
+      Utils.getTranslatedLanguage(language, "Completed").then((value) {
+        setState(() {
+          completed = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "No").then((value) {
+        setState(() {
+          no = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Download').then((value) {
+        setState(() {
+          download = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(
+              language, "Would you like to download the file?")
+          .then((value) {
+        setState(() {
+          wouldYou = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Downloading...").then((value) {
+        setState(() {
+          downloading = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language,
+              "Download Completed. File is also available in your download folder.")
+          .then((value) {
+        setState(() {
+          downloadCompleted = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, permissionDenied).then((value) {
+        setState(() {
+          permissionDenied = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(
+              language, "You must grant all permission to use this application")
+          .then((value) {
+        setState(() {
+          youMust = value;
+        });
+      });
     });
     super.initState();
   }
@@ -73,21 +191,20 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                       style: Theme.of(context).textTheme.headline6.copyWith(),
                     ),
                   ),
-                  Container(
-                    child: GestureDetector(
-                      onTap: () {
-                        //showAlertDialog(context);
-                      },
-                      child: Text(
-                        // 'View',
-                        '',
-                        textAlign: TextAlign.end,
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                            color: Colors.deepPurpleAccent,
-                            decoration: TextDecoration.underline),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   child: GestureDetector(
+                  //     onTap: () {
+
+                  //     },
+                  //     child: Text(
+                  //       'View',
+                  //       textAlign: TextAlign.end,
+                  //       style: Theme.of(context).textTheme.headline6.copyWith(
+                  //           color: Colors.blue,
+                  //           decoration: TextDecoration.underline),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               Padding(
@@ -99,7 +216,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Created',
+                            created,
                             maxLines: 1,
                             style: Theme.of(context)
                                 .textTheme
@@ -124,7 +241,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Submission',
+                            submission,
                             maxLines: 1,
                             style: Theme.of(context)
                                 .textTheme
@@ -149,7 +266,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Evaluation',
+                            evaluation,
                             maxLines: 1,
                             style: Theme.of(context)
                                 .textTheme
@@ -174,7 +291,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Status',
+                            status,
                             maxLines: 1,
                             style: Theme.of(context)
                                 .textTheme
@@ -195,30 +312,30 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                 height: 10.0,
               ),
               Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Marks',
-                          maxLines: 1,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          widget.homework.marks == null
-                              ? 'not assigned'
-                              : widget.homework.marks.toString(),
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    marks,
+                    maxLines: 1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4
+                        .copyWith(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    widget.homework.marks == null
+                        ? notassigned
+                        : widget.homework.marks.toString(),
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
               // widget.homework.obtainedMarks == ""
-              //     ? 
+              //     ?
               //     : Column(
               //         crossAxisAlignment: CrossAxisAlignment.start,
               //         children: <Widget>[
@@ -249,7 +366,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                   gradient: LinearGradient(
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
-                      colors: [Colors.purple, Colors.deepPurple]),
+                      colors: [Colors.blue, Colors.blueAccent]),
                 ),
               ),
             ],
@@ -289,12 +406,12 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                             ),
                           ),
                           Text(
-                                  "Marks: " + widget.homework.marks,
-                                  style: Theme.of(context).textTheme.headline5,
-                                  maxLines: 1,
-                                )
+                            marks + ": " + widget.homework.marks,
+                            style: Theme.of(context).textTheme.headline5,
+                            maxLines: 1,
+                          )
                           // widget.homework.obtainedMarks == ""
-                          //     ? 
+                          //     ?
                           //     : Text(
                           //         "Obtained Marks: " +
                           //             widget.homework.obtainedMarks,
@@ -312,7 +429,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Created',
+                                    created,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -336,7 +453,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Submission',
+                                    submission,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -360,7 +477,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Evaluation',
+                                    evaluation,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -372,7 +489,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                   ),
                                   Text(
                                     widget.homework.evaluationDate == null
-                                        ? 'not assigned'
+                                        ? notassigned
                                         : widget.homework.evaluationDate,
                                     maxLines: 1,
                                     style:
@@ -388,7 +505,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          'Status',
+                                          status,
                                           maxLines: 1,
                                           style: Theme.of(context)
                                               .textTheme
@@ -496,7 +613,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                                                 width: 10,
                                               ),
                                               Text(
-                                                "Upload",
+                                                upload,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .headline5
@@ -539,6 +656,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
   }
 
   Widget getStatus(BuildContext context, String status) {
+    //print('Status --> ' + status);
     if (status == 'incompleted') {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -546,7 +664,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
         child: Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
           child: Text(
-            'Incomplete',
+            incomplete,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)
@@ -563,7 +681,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
         child: Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
           child: Text(
-            'Completed',
+            completed,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)
@@ -581,13 +699,13 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
   showDownloadAlertDialog(BuildContext context, String title) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text(no),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
       },
     );
     Widget yesButton = TextButton(
-      child: Text("Download"),
+      child: Text(download),
       onPressed: () {
         widget.homework.fileUrl != null
             ? downloadFile(widget.homework.fileUrl, context, title)
@@ -599,10 +717,10 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Download",
+        download,
         style: Theme.of(context).textTheme.headline5,
       ),
-      content: Text("Would you like to download the file?"),
+      content: Text(wouldYou),
       actions: [
         cancelButton,
         yesButton,
@@ -632,7 +750,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
 
     try {
       FileUtils.mkdir([dirloc]);
-      Utils.showToast("Downloading...");
+      Utils.showToast(downloading);
 
       await dio.download(
           InfixApi.root + url, dirloc + AppFunction.getExtention(url),
@@ -645,8 +763,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
         });
         if (received == 100.0) {
           if (url.contains('.pdf')) {
-            Utils.showToast(
-                "Download Completed. File is also available in your download folder.");
+            Utils.showToast(downloadCompleted);
             Navigator.push(
                 context,
                 ScaleRoute(
@@ -657,8 +774,7 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
                 await DefaultCacheManager().getSingleFile(InfixApi.root + url);
             OpenFile.open(file.path);
 
-            Utils.showToast(
-                "Download Completed. File is also available in your download folder.");
+            Utils.showToast(downloadCompleted);
           }
         }
       });
@@ -699,13 +815,13 @@ class _StudentHomeworkRowState extends State<StudentHomeworkRow> {
         context: context,
         builder: (BuildContext _context) {
           return SimpleDialog(
-            title: const Text("Permission denied"),
+            title: Text(permissionDenied),
             children: <Widget>[
               Container(
                 padding:
                     EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-                child: const Text(
-                  "You must grant all permission to use this application",
+                child: Text(
+                  youMust,
                   style: TextStyle(fontSize: 18, color: Colors.black54),
                 ),
               )

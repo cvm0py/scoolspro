@@ -78,7 +78,7 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
                   future: homeWorks,
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot != null) {
-                      return StatefulBuilder(builder: (context,state){
+                      return StatefulBuilder(builder: (context, state) {
                         state(() {
                           totalMarks = snapshot.data.marks;
                         });
@@ -104,8 +104,9 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
               ),
               Expanded(
                 child: StreamBuilder<StudentEvaluationList>(
-                  stream: Stream.periodic((Duration(seconds: 5))).asyncMap((event) => fetchEvaluationList(
-                      widget.classId, widget.sectionId, widget.homeworkId)),
+                  stream: Stream.periodic((Duration(seconds: 3))).asyncMap(
+                      (event) => fetchEvaluationList(
+                          widget.classId, widget.sectionId, widget.homeworkId)),
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot != null) {
                       // print(snapshot.data.studentEvaluation.length);
@@ -173,181 +174,227 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
                                             ],
                                           ),
                                         ),
-                                        snapshot
-                                            .data
-                                            .studentEvaluation[
-                                        index].marks == null || snapshot
-                                            .data
-                                            .studentEvaluation[
-                                        index].marks == "" ?
-                                        Expanded(
-                                          child: Container(
-                                            height: 35,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            EvaluateScreen(
-                                                              totalMarks: totalMarks,
-                                                              marks: snapshot.data.studentEvaluation[index].marks,
-                                                              teacherComment: snapshot.data.studentEvaluation[index].teacherComments,
-                                                              status: snapshot.data.studentEvaluation[index].completeStatus,
-                                                              studentId:snapshot.data.studentEvaluation[index].studentId,
-                                                              homeworkId:snapshot.data.studentEvaluation[index].homeworkId,
-                                                              files: snapshot.data.studentEvaluation[index].file,
-                                                              studentName: snapshot.data.studentEvaluation[index].studentName + '\'s Homework',
-                                                            )));
-                                              },
-                                              child: Text(
-                                                'Evaluate',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline4
-                                                    .copyWith(
-                                                    fontWeight:
-                                                    FontWeight.w500,
-                                                    fontSize: ScreenUtil().setSp(14)),
-                                              ),
-                                            ),
-                                          ),
-                                        ) : Expanded(
-                                          flex:3,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      'Marks',
+                                        snapshot.data.studentEvaluation[index]
+                                                        .marks ==
+                                                    null ||
+                                                snapshot
+                                                        .data
+                                                        .studentEvaluation[
+                                                            index]
+                                                        .marks ==
+                                                    ""
+                                            ? Expanded(
+                                                child: Container(
+                                                  height: 35,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  EvaluateScreen(
+                                                                    totalMarks:
+                                                                        totalMarks,
+                                                                    marks: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .marks,
+                                                                    teacherComment: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .teacherComments,
+                                                                    status: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .completeStatus,
+                                                                    studentId: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .studentId,
+                                                                    homeworkId: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .homeworkId,
+                                                                    files: snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .file,
+                                                                    studentName: snapshot
+                                                                            .data
+                                                                            .studentEvaluation[index]
+                                                                            .studentName +
+                                                                        '\'s Homework',
+                                                                  )));
+                                                    },
+                                                    child: Text(
+                                                      'Evaluate',
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .headline4
                                                           .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.w500),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize:
+                                                                  ScreenUtil()
+                                                                      .setSp(
+                                                                          14)),
                                                     ),
-                                                    SizedBox(height: 2.0),
-                                                    Text(
-                                                      snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .marks ==
-                                                          null ||
-                                                          snapshot
-                                                              .data
-                                                              .studentEvaluation[
-                                                          index]
-                                                              .marks ==
-                                                              ""
-                                                          ? 'N/A'
-                                                          : snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .marks,
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4,
+                                                  ),
+                                                ),
+                                              )
+                                            : Expanded(
+                                                flex: 3,
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            'Marks',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                          ),
+                                                          SizedBox(height: 2.0),
+                                                          Text(
+                                                            snapshot.data.studentEvaluation[index].marks ==
+                                                                        null ||
+                                                                    snapshot
+                                                                            .data
+                                                                            .studentEvaluation[
+                                                                                index]
+                                                                            .marks ==
+                                                                        ""
+                                                                ? 'N/A'
+                                                                : snapshot
+                                                                    .data
+                                                                    .studentEvaluation[
+                                                                        index]
+                                                                    .marks,
+                                                            maxLines: 1,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 10.0),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    SizedBox(height: 10.0),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            'Comment',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                          ),
+                                                          SizedBox(height: 2.0),
+                                                          Text(
+                                                            snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .teacherComments ==
+                                                                    null
+                                                                ? 'N/A'
+                                                                : snapshot
+                                                                            .data
+                                                                            .studentEvaluation[index]
+                                                                            .teacherComments ==
+                                                                        "NG"
+                                                                    ? "Not Good"
+                                                                    : "Good",
+                                                            maxLines: 1,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 10.0),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            'Status',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                          ),
+                                                          SizedBox(height: 2.0),
+                                                          Text(
+                                                            snapshot
+                                                                        .data
+                                                                        .studentEvaluation[
+                                                                            index]
+                                                                        .completeStatus ==
+                                                                    null
+                                                                ? 'N/A'
+                                                                : snapshot
+                                                                            .data
+                                                                            .studentEvaluation[index]
+                                                                            .completeStatus ==
+                                                                        "C"
+                                                                    ? "Completed"
+                                                                    : "Not Complete",
+                                                            maxLines: 1,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .headline4,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 10.0),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      'Comment',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.w500),
-                                                    ),
-                                                    SizedBox(height: 2.0),
-                                                    Text(
-                                                      snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .teacherComments ==
-                                                          null
-                                                          ? 'N/A'
-                                                          : snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .teacherComments ==
-                                                          "NG"
-                                                          ? "Not Good"
-                                                          : "Good",
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4,
-                                                    ),
-                                                    SizedBox(height: 10.0),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      'Status',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4
-                                                          .copyWith(
-                                                          fontWeight:
-                                                          FontWeight.w500),
-                                                    ),
-                                                    SizedBox(height: 2.0),
-                                                    Text(
-                                                      snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .completeStatus ==
-                                                          null
-                                                          ? 'N/A'
-                                                          : snapshot
-                                                          .data
-                                                          .studentEvaluation[
-                                                      index]
-                                                          .completeStatus ==
-                                                          "C"
-                                                          ? "Completed"
-                                                          : "Not Complete",
-                                                      maxLines: 1,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline4,
-                                                    ),
-                                                    SizedBox(height: 10.0),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
+                                              )
                                       ],
                                     ),
                                     Row(
                                       children: <Widget>[
                                         Expanded(
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 'Submitted Files: ',
@@ -355,47 +402,54 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
                                                     .textTheme
                                                     .headline4
                                                     .copyWith(
-                                                    fontWeight: FontWeight.w500),
+                                                        fontWeight:
+                                                            FontWeight.w500),
                                               ),
                                               SizedBox(width: 2.0),
-                                              snapshot.data.studentEvaluation[index]
-                                                  .file.length ==
-                                                  0
+                                              snapshot
+                                                          .data
+                                                          .studentEvaluation[
+                                                              index]
+                                                          .file
+                                                          .length ==
+                                                      0
                                                   ? Text(
-                                                'N/A',
-                                                maxLines: 1,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline4,
-                                              )
+                                                      'N/A',
+                                                      maxLines: 1,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline4,
+                                                    )
                                                   : Container(
-                                                    child: InkWell(
-                                                onTap: () {
-                                                    Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                UploadedFilesView(
-                                                                  files: snapshot
-                                                                      .data
-                                                                      .studentEvaluation[
-                                                                  index]
-                                                                      .file,
-                                                                  fileName: snapshot.data.studentEvaluation[index].studentName+ '\'s attached file',
-                                                                )));
-                                                },
-                                                child: Text(
-                                                    'View',
-                                                    textAlign:TextAlign.center,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline4
-                                                        .copyWith(
-                                                        fontWeight:
-                                                        FontWeight.w500,
-                                                        fontSize: 15),
-                                                ),
-                                              ),
-                                                  ),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          Navigator.of(context).push(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          UploadedFilesView(
+                                                                            files:
+                                                                                snapshot.data.studentEvaluation[index].file,
+                                                                            fileName:
+                                                                                snapshot.data.studentEvaluation[index].studentName + '\'s attached file',
+                                                                          )));
+                                                        },
+                                                        child: Text(
+                                                          'View',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .headline4
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ),
                                             ],
                                           ),
                                         ),
@@ -441,7 +495,8 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
       int classId, int sectionId, int homeworkId) async {
     // print(InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId));
     final response = await http.get(
-        Uri.parse(InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId)),
+        Uri.parse(
+            InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId)),
         headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
@@ -458,7 +513,8 @@ class _HomeworkEvaluationScreenState extends State<HomeworkEvaluationScreen> {
       int classId, int sectionId, int homeworkId) async {
     print(InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId));
     final response = await http.get(
-        Uri.parse(InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId)),
+        Uri.parse(
+            InfixApi.homeworkEvaluationList(classId, sectionId, homeworkId)),
         headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {

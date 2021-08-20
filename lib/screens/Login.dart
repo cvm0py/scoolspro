@@ -76,14 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   //     image: DecorationImage(
                   //   image: AssetImage(AppConfig.loginBackground),
                   //   fit: BoxFit.fill,
-                 // )),
+                  // )),
                   child: Center(
                     child: Container(
                       height: 150.0,
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage(AppConfig.appLogo_blue),
+                        image: AssetImage('assets/config/logo_blue.png'),
                       )),
                     ),
                   ),
@@ -101,10 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                    email = 'student@student.com';
-                                    emailController.text = email;
-                                    passwordController.text = password;
-                                  });
+                                  email = 'student@student.com';
+                                  emailController.text = email;
+                                  passwordController.text = password;
+                                });
                               },
                               style: ElevatedButton.styleFrom(
                                   primary: AppConfig.primary,
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                   setState(() {
+                                  setState(() {
                                     email = 'Teacher2@gmail.com';
                                     emailController.text = email;
                                     passwordController.text = password;
@@ -152,10 +152,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                    email = 'Guardian4@scoolspro.com';
-                                    emailController.text = email;
-                                    passwordController.text = password;
-                                  });
+                                  email = 'Guardian4@scoolspro.com';
+                                  emailController.text = email;
+                                  passwordController.text = password;
+                                });
                               },
                               style: ElevatedButton.styleFrom(
                                   primary: AppConfig.primary,

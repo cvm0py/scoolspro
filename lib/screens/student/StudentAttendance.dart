@@ -39,6 +39,12 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
   Future<StudentAttendanceList> attendances;
 
   _StudentAttendanceScreenState({this.id, this.token});
+  String present = 'Present';
+  String absent = 'Absent';
+  String late = 'Late';
+  String halfday = 'Halfday';
+  String holiday = 'Holiday';
+  String days = 'Days';
 
   @override
   void initState() {
@@ -47,6 +53,38 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
         token = value;
       });
       print('ATTENDANCE: $token');
+    });
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, 'Present').then((val) {
+        setState(() {
+          present = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Absent').then((val) {
+        setState(() {
+          absent = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Late').then((val) {
+        setState(() {
+          late = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Holiday').then((val) {
+        setState(() {
+          holiday = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Halfday').then((val) {
+        setState(() {
+          halfday = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Days').then((val) {
+        setState(() {
+          days = val;
+        });
+      });
     });
     super.initState();
   }
@@ -195,7 +233,8 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
                                             .headline4
                                             .copyWith(
                                               color: Color(0xFF727FC8),
-                                              fontSize: ScreenUtil().setSp(14.0),
+                                              fontSize:
+                                                  ScreenUtil().setSp(14.0),
                                             ),
                                       ),
                                       SizedBox(
@@ -226,8 +265,8 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
                                             .textTheme
                                             .headline4
                                             .copyWith(
-                                            fontSize:
-                                            ScreenUtil().setSp(14.0),
+                                                fontSize:
+                                                    ScreenUtil().setSp(14.0),
                                                 color: isToday == true
                                                     ? Colors.white
                                                     : Colors.grey)),
@@ -271,11 +310,11 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
               child: Column(
                 // physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  bottomDesign('Present', 'P', Colors.green),
-                  bottomDesign('Absent', 'A', Colors.red),
-                  bottomDesign('Late', 'L', Color(0xFFEDD200)),
-                  bottomDesign('Halfday', 'H', Colors.purpleAccent),
-                  bottomDesign('Holiday', 'F', Colors.deepPurpleAccent),
+                  bottomDesign(present, 'P', Colors.green),
+                  bottomDesign(absent, 'A', Colors.red),
+                  bottomDesign(late, 'L', Color(0xFFEDD200)),
+                  bottomDesign(halfday, 'H', Colors.purpleAccent),
+                  bottomDesign(holiday, 'F', Colors.deepPurpleAccent),
                 ],
               ),
             ),
@@ -391,6 +430,6 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
       }
     }
     //debugPrint('count $count');
-    return '$count days';
+    return '$count ' + days;
   }
 }
