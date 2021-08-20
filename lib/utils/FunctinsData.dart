@@ -563,7 +563,7 @@ class AppFunction {
         Navigator.push(context, ScaleRoute(page: Albums(id: id)));
         break;
       case 'Weather':
-        Navigator.push(context, ScaleRoute(page: Weather(id: id)));
+       // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
