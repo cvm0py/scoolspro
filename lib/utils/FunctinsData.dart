@@ -96,7 +96,7 @@ class AppFunction {
     //  'Settings',
 
     'Events',
-    'Weather',
+   // 'Weather',
     //'Results'
   ];
   static var studentIcons = [
@@ -117,7 +117,7 @@ class AppFunction {
     'assets/images/library.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
-    'assets/images/weather.png',
+    //'assets/images/weather.png',
     
     //'assets/images/addhw.png',
     //'assets/images/addhw.png',
@@ -186,7 +186,7 @@ class AppFunction {
     // 'About',
     //   'Settings',
     'Events',
-    'weather',
+    //'weather',
   ];
 
   static var teachersIcons = [
@@ -209,7 +209,7 @@ class AppFunction {
     // 'assets/images/results.png',
     'assets/images/events.png',
     
-    'assets/images/weather.png',
+    //'assets/images/weather.png',
   ];
 
   static var teachers2 = [
