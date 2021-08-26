@@ -1,4 +1,6 @@
 // Flutter imports:
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -33,7 +35,7 @@ import 'package:infixedu/screens/student/SubjectScreen.dart';
 import 'package:infixedu/screens/student/TimeLineScreen.dart';
 import 'package:infixedu/screens/student/TransportScreen.dart';
 import 'package:infixedu/screens/student/album/album.dart';
-import 'package:infixedu/screens/student/events/Events.dart';
+import 'package:infixedu/screens/student/events/Event.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
 import 'package:infixedu/screens/student/examination/ScheduleScreen.dart';
@@ -182,7 +184,7 @@ class AppFunction {
     'Gallery',
     'Digital Library',
     // 'Leave',
-    'Contents',
+   // 'Contents',
     // 'About',
     //   'Settings',
     'Events',
@@ -203,8 +205,8 @@ class AppFunction {
     'assets/images/zoom.png',
     'assets/images/gallery.png',
     'assets/images/library.png',
-    'assets/images/contents.png',
-    'assets/images/zoom.png',
+   // 'assets/images/contents.png',
+    //'assets/images/zoom.png',
     //'assets/images/about.png',
     // 'assets/images/results.png',
     'assets/images/events.png',
@@ -298,7 +300,7 @@ class AppFunction {
     'Child',
     //'Calendar',
     // 'About',
-    'Zoom',
+   // 'Zoom',
     //'Gallery',
     // 'Settings',
   ];
@@ -306,7 +308,7 @@ class AppFunction {
     'assets/images/students.png',
     //'assets/images/calendar.png',
     // 'assets/images/about.png',
-    'assets/images/zoom.png',
+   // 'assets/images/zoom.png',
     //'assets/images/gallery.png',
     //'assets/images/calendar.png',
     //'assets/images/addhw.png',

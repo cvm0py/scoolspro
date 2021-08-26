@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/Home.dart';
 import 'package:infixedu/screens/SettingsScreen.dart';
 import 'package:infixedu/screens/SplashScreen.dart';
 import 'package:infixedu/screens/policy.dart';
@@ -32,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Container(
                 height: MediaQuery.of(context).size.width * 1 / 16,
                 width: MediaQuery.of(context).size.width * 1 / 16,
-                child: Image.asset("assets/images/policy.png")),
+                child: Image.asset("assets/images/settings.png")),
             label: "Home"),
         BottomNavigationBarItem(
             icon: Container(
@@ -44,14 +45,14 @@ class _MainScreenState extends State<MainScreen> {
             icon: Container(
                 height: MediaQuery.of(context).size.width * 1 / 16,
                 width: MediaQuery.of(context).size.width * 1 / 16,
-                child: Image.asset("assets/images/settings.png")),
+                child: Image.asset("assets/images/policy.png")),
             label: "Settings"),
       ],
       onTap: (index) {
         print("Index val -->" + index.toString());
         switch (index) {
           case 0:
-            Navigator.push(context, ScaleRoute(page: Policy()));
+            Navigator.push(context, ScaleRoute(page: SettingScreen()));
             break;
           case 1:
             Navigator.push(context, ScaleRoute(page: Profile()));

@@ -72,7 +72,7 @@ class Home extends StatefulWidget {
   var _images;
 
   Home(this._titles, this._images);
-
+  
   @override
   _HomeState createState() => _HomeState(_titles, _images);
 }

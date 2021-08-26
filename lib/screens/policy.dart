@@ -1,22 +1,86 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Policy extends StatelessWidget {
   const Policy({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBarWidget(
-        title: "Privacy Policy",
-      ),
-      body: SingleChildScrollView(
-        child: Container(
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
+    ));
+    return Padding(
+      padding:  EdgeInsets.only(top:statusBarHeight),
+      child: Scaffold(
+        appBar: CustomAppBarWidget(
+          title: "Privacy Policy",
+        ),
+        body: Container(
           color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Container(
-              child: Column(
+              child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: <Widget>[
+            Card1(),
+            Card2(),
+           ] ),
+
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Card1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+      padding: const EdgeInsets.all(10),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff3575B6),
+                  shape: BoxShape.rectangle,
+                ),
+              ),
+            ),
+            ScrollOnExpand(
+              scrollOnExpand: true,
+              scrollOnCollapse: false,
+              child: ExpandablePanel(
+                theme: const ExpandableThemeData(
+                  headerAlignment: ExpandablePanelHeaderAlignment.center,
+                  tapBodyToCollapse: true,
+                ),
+                header: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "ScoolsPro Privacy Policy Statement",
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )),
+                collapsed: Text(
+                  "Updated March 27, 2021",
+                  softWrap: true,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                expanded:  Column(
                 children: [
                    Text(
                     "Privacy Policy",
@@ -202,16 +266,149 @@ In compliance with the CAN-SPAM Act, all e-mails sent from us will clearly state
                     height: 8,
                   ),
                   Text('''If you would like to contact us to understand more about this Policy or wish to contact us concerning any matter relating to individual rights and your Personal Information, you may send an email to admin@scoolspro.com.
-                  
+                
                   This document was last updated on March 27, 2021'''),
-                  
-               
+                
+             
                 ],
               ),
+                // expanded: Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: <Widget>[
+                //     for (var _ in Iterable.generate(5))
+                //       Padding(
+                //           padding: EdgeInsets.only(bottom: 10),
+                //           child: Text(
+                //             "loremIpsum",
+                //             softWrap: true,
+                //             overflow: TextOverflow.fade,
+                //           )),
+                //   ],
+                // ),
+                builder: (_, collapsed, expanded) {
+                  return Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: Expandable(
+                      collapsed: collapsed,
+                      expanded: expanded,
+                      theme: const ExpandableThemeData(crossFadePoint: 0),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
+          ],
         ),
       ),
-    );
+    ));
   }
 }
+ 
+  Widget buildImage(String imgAdd) => Image.network(
+        imgAdd,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: 400,
+      );
+
+class Card2 extends StatelessWidget {
+
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+      padding: const EdgeInsets.all(10),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff3575B6),
+                  shape: BoxShape.rectangle,
+                ),
+              ),
+            ),
+            ScrollOnExpand(
+              scrollOnExpand: true,
+              scrollOnCollapse: false,
+              child: ExpandablePanel(
+                theme: const ExpandableThemeData(
+                  headerAlignment: ExpandablePanelHeaderAlignment.center,
+                  tapBodyToCollapse: true,
+                ),
+                header: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Personal Information Collection Statement",
+                      style: Theme.of(context).textTheme.body2,
+                    )),
+                collapsed: Text(
+                  "Updated March 27 , 2021",
+                  softWrap: true,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                expanded: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                     Text('''1.The purpose of collecting personal Data is to perfrom research and analysis about your use of, or interest in, our products, services ,or content,or products, services and content offerded by others and communicate with you email, postal email and/or electronic devices.'''),
+                   SizedBox(
+                    height: 8,
+                  ),
+                    Text('''2.Personal Information is kept for as long as required to fulfill the purpose for which they are collected.Thereafter we will delete the personal information.'''),
+                   SizedBox(
+                    height: 8,
+                  ),
+                    Text('''3. The Personal Data collected will not be disclosed to third party other than those specified by your express approval or unless required by law.'''),
+                   SizedBox(
+                    height: 8,
+                  ),
+                    Text('''4.Unless indicated otherwise, all personal data requested in this form is required for its purpose(s).If such data is incomplete ir inaccurate, your use of the website and application will be void or delayed'''),
+                   SizedBox(
+                    height: 8,
+                  ),
+                    Text('''5.You have the right to request acces and correction of the personal data under Hong Kong's Personal Data (Privacy) Ordinance (cap. 486). For such request, please contact our Privacy Manager at privacy@scoolspro.com/contact.html or'''),
+                  InkWell(
+              child: Text('Click here',style:TextStyle(color: Color(0xff3575B6))),
+            onTap : () => launch('https://scoolspro.com/contact.html'),
+          ),
+         
+
+                   SizedBox(
+                    height: 8,
+                  ),
+                    // for (var _ in Iterable.generate(5))
+                    //   Padding(
+                    //       padding: EdgeInsets.only(bottom: 10),
+                    //       child: Text(
+                    //         "loremIpsum",
+                    //         softWrap: true,
+                    //         overflow: TextOverflow.fade,
+                    //       )),
+                  ],
+                ),
+                builder: (_, collapsed, expanded) {
+                  return Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: Expandable(
+                      collapsed: collapsed,
+                      expanded: expanded,
+                      theme: const ExpandableThemeData(crossFadePoint: 0),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+ 
+}
+

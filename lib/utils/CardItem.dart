@@ -56,12 +56,12 @@ class _CustomWidgetState extends State<CustomWidget> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: 100.0,
+          //height: 200.0,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color:
-                    //widget.isSelected ? Color(0xffc8abfc) : Color(0xffc8abfc),
+                   // widget.isSelected ? AppConfig.primary: AppConfig.primary,
                     widget.isSelected ? Colors.blueAccent : Colors.blueAccent,
                 blurRadius: 9.0,
                 offset: Offset(2, 4),
@@ -70,76 +70,57 @@ class _CustomWidgetState extends State<CustomWidget> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              /*gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFFCCCCFF), Colors.white]),*/
-              color: Color(0xff3575B6),
+              color: AppConfig.primary,
               borderRadius: BorderRadius.circular(10.0),
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: Colors.deepPurple.withOpacity(0.3),
-              //     spreadRadius: 2,
-              //     blurRadius: 1,
-              //     offset: Offset(1, 1), // changes position of shadow
-              //   ),
-              // ],
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        title != null ? " " + title : '...',
-                        style: TextStyle(
-                          fontFamily: "QuickSand",
-                          letterSpacing: 1.4,
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(14),
-                          fontWeight: FontWeight.w500,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title != null ? " " + title : '...',
+                          style: TextStyle(
+                            fontFamily: "QuickSand",
+                            letterSpacing: 1.4,
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.height *
+                                0.02, //ScreenUtil().setSp(14),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          // maxLines: 1,
                         ),
-                        // maxLines: 1,
-                      ),
-                      SizedBox(
-                        width: 1,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Container(
-                        //color: Colors.green,
-                        color: Color(0xff3575B6),
-                        height: 45,
-                        width: 45,
-                        child: Image.asset(
-                          //widget.icon.toString(),
-                          // 'assets/images/profile_unseen.gif',
-                          //'assets/images/attendance.gif',
-                          
+                        SizedBox(
+                          width: 1,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          //color: Colors.green,
+                          color: AppConfig.primary,
+                          height: MediaQuery.of(context).size.height * 0.055,
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Image.asset(
                             widget.icon.toString(),
-                          // 'assets/images/students.png',
-
-                         // 'assets/images/about_us.png',
-
-                         //color: Colors.green,
-
-                          // width: 75,
-                          // height: 75,
-                          fit: BoxFit.fill,
+                            // fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                      //child: Image.network('https://drive.google.com/file/d/1_lJeRPe2lHIQVST1I6oS-XJpcr8U-ygb/view?usp=sharing',),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
