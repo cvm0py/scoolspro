@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 2.0.4+14
+version: 2.0.4+15
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -14,6 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  cell_calendar: ^0.5.0+1
+  horizontal_calendar_widget: ^1.0.0
   dio: ^4.0.0
   equatable: ^1.2.0
   file_picker: ^3.0.3
@@ -74,7 +76,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/config/logo_blue.png"
+  image_path: "assets/config/logo_scoolspro.png"
 
 # flutter pub run flutter_native_splash:create
 flutter_native_splash:

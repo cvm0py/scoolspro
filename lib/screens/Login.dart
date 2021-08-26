@@ -9,11 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/localization/application.dart';
+import 'package:infixedu/main.dart';
 
 // Project imports:
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/server/Login.dart';
+import 'package:infixedu/utils/widget/Line.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -57,6 +60,14 @@ class _LoginScreenState extends State<LoginScreen> {
     print('User granted permission: ${settings.authorizationStatus}');
   }
 
+  void rebuildAllChildren(BuildContext context) {
+//    Navigator.of(context)
+//        .push(MaterialPageRoute(builder: (BuildContext context) {
+//      return MyApp();
+    Route route = MaterialPageRoute(builder: (context) => LoginScreen());
+    Navigator.pushAndRemoveUntil(context, route, ModalRoute.withName('/'));
+  }
+
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.headline6;
@@ -68,6 +79,86 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           child: Column(
             children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: AppConfig.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15.0),
+                              ),
+                            )),
+                        onPressed: () {
+                          showDialog<void>(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(32.0))),
+                                contentPadding: EdgeInsets.only(top: 10.0),
+                                content: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(0),
+                                    child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20.0, top: 20.0, right: 20.0),
+                                        child: ListView.builder(
+                                          itemCount: languagesList.length,
+                                          itemBuilder: (context, index) {
+                                            return Column(
+                                              children: <Widget>[
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Utils.saveStringValue(
+                                                        'lang',
+                                                        languagesMap[
+                                                            languagesList[
+                                                                index]]);
+                                                    application.onLocaleChanged(
+                                                        Locale(languagesMap[
+                                                            languagesList[
+                                                                index]]));
+                                                    //rebuildAllChildren(context);
+                                                  },
+                                                  child: Text(
+                                                    languagesList[index],
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline5
+                                                        .copyWith(
+                                                            letterSpacing: 2),
+                                                  ),
+                                                ),
+                                                BottomLine(),
+                                              ],
+                                            );
+                                          },
+                                        )),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text(
+                          'Change Language',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(color: Colors.white, fontSize: 14),
+                        )),
+                  ),
+                ),
+              ),
               Expanded(
                 flex: 3,
                 child: Container(

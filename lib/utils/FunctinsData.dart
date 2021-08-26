@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:infixedu/screens/AboutScreen.dart';
+import 'package:infixedu/screens/CalendarHorizontal.dart';
 import 'package:infixedu/screens/Calender.dart';
 import 'package:infixedu/screens/Home.dart';
 import 'package:infixedu/screens/SettingsScreen.dart';
@@ -96,7 +97,7 @@ class AppFunction {
     //  'Settings',
 
     'Events',
-   // 'Weather',
+    // 'Weather',
     //'Results'
   ];
   static var studentIcons = [
@@ -118,7 +119,7 @@ class AppFunction {
     'assets/images/teacher.png',
     'assets/images/events.png',
     //'assets/images/weather.png',
-    
+
     //'assets/images/addhw.png',
     //'assets/images/addhw.png',
   ];
@@ -138,7 +139,7 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     'Events',
-   // 'Weather',
+    // 'Weather',
     //'Zoom'
     // 'Timeline',
     // 'Leave',
@@ -161,7 +162,7 @@ class AppFunction {
     'assets/images/library.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
-   // 'assets/images/weather.png',
+    // 'assets/images/weather.png',
 
     //'assets/images/timeline.png',
     // 'assets/images/leave.png',
@@ -208,7 +209,7 @@ class AppFunction {
     //'assets/images/about.png',
     // 'assets/images/results.png',
     'assets/images/events.png',
-    
+
     //'assets/images/weather.png',
   ];
 
@@ -522,7 +523,7 @@ class AppFunction {
       {var id, String image, int zoom, String token}) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(context, ScaleRoute(page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: CalendarHorizontal()));
         break;
       case 'Profile':
         Navigator.push(
@@ -563,7 +564,7 @@ class AppFunction {
         Navigator.push(context, ScaleRoute(page: Albums(id: id)));
         break;
       case 'Weather':
-       // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
+        // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
@@ -819,7 +820,7 @@ class AppFunction {
       BuildContext context, String title, String uid) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(context, ScaleRoute(page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: CalendarHorizontal()));
         break;
       case 'Class Schedule':
         //Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
@@ -920,7 +921,7 @@ class AppFunction {
       BuildContext context, String title, String uid) {
     switch (title) {
       case 'Calendar':
-        Navigator.push(context, ScaleRoute(page: Calendar()));
+        Navigator.push(context, ScaleRoute(page: CalendarHorizontal()));
         break;
       case 'Child':
         Navigator.push(context, ScaleRoute(page: ChildListScreen()));

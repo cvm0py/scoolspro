@@ -10,11 +10,7 @@ class Application {
 
   Application._internal();
 
-  final List<String> supportedLanguages = [
-    "English",
-    "Simplified Chinese",
-    "Traditional chinese"
-  ];
+  final List<String> supportedLanguages = ["English", "简体中文", "繁體中文"];
 
   final List<String> supportedLanguagesCodes = ["en", "zh-Hans", "zh-Hant"];
 

@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  cell_calendar:
+    dependency: "direct main"
+    description:
+      name: cell_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0+1"
   characters:
     dependency: transitive
     description:
@@ -476,6 +483,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.1"
+  horizontal_calendar_widget:
+    dependency: "direct main"
+    description:
+      name: horizontal_calendar_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   html:
     dependency: transitive
     description:
