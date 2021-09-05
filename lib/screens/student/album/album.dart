@@ -22,6 +22,8 @@ class Albums extends StatefulWidget {
 
 class _AlbumsState extends State<Albums> {
   String items = "Items";
+  String photos = "photos";
+  String vedios = "vedios";
 
   loadData() async {
     var response = await http.get(Uri.parse(InfixApi.getAlbum));
@@ -30,17 +32,20 @@ class _AlbumsState extends State<Albums> {
     return responseData;
   }
 
-    @override
+  @override
   void initState() {
- 
     Utils.getStringValue('lang').then((language) {
       Utils.getTranslatedLanguage(language, "Items").then((value) {
         items = value;
       });
-
-    
+      Utils.getTranslatedLanguage(language, "photos").then((value) {
+        photos = value;
+      });
+      Utils.getTranslatedLanguage(language, "vedios").then((value) {
+        vedios = value;
+      });
     });
-  
+
     super.initState();
   }
 
@@ -128,15 +133,20 @@ class _AlbumsState extends State<Albums> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 10,
+                                                width: 5,
                                               ),
                                               Center(
                                                   child: _buildChip(
-                                                      items,
+                                                      photos,
                                                       snapshot
                                                           .data[index]['photos']
                                                           .length
                                                           .toString(),
+                                                      Color(0xff3575B6))),
+                                              Center(
+                                                  child: _buildChip(
+                                                      vedios,
+                                                      "5",
                                                       Color(0xff3575B6))),
                                             ],
                                           ),

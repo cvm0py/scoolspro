@@ -8,6 +8,7 @@ import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/screens/student/album/photos.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
@@ -184,12 +185,51 @@ class _TextTilePageState extends State<TextTilePage> {
                 ),
                 header: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Text(
-                    widget.title,
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black54,
-                        fontWeight: FontWeight.w500),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                       Container(
+                         padding: EdgeInsets.all(4),
+                         width:MediaQuery.of(context).size.width *0.15,
+                         color:AppConfig.primary,
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                           children: [
+                              Text(
+                            
+                            
+                          widget.startDat[5] + widget.startDat[6],
+                       // "21",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                      ),
+                             Text(
+                              //AppFunction.getMonth(int.parse(widget.startDat[3]+ widget.startDat[4])),
+                              "Jan",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                      ),
+                           ],
+                         ),
+                       ),
+                       SizedBox(width:5),
+                      Container(
+                        width: MediaQuery.of(context).size.width *0.55,
+                        child: Text(
+                          widget.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 collapsed: Text(

@@ -98,7 +98,7 @@ class AppFunction {
     //  'Settings',
 
     'Events',
-   // 'Weather',
+    // 'Weather',
     //'Results'
   ];
   static var studentIcons = [
@@ -120,7 +120,7 @@ class AppFunction {
     'assets/images/teacher.png',
     'assets/images/events.png',
     //'assets/images/weather.png',
-    
+
     //'assets/images/addhw.png',
     //'assets/images/addhw.png',
   ];
@@ -140,7 +140,7 @@ class AppFunction {
     'Digital Library',
     'Teacher',
     'Events',
-   // 'Weather',
+    // 'Weather',
     //'Zoom'
     // 'Timeline',
     // 'Leave',
@@ -163,7 +163,7 @@ class AppFunction {
     'assets/images/library.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
-   // 'assets/images/weather.png',
+    // 'assets/images/weather.png',
 
     //'assets/images/timeline.png',
     // 'assets/images/leave.png',
@@ -184,7 +184,7 @@ class AppFunction {
     'Gallery',
     'Digital Library',
     // 'Leave',
-   // 'Contents',
+    // 'Contents',
     // 'About',
     //   'Settings',
     'Events',
@@ -205,12 +205,12 @@ class AppFunction {
     'assets/images/zoom.png',
     'assets/images/gallery.png',
     'assets/images/library.png',
-   // 'assets/images/contents.png',
+    // 'assets/images/contents.png',
     //'assets/images/zoom.png',
     //'assets/images/about.png',
     // 'assets/images/results.png',
     'assets/images/events.png',
-    
+
     //'assets/images/weather.png',
   ];
 
@@ -300,7 +300,7 @@ class AppFunction {
     'Child',
     //'Calendar',
     // 'About',
-   // 'Zoom',
+    // 'Zoom',
     //'Gallery',
     // 'Settings',
   ];
@@ -308,7 +308,7 @@ class AppFunction {
     'assets/images/students.png',
     //'assets/images/calendar.png',
     // 'assets/images/about.png',
-   // 'assets/images/zoom.png',
+    // 'assets/images/zoom.png',
     //'assets/images/gallery.png',
     //'assets/images/calendar.png',
     //'assets/images/addhw.png',
@@ -565,7 +565,7 @@ class AppFunction {
         Navigator.push(context, ScaleRoute(page: Albums(id: id)));
         break;
       case 'Weather':
-       // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
+        // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
@@ -1201,5 +1201,50 @@ class AppFunction {
   static String getDay(String date) {
     var parts = date.split("-");
     return parts[parts.length - 1];
+  }
+
+  //get alphabetic month
+  static String getMonth(int no) {
+    switch (no) {
+      case 1:
+        return "Jan";
+        break;
+      case 2:
+        return "Feb";
+        break;
+      case 3:
+        return "Mar";
+        break;
+      case 4:
+        return "Apr";
+        break;
+      case 5:
+        return "May";
+        break;
+      case 6:
+        return "Jun";
+        break;
+      case 7:
+        return "Jul";
+        break;
+      case 8:
+        return "Aug";
+        break;
+      case 9:
+        return "Sep";
+        break;
+      case 10:
+        return "Oct";
+        break;
+      case 11:
+        return "Nov";
+        break;
+      case 12:
+        return "Dec";
+        break;
+      default:
+        return "Jan";
+        break;
+    }
   }
 }
