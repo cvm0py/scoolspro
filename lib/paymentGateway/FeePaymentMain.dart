@@ -127,7 +127,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                 ),
               ),
             ),
-               GestureDetector(
+            GestureDetector(
               onTap: () {
                 // Navigator.push(
                 //     context,
@@ -159,8 +159,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                 ),
               ),
             ),
-
-               GestureDetector(
+            GestureDetector(
               onTap: () {
                 // Navigator.push(
                 //     context,
@@ -184,6 +183,38 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                   ),
                   title: Text(
                     'Debit Card Payment',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/googlePay.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Gpay Payment',
                     style: Theme.of(context)
                         .textTheme
                         .headline5
@@ -524,10 +555,16 @@ class _BankOrChequeState extends State<BankOrCheque> {
                                                     .headline5
                                                     .copyWith(fontSize: 14),
                                               ),
-                                              subtitle: Text(bankAccountNumber,style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5
-                                                  .copyWith(fontSize: 12,fontWeight: FontWeight.normal),),
+                                              subtitle: Text(
+                                                bankAccountNumber,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline5
+                                                    .copyWith(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                              ),
                                             ),
                                           ],
                                         ),

@@ -74,6 +74,7 @@ import 'package:infixedu/screens/teacher/students/StudentSearch.dart';
 import 'package:infixedu/screens/weather.dart';
 import 'package:infixedu/screens/zoom/virtual_class.dart';
 import 'package:infixedu/screens/zoom/virtual_meeting.dart';
+import 'package:infixedu/utils/alexa.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
 class AppFunction {
@@ -90,6 +91,7 @@ class AppFunction {
     'Online Classes',
     //'Leave',
     'Gallery',
+    'Alexa',
     'Subjects',
     'Study Materials',
     'Digital Library',
@@ -113,6 +115,8 @@ class AppFunction {
     'assets/images/online_exam.png',
     'assets/images/zoom.png',
     'assets/images/gallery.png',
+
+    'assets/images/alexa.png',
     'assets/images/subjects.png',
     //'assets/images/leave.png',
     'assets/images/study_material.png',
@@ -135,6 +139,7 @@ class AppFunction {
     'Examination',
     'Online Exam',
     'Gallery',
+    'Alexa',
     'Subjects',
     'Study Materials',
     'Digital Library',
@@ -158,6 +163,7 @@ class AppFunction {
     'assets/images/online_exam.png',
     'assets/images/zoom.png',
     'assets/images/gallery.png',
+    'assets/images/alexa.png',
     'assets/images/subjects.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
@@ -182,6 +188,7 @@ class AppFunction {
     'Online Exam',
     'Online Classes',
     'Gallery',
+    'Alexa',
     'Digital Library',
     // 'Leave',
     // 'Contents',
@@ -204,6 +211,7 @@ class AppFunction {
     'assets/images/online_exam.png',
     'assets/images/zoom.png',
     'assets/images/gallery.png',
+    'assets/images/alexa.png',
     'assets/images/library.png',
     // 'assets/images/contents.png',
     //'assets/images/zoom.png',
@@ -223,6 +231,7 @@ class AppFunction {
     'Contents',
     'School News',
     'Gallery',
+    'Alexa',
     'Digital Library',
     'Homework',
     //'About',
@@ -238,6 +247,7 @@ class AppFunction {
     'assets/images/contents.png',
     'assets/images/school_news.png',
     'assets/images/gallery.png',
+    'assets/images/alexa.png',
     'assets/images/library.png',
     'assets/images/homework.png',
     //  'assets/images/about.png',
@@ -536,8 +546,12 @@ class AppFunction {
             )));
         break;
       case 'Events':
+
         // print('hey');
         Navigator.push(context, ScaleRoute(page: Events()));
+        break;
+      case 'Alexa':
+        Navigator.push(context, ScaleRoute(page: Alexa(id: id)));
         break;
       case 'Payment':
         Navigator.push(context, ScaleRoute(page: FeeScreen(id: id)));
