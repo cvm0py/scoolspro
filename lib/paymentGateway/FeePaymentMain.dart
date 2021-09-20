@@ -13,6 +13,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -50,7 +51,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -80,7 +81,7 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                     child: Container(
                       width: ScreenUtil().setWidth(25),
                       child: Image.asset(
-                        'assets/images/fees_icon.png',
+                        'assets/images/bank_payment.png',
                       ),
                     ),
                   ),
@@ -112,12 +113,108 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                     child: Container(
                       width: ScreenUtil().setWidth(25),
                       child: Image.asset(
-                        'assets/images/fees_icon.png',
+                        'assets/images/check_payment.png',
                       ),
                     ),
                   ),
                   title: Text(
                     'Cheque Payment',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/credit_card.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Credit Card Payment',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/debit_card.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Debit Card Payment',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/googlePay.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Gpay Payment',
                     style: Theme.of(context)
                         .textTheme
                         .headline5
@@ -370,7 +467,7 @@ class _BankOrChequeState extends State<BankOrCheque> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -458,10 +555,16 @@ class _BankOrChequeState extends State<BankOrCheque> {
                                                     .headline5
                                                     .copyWith(fontSize: 14),
                                               ),
-                                              subtitle: Text(bankAccountNumber,style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline5
-                                                  .copyWith(fontSize: 12,fontWeight: FontWeight.normal),),
+                                              subtitle: Text(
+                                                bankAccountNumber,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline5
+                                                    .copyWith(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                              ),
                                             ),
                                           ],
                                         ),

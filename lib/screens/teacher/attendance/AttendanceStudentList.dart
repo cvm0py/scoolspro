@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -18,6 +19,8 @@ import 'package:infixedu/utils/model/GlobalClass.dart';
 import 'package:infixedu/utils/model/Student.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 import 'package:infixedu/utils/widget/StudentAttendanceRow.dart';
+
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class StudentListAttendance extends StatefulWidget {
@@ -73,12 +76,14 @@ class _StudentListAttendanceState extends State<StudentListAttendance> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor:AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         key: _key,
         appBar: CustomAppBarWidget(
           title: 'Set Attendance',

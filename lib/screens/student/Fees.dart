@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -11,6 +12,8 @@ import 'package:infixedu/utils/model/Fee.dart';
 import 'package:infixedu/utils/server/FeesService.dart';
 import 'package:infixedu/utils/widget/Fees_row_layout.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
+
+import '../nav_main.dart';
 
 // ignore: must_be_immutable
 class FeeScreen extends StatefulWidget {
@@ -24,11 +27,54 @@ class FeeScreen extends StatefulWidget {
 
 class _FeeScreenState extends State<FeeScreen> {
   String _token;
+  String grandTotal = "Grand Total";
+  String amount = "Amount";
+  String discount = 'Discount';
+  String fine = 'Fine';
+  String paid = 'Paid';
+  String balance = 'Balance';
 
   @override
   void initState() {
     Utils.getStringValue('token').then((value) {
       _token = value;
+    });
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Grand Total").then((val) {
+        setState(() {
+          grandTotal = val;
+          print('Grand Total -> ' + grandTotal);
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, "Amount").then((val) {
+        setState(() {
+          amount = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, "Discount").then((val) {
+        setState(() {
+          discount = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, "Fine").then((val) {
+        setState(() {
+          fine = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, "Paid").then((val) {
+        setState(() {
+          paid = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Balance").then((val) {
+        setState(() {
+          balance = val;
+        });
+      });
     });
     super.initState();
   }
@@ -37,12 +83,13 @@ class _FeeScreenState extends State<FeeScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         // appBar: CustomAppBarWidget(title: 'Fees'),
         appBar: CustomAppBarWidget(
           title: 'Payment',
@@ -59,7 +106,7 @@ class _FeeScreenState extends State<FeeScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      'Grand Total',
+                      grandTotal,
                       style: Theme.of(context).textTheme.headline5.copyWith(),
                       maxLines: 1,
                     ),
@@ -76,7 +123,7 @@ class _FeeScreenState extends State<FeeScreen> {
                     if (id.hasData) {
                       return Container(
                         child: StreamBuilder<List<double>>(
-                            stream: Stream.periodic(Duration(seconds: 5))
+                            stream: Stream.periodic(Duration(seconds: 3))
                                 .asyncMap((i) => FeeService(
                                         int.parse(widget.id != null
                                             ? widget.id
@@ -93,7 +140,7 @@ class _FeeScreenState extends State<FeeScreen> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            'Amount',
+                                            amount,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -123,7 +170,7 @@ class _FeeScreenState extends State<FeeScreen> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            'Discount',
+                                            discount,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -153,7 +200,7 @@ class _FeeScreenState extends State<FeeScreen> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            'Fine',
+                                            fine,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -183,7 +230,7 @@ class _FeeScreenState extends State<FeeScreen> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            'Paid',
+                                            paid,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -213,7 +260,7 @@ class _FeeScreenState extends State<FeeScreen> {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            'Balance',
+                                            balance,
                                             maxLines: 1,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -282,7 +329,7 @@ class _FeeScreenState extends State<FeeScreen> {
                     if (snapId.hasData) {
                       return Container(
                         child: StreamBuilder<List<Fee>>(
-                            stream: Stream.periodic(Duration(seconds: 5))
+                            stream: Stream.periodic(Duration(seconds: 3))
                                 .asyncMap((i) => FeeService(
                                         int.parse(widget.id != null
                                             ? widget.id

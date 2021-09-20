@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/localization/application.dart';
@@ -50,7 +51,7 @@ class _AdminSettingsState extends State<AdminSettings> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(

@@ -1,4 +1,4 @@
-package com.edu.infix.infixedu
+package com.scoolspro.app
 
 import io.flutter.embedding.android.FlutterActivity
 

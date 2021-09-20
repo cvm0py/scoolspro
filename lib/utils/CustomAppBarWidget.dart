@@ -11,12 +11,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/SettingsScreen.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 // Project imports:
 import 'package:infixedu/main.dart';
 import 'package:infixedu/screens/ChangePassword.dart';
-import 'package:infixedu/screens/student/Profile.dart';
+
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/UserNotifications.dart';
@@ -36,6 +37,9 @@ class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
+  String changePassword = 'Change Password';
+  String logout = 'Logout';
+  String settings = 'Settings';
   int i = 0;
   Future notificationCount;
 
@@ -374,6 +378,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   }
 
   showStudentProfileDialog(BuildContext context) {
+    print('here');
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -386,7 +391,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -394,7 +399,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       //color: const Color(0xFF66BB6A),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.deepPurple,
+                          color: Colors.blueAccent,
                           blurRadius: 20.0,
                         ),
                       ]),
@@ -407,53 +412,92 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, top: 20.0, right: 15.0),
+                            left: 10.0, top: 10.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
-                            InkWell(
-                              child: SizedBox(
-                                child: Text(
-                                  "Profile",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  ScaleRoute(
-                                    page: Profile(
-                                      id: _id,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
+                            // InkWell(
+                            //   // child: SizedBox(
+                            //   //   child: Text(
+                            //   //     "Profile",
+                            //   //     textAlign: TextAlign.center,
+                            //   //     style: Theme.of(context).textTheme.headline5,
+                            //   //   ),
+                            //   // ),
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         ScaleRoute(
+                            //             page: Profile(
+                            //           id: _id,
+                            //         )));
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   height: 8,
+                            // ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
                                     .push(ScaleRoute(page: ChangePassword()));
                               },
                               child: SizedBox(
-                                child: Text(
-                                  "Change Password",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.vpn_key,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    changePassword,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 8,
+                            ),
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Logout",
-                                  textAlign: TextAlign.end,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.power_settings_new,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    logout,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
                                 showAlertDialog(context);
                               },
-                            )
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            //Navigator.push(context, ScaleRoute(page: SettingScreen()));
+                            InkWell(
+                              child: SizedBox(
+                                child: ListTile(
+                                  leading: Icon(Icons.settings,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    settings,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context, ScaleRoute(page: SettingScreen()));
+                              },
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
                           ],
                         ),
                       ),
@@ -469,6 +513,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   }
 
   showOthersProfileDialog(BuildContext context) {
+    print(123);
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -481,7 +526,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 6,
+                  height: MediaQuery.of(context).size.height / 5,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -509,7 +554,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                                   .push(ScaleRoute(page: ChangePassword()));
                             },
                             child: Text(
-                              "Change Password",
+                              changePassword,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -519,7 +564,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                           ),
                           GestureDetector(
                             child: Text(
-                              "Logout",
+                              logout,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -550,13 +595,14 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
           Utils.saveStringValue('image', snapshot.data);
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
             },
             child: Container(
-              alignment: Alignment.center,
-                child: Icon(Icons.menu,color: Color(0xff3575B6),)
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.menu,
+                  color: Color(0xff3575B6),
+                )
                 /*CachedNetworkImage(
                   imageUrl: InfixApi.root + snapshot.data,
                   imageBuilder: (context, imageProvider) => Container(
@@ -585,14 +631,12 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ),
               */
-            ),
+                ),
           );
         } else {
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
             },
             child: Container(
               alignment: Alignment.center,
@@ -671,6 +715,26 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
 
   @override
   void initState() {
+    //print('hey uya');
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Change Password").then((value) {
+        setState(() {
+          changePassword = value.toString();
+          //print('Change pswd -> ' + changePassword);
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Settings").then((value) {
+        setState(() {
+          settings = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Logout').then((value) {
+        setState(() {
+          logout = value.toString();
+        });
+      });
+    });
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
@@ -698,33 +762,41 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
         rtlValue = value;
       });
     });
-    super.initState();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 70.h,
-      child: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          if (i < 1) {
-            //if you don't set any condition here setState call again and again
-            Utils.getStringValue('lang').then((value) {
-              if (value == null) {
-                Utils.getTranslatedLanguage('en', widget.title).then((val) {
-                  print(val);
-                  setState(() => widget.title = val);
-                  i++;
-                });
-              } else {
+    Utils.getStringValue('lang').then((value) {
+              
                 Utils.getTranslatedLanguage(value, widget.title).then((val) {
                   print(val);
                   setState(() => widget.title = val);
                   i++;
                 });
-              }
+              
             });
-          }
+
+    //Language change
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Container(
+      height: 70.h,
+      child: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+         
+            //if you don't set any condition here setState call again and again
+            Utils.getStringValue('lang').then((value) {
+              
+                Utils.getTranslatedLanguage(value, widget.title).then((val) {
+                  print(val);
+                  setState(() => widget.title = val);
+                  i++;
+                });
+              
+            });
+         
           return AppBar(
             centerTitle: false,
             automaticallyImplyLeading: false,
@@ -772,7 +844,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                       ),
                     ),
                   ),
-                /*  Container(
+                  /*  Container(
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setHeight(50),
                     child: FutureBuilder(
@@ -907,7 +979,6 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                   ),
                 ],
               ),
-              
             ),
           );
         },

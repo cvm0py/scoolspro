@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CardItem.dart';
@@ -36,7 +37,7 @@ class _HomeState extends State<AdminAttendanceHomeScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -51,7 +52,7 @@ class _HomeState extends State<AdminAttendanceHomeScreen> {
           child: GridView.builder(
             itemCount: _titles.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: (2 / 1)),
+                crossAxisCount: 2, childAspectRatio: (2 / 1.2)),
             itemBuilder: (context, index) {
               return CustomWidget(
                 index: index,

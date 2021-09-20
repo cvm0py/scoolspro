@@ -23,16 +23,36 @@ import 'package:infixedu/utils/model/UploadedContent.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
 // ignore: must_be_immutable
-class StudyMaterialListRow extends StatelessWidget {
+class StudyMaterialListRow extends StatefulWidget {
   UploadedContent uploadedContent;
-  var progress = "";
-  var received;
 
   StudyMaterialListRow(this.uploadedContent);
+
+  @override
+  _StudyMaterialListRowState createState() => _StudyMaterialListRowState();
+}
+
+class _StudyMaterialListRowState extends State<StudyMaterialListRow> {
+  var progress = "";
+
+  var received;
+
+  String download = "Download";
 
   Random random = Random();
 
   GlobalKey _globalKey = GlobalKey();
+
+    @override
+  void initState() {
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Download").then((value) {
+        download = value;
+      });
+
+      });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +63,8 @@ class StudyMaterialListRow extends StatelessWidget {
         child: InkWell(
           onTap: () {
             checkPermissions(context);
-            print('URL"" ${uploadedContent.uploadFile}');
-            showDownloadAlertDialog(context, uploadedContent.contentTitle);
+            print('URL"" ${widget.uploadedContent.uploadFile}');
+            showDownloadAlertDialog(context, widget.uploadedContent.contentTitle);
           },
           child: Column(
             children: <Widget>[
@@ -53,19 +73,20 @@ class StudyMaterialListRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    uploadedContent.contentTitle,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .copyWith(fontSize: ScreenUtil().setSp(16.5),),
+                    widget.uploadedContent.contentTitle,
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: ScreenUtil().setSp(16.5),
+                        ),
                   ),
-                  Expanded(child: Container(),),
-                  uploadedContent.uploadFile == null ||
-                          uploadedContent.uploadFile == ''
+                  Expanded(
+                    child: Container(),
+                  ),
+                  widget.uploadedContent.uploadFile == null ||
+                          widget.uploadedContent.uploadFile == ''
                       ? Container()
                       : Container(
                           child: Text(
-                            'Download',
+                            download,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6
@@ -89,7 +110,7 @@ class StudyMaterialListRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Added  ${uploadedContent.uploadDate.toString() == null ? 'not assigned' : uploadedContent.uploadDate.toString()}',
+                          'Added  ${widget.uploadedContent.uploadDate.toString() == null ? 'not assigned' : widget.uploadedContent.uploadDate.toString()}',
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -100,9 +121,9 @@ class StudyMaterialListRow extends StatelessWidget {
                           height: 5.0,
                         ),
                         Text(
-                          uploadedContent.description.toString() == null
+                          widget.uploadedContent.description.toString() == null
                               ? 'not assigned'
-                              : uploadedContent.description.toString(),
+                              : widget.uploadedContent.description.toString(),
                           style: Theme.of(context).textTheme.headline4,
                         ),
                       ],
@@ -149,7 +170,7 @@ class StudyMaterialListRow extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        uploadedContent.contentTitle,
+                        widget.uploadedContent.contentTitle,
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       Padding(
@@ -172,7 +193,7 @@ class StudyMaterialListRow extends StatelessWidget {
                                     height: 5.0,
                                   ),
                                   Text(
-                                    uploadedContent.uploadDate.toString(),
+                                    widget.uploadedContent.uploadDate.toString(),
                                     maxLines: 1,
                                     style:
                                         Theme.of(context).textTheme.headline4,
@@ -192,9 +213,9 @@ class StudyMaterialListRow extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              uploadedContent.description == null
+                              widget.uploadedContent.description == null
                                   ? ''
-                                  : uploadedContent.description,
+                                  : widget.uploadedContent.description,
                               textAlign: TextAlign.left,
                               style: Theme.of(context).textTheme.headline4,
                             ),
@@ -215,16 +236,19 @@ class StudyMaterialListRow extends StatelessWidget {
   showDownloadAlertDialog(BuildContext context, String title) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text("No",style: Theme.of(context).textTheme.headline4,),
+      child: Text(
+        "No",
+        style: Theme.of(context).textTheme.headline4,
+      ),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
       },
     );
     Widget yesButton = TextButton(
-      child: Text("Download",style: Theme.of(context).textTheme.headline4),
+      child: Text("Download", style: Theme.of(context).textTheme.headline4),
       onPressed: () {
-        uploadedContent.uploadFile != null
-            ? downloadFile(uploadedContent.uploadFile, context, title)
+        widget.uploadedContent.uploadFile != null
+            ? downloadFile(widget.uploadedContent.uploadFile, context, title)
             : Utils.showToast('no file found');
         Navigator.of(context, rootNavigator: true).pop('dialog');
       },

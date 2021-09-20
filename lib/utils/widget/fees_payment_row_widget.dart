@@ -4,8 +4,35 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:infixedu/utils/model/Fee.dart';
 
+import '../Utils.dart';
+
 // ignore: must_be_immutable
 class FeePaymentRow extends StatelessWidget {
+  String dueDate = 'Due Date';
+  String amount = 'Amount';
+  String paid = 'Paid';
+  String balance = 'Balance';
+
+  @override
+  void initState() {
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage('Due Date', language).then((val) {
+        dueDate = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Amount").then((val) {
+        amount = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Paid").then((val) {
+        paid = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Balance").then((val) {
+        amount = val;
+      });
+    });
+  }
 
   Fee fee;
   FeePaymentRow(this.fee);
@@ -36,11 +63,16 @@ class FeePaymentRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Due Date',
+                        dueDate,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(height: 10.0,),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       Text(
                         fee.dueDate,
                         maxLines: 1,
@@ -54,31 +86,18 @@ class FeePaymentRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Amount',
+                        amount,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(height: 10.0,),
-                      Text(
-                        '\$'+fee.amount,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.headline4,
+                      SizedBox(
+                        height: 10.0,
                       ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
                       Text(
-                        'Paid',
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(height: 10.0,),
-                      Text(
-                        '\$'+fee.paid,
+                        '\$' + fee.amount,
                         maxLines: 1,
                         style: Theme.of(context).textTheme.headline4,
                       ),
@@ -90,13 +109,41 @@ class FeePaymentRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Balance',
+                        paid,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(height: 10.0,),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       Text(
-                        '\$'+fee.balance,
+                        '\$' + fee.paid,
+                        maxLines: 1,
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        balance,
+                        maxLines: 1,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4
+                            .copyWith(fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        '\$' + fee.balance,
                         maxLines: 1,
                         style: Theme.of(context).textTheme.headline4,
                       ),
@@ -110,5 +157,4 @@ class FeePaymentRow extends StatelessWidget {
       ),
     );
   }
-
 }
