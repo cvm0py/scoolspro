@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
@@ -9,6 +10,7 @@ import 'package:infixedu/screens/nav_main.dart';
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:infixedu/utils/sample_event.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
 class Calendar extends StatefulWidget {
@@ -32,9 +34,12 @@ class _CalendarState extends State<Calendar> {
     return decodedJson['data']['photos'];
   }
 
+  final _sampleEvents = sampleEvents();
+  final cellCalendarPageController = CellCalendarPageController();
+  var _currentDate;
+  var _markedDateMap;
+
   Widget build(BuildContext context) {
-    var _currentDate;
-    var _markedDateMap;
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
@@ -48,47 +53,150 @@ class _CalendarState extends State<Calendar> {
         appBar: CustomAppBarWidget(title: 'Calendar'),
         backgroundColor: Colors.white,
         body: Column(
-          children: <Widget>[
-            Expanded(
-              child: CalendarCarousel(
-                  // height: MediaQuery.of(context).size.height * 0.5,
-                  weekDayPadding: EdgeInsets.zero,
-                  onDayPressed: (DateTime date, List<Calendar> events) {
-                    this.setState(() => _currentDate = date);
-                  },
-                  onCalendarChanged: (DateTime date) {},
-                  weekendTextStyle: Theme.of(context).textTheme.headline6,
-                  thisMonthDayBorderColor: Colors.grey,
-                  daysTextStyle: Theme.of(context).textTheme.headline4,
-                  showOnlyCurrentMonthDate: false,
-                  headerTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .copyWith(fontSize: ScreenUtil().setSp(15.0)),
-                  weekdayTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4
-                      .copyWith(
-                          fontSize: ScreenUtil().setSp(15.0),
-                          fontWeight: FontWeight.w500),
-                  weekFormat: false,
-                  markedDatesMap: _markedDateMap,
-                  selectedDateTime: _currentDate,
-                  // daysHaveCircularBorder: true,
-                  todayButtonColor: Colors.transparent,
-                  todayBorderColor: Colors.transparent,
-                  todayTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4
-                      .copyWith(color: Colors.white)),
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.80,
+              width: MediaQuery.of(context).size.width,
+              child: CellCalendar(
+                cellCalendarPageController: cellCalendarPageController,
+                events: _sampleEvents,
+                daysOfTheWeekBuilder: (dayIndex) {
+                  final labels = ["S", "M", "T", "W", "T", "F", "S"];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
+                    child: Text(
+                      labels[dayIndex],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                },
+                monthYearLabelBuilder: (datetime) {
+                  final year = datetime.year.toString();
+                  final month = datetime.month.monthName;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 16),
+                        Text(
+                          "$month  $year",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(Icons.calendar_today),
+                          onPressed: () {
+                            cellCalendarPageController.animateToDate(
+                              DateTime.now(),
+                              curve: Curves.linear,
+                              duration: Duration(milliseconds: 300),
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  );
+                },
+                onCellTapped: (date) {
+                  final eventsOnTheDate = _sampleEvents.where((event) {
+                    final eventDate = event.eventDate;
+                    return eventDate.year == date.year &&
+                        eventDate.month == date.month &&
+                        eventDate.day == date.day;
+                  }).toList();
+                  showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                            title: Text(date.month.monthName +
+                                " " +
+                                date.day.toString()),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: eventsOnTheDate
+                                  .map(
+                                    (event) => Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.all(4),
+                                      margin: EdgeInsets.only(bottom: 12),
+                                      color: event.eventBackgroundColor,
+                                      child: Text(
+                                        event.eventName,
+                                        style: TextStyle(
+                                            color: event.eventTextColor),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ));
+                },
+                onPageChanged: (firstDate, lastDate) {
+                  /// Called when the page was changed
+                  /// Fetch additional events by using the range between [firstDate] and [lastDate] if you want
+                },
+              ),
             ),
-            SizedBox(height: 30),
-            // Expanded(
-            //   child: Center(child: Text('No Events to display', style: TextStyle(fontSize : 16)))
-            // ),
           ],
         ),
       ),
     );
+
+    //   return Padding(
+    //     padding: EdgeInsets.only(top: statusBarHeight),
+    //     child: Scaffold(
+    //       bottomNavigationBar: MainScreen(),
+    //       appBar: CustomAppBarWidget(title: 'Calendar'),
+    //       backgroundColor: Colors.white,
+    //       body: Column(
+    //         children: <Widget>[
+    //           Expanded(
+    //             child: CalendarCarousel(
+    //                 // height: MediaQuery.of(context).size.height * 0.5,
+    //                 weekDayPadding: EdgeInsets.zero,
+    //                 onDayPressed: (DateTime date, List<Calendar> events) {
+    //                   this.setState(() => _currentDate = date);
+    //                 },
+    //                 onCalendarChanged: (DateTime date) {},
+    //                 weekendTextStyle: Theme.of(context).textTheme.headline6,
+    //                 thisMonthDayBorderColor: Colors.grey,
+    //                 daysTextStyle: Theme.of(context).textTheme.headline4,
+    //                 showOnlyCurrentMonthDate: false,
+    //                 headerTextStyle: Theme.of(context)
+    //                     .textTheme
+    //                     .headline6
+    //                     .copyWith(fontSize: ScreenUtil().setSp(15.0)),
+    //                 weekdayTextStyle: Theme.of(context)
+    //                     .textTheme
+    //                     .headline4
+    //                     .copyWith(
+    //                         fontSize: ScreenUtil().setSp(15.0),
+    //                         fontWeight: FontWeight.w500),
+    //                 weekFormat: false,
+    //                 markedDatesMap: _markedDateMap,
+    //                 selectedDateTime: _currentDate,
+    //                 // daysHaveCircularBorder: true,
+    //                 todayButtonColor: Colors.transparent,
+    //                 todayBorderColor: Colors.transparent,
+    //                 todayTextStyle: Theme.of(context)
+    //                     .textTheme
+    //                     .headline4
+    //                     .copyWith(color: Colors.white)),
+    //           ),
+    //           SizedBox(height: 30),
+    //           // Expanded(
+    //           //   child: Center(child: Text('No Events to display', style: TextStyle(fontSize : 16)))
+    //           // ),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }
   }
 }

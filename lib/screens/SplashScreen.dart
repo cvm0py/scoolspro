@@ -17,6 +17,8 @@ import 'package:infixedu/screens/Login.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/Utils.dart';
 
+import 'SchoolSelectScreen.dart';
+
 class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
@@ -62,7 +64,8 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             });
           });
         } else {
-          route = MaterialPageRoute(builder: (context) => LoginScreen());
+          route = MaterialPageRoute(builder: (context) => SchoolSelectScreen());
+          //route = MaterialPageRoute(builder: (context) => LoginScreen());
           Navigator.pushReplacement(context, route);
         }
       });
