@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
             Navigator.push(context, ScaleRoute(page: Profile()));
             break;
           case 2:
-            Navigator.push(context, ScaleRoute(page: SettingScreen()));
+            Navigator.push(context, ScaleRoute(page: Policy()));
             break;
         }
       },

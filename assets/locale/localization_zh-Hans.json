@@ -254,6 +254,10 @@
   "Downloading...":"正在下载...",
   "no file found":"没有找到文件",
   "dialog":"对话",
+  "Video Streaming":"视频流",
+  "AI Dictionary": "人工智能词典",
+  "Health":"健康",
+  "Alexa":"亚历克萨",
   "Download Completed. File is also available in your download folder.":"下载完成。文件也可在您的下载文件夹中找到。",
   "You must grant all permission to use this application": "你必须授予所有权限以使用该软件"
-}
+}  
