@@ -22,8 +22,12 @@ class InfixApi {
   static String getEvents = baseApi + "events";
 
   static String login(String email, String password) {
-    print('hi');
     return baseApi + 'login?email=' + email + '&password=' + password;
+  }
+
+  static String digitalBookList(String id) {
+    print('Digital book list called');
+    return baseApi + "Digital-Book-List/" + id;
   }
 
   static String getAllZoomClassesByClass(String classID, String section) {

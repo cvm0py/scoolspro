@@ -11,18 +11,18 @@ import 'package:infixedu/utils/FunctinsData.dart';
 import '../../nav_main.dart';
 
 // ignore: must_be_immutable
-class LibraryHome extends StatefulWidget {
+class DigitalLibraryHome extends StatefulWidget {
   var _titles;
   var _images;
   var id;
 
-  LibraryHome(this._titles, this._images, {this.id});
+  DigitalLibraryHome(this._titles, this._images, {this.id});
 
   @override
   _HomeState createState() => _HomeState(_titles, _images);
 }
 
-class _HomeState extends State<LibraryHome> {
+class _HomeState extends State<DigitalLibraryHome> {
   bool isTapped;
   int currentSelectedIndex;
   var _titles;
@@ -48,7 +48,7 @@ class _HomeState extends State<LibraryHome> {
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
         bottomNavigationBar: MainScreen(),
-        appBar: CustomAppBarWidget(title: 'Library'),
+        appBar: CustomAppBarWidget(title: 'Digital Library'),
         backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -63,7 +63,8 @@ class _HomeState extends State<LibraryHome> {
                 onSelect: () {
                   setState(() {
                     currentSelectedIndex = index;
-                    AppFunction.getLibraryDashboardPage(context, _titles[index],
+                    AppFunction.getDigitalLibraryDashboardPage(
+                        context, _titles[index],
                         id: widget.id);
                   });
                 },

@@ -35,6 +35,8 @@ import 'package:infixedu/screens/student/SubjectScreen.dart';
 import 'package:infixedu/screens/student/TimeLineScreen.dart';
 import 'package:infixedu/screens/student/TransportScreen.dart';
 import 'package:infixedu/screens/student/album/album.dart';
+import 'package:infixedu/screens/student/digitalLibrary/DigitalBookListScreen.dart';
+import 'package:infixedu/screens/student/digitalLibrary/DigitalLibraryScreen.dart';
 import 'package:infixedu/screens/student/events/Event.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
@@ -96,6 +98,7 @@ class AppFunction {
     'Subjects',
     //'Video Streaming',
     'Study Materials',
+    'Library',
     'Digital Library',
     //'Health',
     'Teacher',
@@ -126,6 +129,7 @@ class AppFunction {
     //'assets/images/leave.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
+    'assets/images/library.png',
     //'assets/images/health.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
@@ -150,6 +154,7 @@ class AppFunction {
     'Subjects',
     'Video Streaming',
     'Study Materials',
+    'Library',
     'Digital Library',
     'Health',
     'Teacher',
@@ -178,6 +183,7 @@ class AppFunction {
     'assets/images/streaming_video.png',
     'assets/images/study_material.png',
     'assets/images/library.png',
+    'assets/images/library.png',
     'assets/images/health.png',
     'assets/images/teacher.png',
     'assets/images/events.png',
@@ -203,6 +209,7 @@ class AppFunction {
     'Video Streaming',
     'Gallery',
     'Alexa',
+    'Library',
     'Digital Library',
     'Health',
     'Events',
@@ -226,6 +233,7 @@ class AppFunction {
     'assets/images/gallery.png',
     'assets/images/alexa.png',
     'assets/images/library.png',
+    'assets/images/library.png',
     'assets/images/health.png',
     'assets/images/events.png',
 
@@ -243,6 +251,7 @@ class AppFunction {
     'Gallery',
     'Video Streaming',
     'Alexa',
+    'Library',
     'Digital Library',
     'Health',
     'Homework',
@@ -262,6 +271,7 @@ class AppFunction {
     'assets/images/gallery.png',
     'assets/images/streaming_video.png',
     'assets/images/alexa.png',
+    'assets/images/library.png',
     'assets/images/library.png',
     'assets/images/health.png',
     'assets/images/homework.png',
@@ -394,9 +404,20 @@ class AppFunction {
     'Book List',
     'Books Issued',
   ];
+  static var digitalLibrarys = [
+    'E-Book List',
+    'Audio-Book List',
+    'Video-Book List',
+  ];
   static var libraryIcons = [
     'assets/images/book_list.png',
     'assets/images/book_issued.png',
+  ];
+  static var digitalLibraryIcons = [
+    'assets/images/book_list.png',
+    'assets/images/book_list.png',
+    'assets/images/book_list.png',
+    //'assets/images/book_issued.png',
   ];
   static var examinations = [
     'Schedule',
@@ -635,6 +656,13 @@ class AppFunction {
             )));
         break;
       case 'Digital Library':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page:
+                    DigitalLibraryHome(digitalLibrarys, digitalLibraryIcons)));
+        break;
+      case 'Library':
         Navigator.push(
             context,
             ScaleRoute(
@@ -891,6 +919,13 @@ class AppFunction {
         Navigator.push(
             context,
             ScaleRoute(
+                page:
+                    DigitalLibraryHome(digitalLibrarys, digitalLibraryIcons)));
+        break;
+      case 'Library':
+        Navigator.push(
+            context,
+            ScaleRoute(
                 page: LibraryHome(
               librarys,
               libraryIcons,
@@ -939,9 +974,7 @@ class AppFunction {
         Navigator.push(
             context, ScaleRoute(page: LeaveHomeScreen(leaves, leavesIcons)));
         break;
-      case 'Library':
-        Navigator.push(context, ScaleRoute(page: BookListScreen()));
-        break;
+
       case 'School News':
         Navigator.push(context, ScaleRoute(page: NoticeScreen()));
         break;
@@ -1057,6 +1090,32 @@ class AppFunction {
                 page: BookIssuedScreen(
               id: id,
             )));
+        break;
+    }
+  }
+
+  static void getDigitalLibraryDashboardPage(BuildContext context, String title,
+      {var id}) {
+    switch (title) {
+      case 'E-Book List':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: DigitalBookListScreen(
+              id: "3",
+            )));
+        break;
+      case 'Audio-Book List':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: DigitalBookListScreen(
+              id: '1',
+            )));
+        break;
+      case 'Video-Book List':
+        Navigator.push(
+            context, ScaleRoute(page: DigitalBookListScreen(id: '2')));
         break;
     }
   }

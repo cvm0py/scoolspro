@@ -39,7 +39,7 @@ class _CustomWidgetState extends State<CustomWidget> {
     Utils.getStringValue('lang').then((value) {
       if (value == null) {
         Utils.getTranslatedLanguage('en', widget.headline).then((val) {
-          print(val);
+          //print(val);
           title = val;
         });
       } else {
@@ -61,7 +61,7 @@ class _CustomWidgetState extends State<CustomWidget> {
             boxShadow: [
               BoxShadow(
                 color:
-                   // widget.isSelected ? AppConfig.primary: AppConfig.primary,
+                    // widget.isSelected ? AppConfig.primary: AppConfig.primary,
                     widget.isSelected ? Colors.blueAccent : Colors.blueAccent,
                 blurRadius: 9.0,
                 offset: Offset(2, 4),

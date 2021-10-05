@@ -19,11 +19,8 @@ class ProfileService {
   String schoolId;
   String token;
 
-
   ProfileService(
-      {this.email, this.password, this.id, this.schoolId, this.token}
-      
-      );
+      {this.email, this.password, this.id, this.schoolId, this.token});
 
   List<InfixMap> infixMap = [];
 
@@ -40,7 +37,7 @@ class ProfileService {
     var jsonData = json.decode(response.body);
 
     var details = jsonData['data']['userDetails'];
-    var religion = jsonData['data']['religion'];
+    //var religion = jsonData['data']['religion'];
     var blood = jsonData['data']['blood_group'];
     var transport = jsonData['data']['transport'];
     String dob = details['date_of_birth'];
@@ -57,8 +54,8 @@ class ProfileService {
       case 0:
         infixMap.add(InfixMap('Date of birth', details['date_of_birth']));
         infixMap.add(InfixMap('Age', '${age.years.toString()} years'));
-        infixMap.add(
-            InfixMap('Religion', religion != null ? religion['name'] : null));
+        // infixMap.add(
+        //     InfixMap('Religion', religion != null ? religion['name'] : null));
         infixMap.add(InfixMap('Phone number', details['mobile']));
         infixMap.add(InfixMap('Email address', details['email']));
         infixMap.add(InfixMap('Present address', details['current_address']));

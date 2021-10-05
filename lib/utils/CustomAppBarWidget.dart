@@ -764,14 +764,12 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
     });
 
     Utils.getStringValue('lang').then((value) {
-              
-                Utils.getTranslatedLanguage(value, widget.title).then((val) {
-                  print(val);
-                  setState(() => widget.title = val);
-                  i++;
-                });
-              
-            });
+      Utils.getTranslatedLanguage(value, widget.title).then((val) {
+        //print(val);
+        setState(() => widget.title = val);
+        i++;
+      });
+    });
 
     //Language change
 
@@ -780,23 +778,19 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       height: 70.h,
       child: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-         
-            //if you don't set any condition here setState call again and again
-            Utils.getStringValue('lang').then((value) {
-              
-                Utils.getTranslatedLanguage(value, widget.title).then((val) {
-                  print(val);
-                  setState(() => widget.title = val);
-                  i++;
-                });
-              
+          //if you don't set any condition here setState call again and again
+          Utils.getStringValue('lang').then((value) {
+            Utils.getTranslatedLanguage(value, widget.title).then((val) {
+              //print(val);
+              setState(() => widget.title = val);
+              i++;
             });
-         
+          });
+
           return AppBar(
             centerTitle: false,
             automaticallyImplyLeading: false,

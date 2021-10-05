@@ -15,17 +15,21 @@ import 'package:infixedu/utils/CustomAppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Book.dart';
+import 'package:infixedu/utils/model/DigitalBook.dart';
 import 'package:infixedu/utils/widget/BookRowLayout.dart';
+import 'package:infixedu/utils/widget/DigitalBookRowLayout.dart';
 
 import '../../nav_main.dart';
 
-class BookListScreen extends StatefulWidget {
+class DigitalBookListScreen extends StatefulWidget {
+  String id;
+  DigitalBookListScreen({@required this.id});
   @override
-  _BookListState createState() => _BookListState();
+  _DigitalBookListState createState() => _DigitalBookListState();
 }
 
-class _BookListState extends State<BookListScreen> {
-  Future<BookList> books;
+class _DigitalBookListState extends State<DigitalBookListScreen> {
+  Future<DigitalBookList> books;
   String _token;
   @override
   void initState() {
@@ -57,7 +61,7 @@ class _BookListState extends State<BookListScreen> {
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: FutureBuilder<BookList>(
+          child: FutureBuilder<DigitalBookList>(
             future: books,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -65,7 +69,7 @@ class _BookListState extends State<BookListScreen> {
                   return ListView.builder(
                     itemCount: snapshot.data.books.length,
                     itemBuilder: (context, index) {
-                      return BookListRow(snapshot.data.books[index]);
+                      return DigitalBookListRow(snapshot.data.books[index]);
                     },
                   );
                 } else {
@@ -81,16 +85,17 @@ class _BookListState extends State<BookListScreen> {
     );
   }
 
-  Future<BookList> getAllBooks() async {
-    final response = await http.get(Uri.parse(InfixApi.bookList),
+  Future<DigitalBookList> getAllBooks() async {
+    final response = await http.get(
+        Uri.parse(InfixApi.digitalBookList(widget.id)),
         headers: Utils.setHeader(_token.toString()));
 
     print(response.statusCode);
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-
+      print(11);
       print(jsonData);
-      return BookList.fromJson(jsonData['data']);
+      return DigitalBookList.fromJson(jsonData['data']['books']);
     } else {
       throw Exception('Failed to load');
     }
