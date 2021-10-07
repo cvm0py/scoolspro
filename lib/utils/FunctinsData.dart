@@ -414,9 +414,9 @@ class AppFunction {
     'assets/images/book_issued.png',
   ];
   static var digitalLibraryIcons = [
-    'assets/images/book_list.png',
-    'assets/images/book_list.png',
-    'assets/images/book_list.png',
+    'assets/images/eBook.jpeg',
+    'assets/images/audioBook.png',
+    'assets/images/videoBook.jpeg',
     //'assets/images/book_issued.png',
   ];
   static var examinations = [

@@ -127,70 +127,70 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     ScaleRoute(
-                //         page: BankOrCheque(
-                //             widget.id, widget.fee, _email, 'Cheque Payment')));
-              },
-              child: Card(
-                elevation: 4.0,
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(15),
-                  leading: CircleAvatar(
-                    radius: 25.0,
-                    backgroundColor: Colors.white,
-                    child: Container(
-                      width: ScreenUtil().setWidth(25),
-                      child: Image.asset(
-                        'assets/images/credit_card.png',
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    'Credit Card Payment',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .copyWith(fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     ScaleRoute(
-                //         page: BankOrCheque(
-                //             widget.id, widget.fee, _email, 'Cheque Payment')));
-              },
-              child: Card(
-                elevation: 4.0,
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(15),
-                  leading: CircleAvatar(
-                    radius: 25.0,
-                    backgroundColor: Colors.white,
-                    child: Container(
-                      width: ScreenUtil().setWidth(25),
-                      child: Image.asset(
-                        'assets/images/debit_card.png',
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    'Debit Card Payment',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .copyWith(fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () {
+            //     // Navigator.push(
+            //     //     context,
+            //     //     ScaleRoute(
+            //     //         page: BankOrCheque(
+            //     //             widget.id, widget.fee, _email, 'Cheque Payment')));
+            //   },
+            //   child: Card(
+            //     elevation: 4.0,
+            //     child: ListTile(
+            //       contentPadding: EdgeInsets.all(15),
+            //       leading: CircleAvatar(
+            //         radius: 25.0,
+            //         backgroundColor: Colors.white,
+            //         child: Container(
+            //           width: ScreenUtil().setWidth(25),
+            //           child: Image.asset(
+            //             'assets/images/credit_card.png',
+            //           ),
+            //         ),
+            //       ),
+            //       title: Text(
+            //         'Credit Card Payment',
+            //         style: Theme.of(context)
+            //             .textTheme
+            //             .headline5
+            //             .copyWith(fontWeight: FontWeight.w700),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // GestureDetector(
+            //   onTap: () {
+            //     // Navigator.push(
+            //     //     context,
+            //     //     ScaleRoute(
+            //     //         page: BankOrCheque(
+            //     //             widget.id, widget.fee, _email, 'Cheque Payment')));
+            //   },
+            //   child: Card(
+            //     elevation: 4.0,
+            //     child: ListTile(
+            //       contentPadding: EdgeInsets.all(15),
+            //       leading: CircleAvatar(
+            //         radius: 25.0,
+            //         backgroundColor: Colors.white,
+            //         child: Container(
+            //           width: ScreenUtil().setWidth(25),
+            //           child: Image.asset(
+            //             'assets/images/debit_card.png',
+            //           ),
+            //         ),
+            //       ),
+            //       title: Text(
+            //         'Debit Card Payment',
+            //         style: Theme.of(context)
+            //             .textTheme
+            //             .headline5
+            //             .copyWith(fontWeight: FontWeight.w700),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {
                 // Navigator.push(
@@ -214,7 +214,71 @@ class _FeePaymentMainState extends State<FeePaymentMain> {
                     ),
                   ),
                   title: Text(
-                    'Gpay Payment',
+                    'Google Pay',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/applePay.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Apple Pay',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: BankOrCheque(
+                //             widget.id, widget.fee, _email, 'Cheque Payment')));
+              },
+              child: Card(
+                elevation: 4.0,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(15),
+                  leading: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      width: ScreenUtil().setWidth(25),
+                      child: Image.asset(
+                        'assets/images/stripePay.png',
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    'Stripe Pay',
                     style: Theme.of(context)
                         .textTheme
                         .headline5
