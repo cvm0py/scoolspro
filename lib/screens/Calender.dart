@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cell_calendar/cell_calendar.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
@@ -55,7 +56,7 @@ class _CalendarState extends State<Calendar> {
         body: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.80,
+              height: MediaQuery.of(context).size.height * 0.75,
               width: MediaQuery.of(context).size.width,
               child: CellCalendar(
                 cellCalendarPageController: cellCalendarPageController,
@@ -80,7 +81,7 @@ class _CalendarState extends State<Calendar> {
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
                       children: [
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 12),
                         Text(
                           "$month  $year",
                           style: TextStyle(
@@ -117,23 +118,84 @@ class _CalendarState extends State<Calendar> {
                             title: Text(date.month.monthName +
                                 " " +
                                 date.day.toString()),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: eventsOnTheDate
-                                  .map(
-                                    (event) => Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.all(4),
-                                      margin: EdgeInsets.only(bottom: 12),
-                                      color: event.eventBackgroundColor,
-                                      child: Text(
-                                        event.eventName,
-                                        style: TextStyle(
-                                            color: event.eventTextColor),
+                            content: GestureDetector(
+                              child: ExpandableNotifier(
+                                  child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height: 10,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(0xff3575B6),
+                                          shape: BoxShape.rectangle,
+                                        ),
                                       ),
                                     ),
-                                  )
-                                  .toList(),
+                                    ScrollOnExpand(
+                                      scrollOnExpand: true,
+                                      scrollOnCollapse: false,
+                                      child: ExpandablePanel(
+                                        theme: const ExpandableThemeData(
+                                          headerAlignment:
+                                              ExpandablePanelHeaderAlignment
+                                                  .center,
+                                          tapBodyToCollapse: true,
+                                        ),
+                                        header: Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              "Highlights Of The Day",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1,
+                                            )),
+                                        collapsed: Text(
+                                          "Updated March 27, 2021",
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        expanded: Column(
+                                          children: eventsOnTheDate
+                                              .map(
+                                                (event) => Container(
+                                                  width: double.infinity,
+                                                  padding: EdgeInsets.all(4),
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 12),
+                                                  color: event
+                                                      .eventBackgroundColor,
+                                                  child: Text(
+                                                    event.eventName,
+                                                    style: TextStyle(
+                                                        color: event
+                                                            .eventTextColor),
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                        builder: (_, collapsed, expanded) {
+                                          return Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 10,
+                                                right: 10,
+                                                bottom: 10),
+                                            child: Expandable(
+                                              collapsed: collapsed,
+                                              expanded: expanded,
+                                              theme: const ExpandableThemeData(
+                                                  crossFadePoint: 0),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
                             ),
                           ));
                 },
