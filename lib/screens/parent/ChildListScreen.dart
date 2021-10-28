@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Child.dart';
 import 'package:infixedu/utils/widget/ChildRow.dart';
+
+import '../nav_main.dart';
 
 class ChildListScreen extends StatefulWidget {
   @override
@@ -45,12 +48,13 @@ class _ChildListScreenState extends State<ChildListScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'Child List',
         ),

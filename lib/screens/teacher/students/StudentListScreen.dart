@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -14,6 +15,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/model/Student.dart';
 import 'package:infixedu/utils/widget/ShimmerListWidget.dart';
 import 'package:infixedu/utils/widget/StudentSearchRow.dart';
+
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class StudentListScreen extends StatefulWidget {
@@ -74,12 +77,13 @@ class _StudentListScreenState extends State<StudentListScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Student List'),
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,

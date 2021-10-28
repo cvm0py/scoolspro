@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -85,7 +86,7 @@ class _LeaveListStudentState extends State<LeaveListStudent> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo,
+      statusBarColor: AppConfig.primary,
     ));
 
     return Padding(

@@ -1,8 +1,11 @@
 // Flutter imports:
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:infixedu/screens/AboutScreen.dart';
+import 'package:infixedu/screens/Calender.dart';
 import 'package:infixedu/screens/Home.dart';
 import 'package:infixedu/screens/SettingsScreen.dart';
 import 'package:infixedu/screens/admin/AdminAttendanceScreen.dart';
@@ -32,6 +35,9 @@ import 'package:infixedu/screens/student/SubjectScreen.dart';
 import 'package:infixedu/screens/student/TimeLineScreen.dart';
 import 'package:infixedu/screens/student/TransportScreen.dart';
 import 'package:infixedu/screens/student/album/album.dart';
+import 'package:infixedu/screens/student/digitalLibrary/DigitalBookListScreen.dart';
+import 'package:infixedu/screens/student/digitalLibrary/DigitalLibraryScreen.dart';
+import 'package:infixedu/screens/student/events/Event.dart';
 import 'package:infixedu/screens/student/examination/ClassExamResult.dart';
 import 'package:infixedu/screens/student/examination/ExaminationScreen.dart';
 import 'package:infixedu/screens/student/examination/ScheduleScreen.dart';
@@ -67,155 +73,210 @@ import 'package:infixedu/screens/teacher/leave/ApplyLeaveScreen.dart';
 import 'package:infixedu/screens/teacher/leave/LeaveListScreen.dart';
 import 'package:infixedu/screens/teacher/leave/LeaveScreen.dart';
 import 'package:infixedu/screens/teacher/students/StudentSearch.dart';
+import 'package:infixedu/screens/weather.dart';
 import 'package:infixedu/screens/zoom/virtual_class.dart';
 import 'package:infixedu/screens/zoom/virtual_meeting.dart';
+import 'package:infixedu/utils/alexa.dart';
 import 'package:infixedu/utils/widget/ScaleRoute.dart';
 
 class AppFunction {
   static var students = [
-    'Profile',
-    'Payment',
+    // 'Profile',
+    'Calendar',
+    'School News',
     'Class Schedule',
-    'Homework',
-    'Study Materials',
+    'Payment',
     'Attendance',
+    'Homework',
+    //'AI Dictionary',
     'Examination',
     'Online Exam',
+    'Online Classes',
     //'Leave',
-    'School News',
-    'Subjects',
-    'Teacher',
-    'Digital Library',
-    'Transport',
-    //'Zoom',
-    //  'Settings',
     'Gallery',
-    //'Calender',
-    //'Events',
+    //'Alexa',
+    'Subjects',
+    //'Video Streaming',
+    'Study Materials',
+    'Library',
+    'Digital Library',
+    //'Health',
+    'Teacher',
+    //  'Transport',
+    //  'Settings',
+
+    'Events',
+    // 'Weather',
     //'Results'
   ];
   static var studentIcons = [
-    'assets/images/profile.png',
-    'assets/images/fees_icon.png',
-    'assets/images/routine.png',
-    'assets/images/homework.png',
-    'assets/images/downloads.png',
+    //'assets/images/profile.jpg',
+    'assets/images/calendar.png',
+    'assets/images/school_news.png',
+    'assets/images/class_schedule.png',
+    'assets/images/payments.png',
     'assets/images/attendance.png',
+    'assets/images/homework.png',
+    //'assets/images/ai_dict.png',
     'assets/images/examination.png',
-    'assets/images/onlineexam.png',
-    //'assets/images/leave.png',
-    'assets/images/notice.png',
+    'assets/images/online_exam.png',
+    'assets/images/zoom.png',
+    'assets/images/gallery.png',
+
+    //'assets/images/alexa.png',
     'assets/images/subjects.png',
-    'assets/images/teacher.png',
+    //'assets/images/streaming_video.png',
+    //'assets/images/leave.png',
+    'assets/images/study_material.png',
     'assets/images/library.png',
-    'assets/images/transport.png',
-    'assets/images/addhw.png',
-    //  'assets/images/gallery.png'
-    //  'assets/images/calender.png'
+    'assets/images/library.png',
+    //'assets/images/health.png',
+    'assets/images/teacher.png',
+    'assets/images/events.png',
+    //'assets/images/weather.png',
+
     //'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    //'assets/images/addhw.png',
   ];
   static var students2 = [
-    'Profile',
-    'Fees',
-    'Routine',
-    'Homework',
-    'Study Materials',
-    'Timeline',
+    // 'Profile',
+    'Calendar',
+    'School News',
+    'Class Schedule',
+    'Payment',
     'Attendance',
+    'Homework',
+    'AI Dictionary',
     'Examination',
     'Online Exam',
-    'Leave',
-    'Notice',
+    'Gallery',
+    'Alexa',
     'Subjects',
-    'Teacher',
+    'Video Streaming',
+    'Study Materials',
     'Library',
-    'Transport',
+    'Digital Library',
+    'Health',
+    'Teacher',
+    'Events',
+    // 'Weather',
+    //'Zoom'
+    // 'Timeline',
+    // 'Leave',
+    //'Transport',
     //  'Settings',
   ];
   static var studentIcons2 = [
-    'assets/images/profile.png',
-    'assets/images/fees_icon.png',
-    'assets/images/routine.png',
-    'assets/images/homework.png',
-    'assets/images/downloads.png',
-    'assets/images/timeline.png',
+    'assets/images/calendar.png',
+    'assets/images/school_news.png',
+    'assets/images/class_schedule.png',
+    'assets/images/payments.png',
     'assets/images/attendance.png',
+    'assets/images/homework.png',
+    'assets/images/ai_dict.png',
     'assets/images/examination.png',
-    'assets/images/onlineexam.png',
-    'assets/images/leave.png',
-    'assets/images/notice.png',
+    'assets/images/online_exam.png',
+    'assets/images/zoom.png',
+    'assets/images/gallery.png',
+    'assets/images/alexa.png',
     'assets/images/subjects.png',
-    'assets/images/teacher.png',
+    'assets/images/streaming_video.png',
+    'assets/images/study_material.png',
     'assets/images/library.png',
-    'assets/images/transport.png',
+    'assets/images/library.png',
+    'assets/images/health.png',
+    'assets/images/teacher.png',
+    'assets/images/events.png',
+    // 'assets/images/weather.png',
+
+    //'assets/images/timeline.png',
+    // 'assets/images/leave.png',
     //  'assets/images/addhw.png',
   ];
 
   static var teachers = [
     'Students',
-    'Academic',
-    'Attendance',
-    'Leave',
-    'Contents',
+    'Calendar',
     'School News',
-    'Digital Library',
+    'Class Schedule',
+    'Academic',
+    //  'Performance',
+    'Attendance',
     'Homework',
-    'Zoom',
-    'About',
-    'Gallery',
-    'Calender',
-    //   'Settings',
-    'Results',
-    'Events',
+    'AI Dictionary',
     'Online Exam',
-    'Class Schedule'
+    'Online Classes',
+    'Video Streaming',
+    'Gallery',
+    'Alexa',
+    'Library',
+    'Digital Library',
+    'Health',
+    'Events',
+    //'weather',
   ];
 
   static var teachersIcons = [
     'assets/images/students.png',
+    'assets/images/calendar.png',
+    'assets/images/school_news.png',
+    'assets/images/class_schedule.png',
     'assets/images/academics.png',
+    //  'assets/images/results.png', //performance
     'assets/images/attendance.png',
-    'assets/images/leave.png',
-    'assets/images/contents.png',
-    'assets/images/notice.png',
-    'assets/images/library.png',
     'assets/images/homework.png',
-    'assets/images/addhw.png',
-    'assets/images/about.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/about.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/ai_dict.png',
+    // 'assets/images/leave.png',
+    'assets/images/online_exam.png',
+    'assets/images/zoom.png',
+    'assets/images/streaming_video.png',
+    'assets/images/gallery.png',
+    'assets/images/alexa.png',
+    'assets/images/library.png',
+    'assets/images/library.png',
+    'assets/images/health.png',
+    'assets/images/events.png',
+
+    //'assets/images/weather.png',
   ];
 
   static var teachers2 = [
     'Students',
+    'calendar',
     'Academic',
     'Attendance',
     //'Leave',
     'Contents',
-    'Notice',
+    'School News',
+    'Gallery',
+    'Video Streaming',
+    'Alexa',
     'Library',
+    'Digital Library',
+    'Health',
     'Homework',
-    'About',
+    'AI Dictionary',
+    //'About',
     // 'Settings',
   ];
 
   static var teachersIcons2 = [
     'assets/images/students.png',
+    'assets/images/calendar.png',
     'assets/images/academics.png',
     'assets/images/attendance.png',
-    'assets/images/leave.png',
+    // 'assets/images/leave.png',
     'assets/images/contents.png',
-    'assets/images/notice.png',
+    'assets/images/school_news.png',
+    'assets/images/gallery.png',
+    'assets/images/streaming_video.png',
+    'assets/images/alexa.png',
     'assets/images/library.png',
+    'assets/images/library.png',
+    'assets/images/health.png',
     'assets/images/homework.png',
-    'assets/images/about.png',
+    'assets/images/ai_dict.png',
+    //  'assets/images/about.png',
     // 'assets/images/addhw.png',
   ];
 
@@ -223,68 +284,83 @@ class AppFunction {
     'Students',
     'Leave',
     'Staff',
-    'Dormitory',
+    //'Dormitory',
     'Attendance',
     'Fees',
     'Contents',
     'Library',
-    'Transport',
+    'Health',
+    //'Transport',
     'Zoom',
-    'Settings',
+    'Video Streaming',
+    // 'Settings',
   ];
   static var adminIcons = [
     'assets/images/students.png',
     'assets/images/leave.png',
     'assets/images/staff.png',
-    'assets/images/dormitory.png',
+    //'assets/images/dormitory.jpg',
     'assets/images/attendance.png',
-    'assets/images/fees_icon.png',
+    'assets/images/payments.png',
     'assets/images/contents.png',
     'assets/images/library.png',
-    'assets/images/transport.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/health.png',
+    //'assets/images/transport.jpg',
+    'assets/images/zoom.png',
+
+    'assets/images/streaming_video.png',
+    // 'assets/images/addhw.png',
   ];
 
   static var admins2 = [
     'Students',
     'Leave',
     'Staff',
-    'Dormitory',
+    // 'Dormitory',
     'Attendance',
     'Fees',
     'Contents',
     'Library',
-    'Transport',
-    'Settings',
+    'Vedio Streaming',
+    'AI Dictionary',
+    'Health',
+    'Video Streaming',
+    //'Transport',
+    // 'Settings',
   ];
   static var adminIcons2 = [
     'assets/images/students.png',
     'assets/images/leave.png',
     'assets/images/staff.png',
-    'assets/images/dormitory.png',
+    //  'assets/images/dormitory.png',
     'assets/images/attendance.png',
-    'assets/images/fees_icon.png',
+    'assets/images/payments.png',
     'assets/images/contents.png',
     'assets/images/library.png',
-    'assets/images/transport.png',
-    'assets/images/addhw.png',
+    'assets/images/streaming_video.png',
+    'assets/images/ai_dict.png',
+    'assets/images/health.png',
+    'assets/images/streaming_video.png',
+
+    // 'assets/images/transport.png',
+    // 'assets/images/addhw.png',
   ];
 
   static var parent = [
     'Child',
-    'About',
-    'Zoom',
-    'Gallery',
-    'Calender'
+    //'Calendar',
+    // 'About',
+    // 'Zoom',
+    //'Gallery',
     // 'Settings',
   ];
   static var parentIcons = [
-    'assets/images/mychild.png',
-    'assets/images/about.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/students.png',
+    //'assets/images/calendar.png',
+    // 'assets/images/about.png',
+    // 'assets/images/zoom.png',
+    //'assets/images/gallery.png',
+    //'assets/images/calendar.png',
     //'assets/images/addhw.png',
   ];
 
@@ -295,7 +371,7 @@ class AppFunction {
   ];
 
   static var parentIcons2 = [
-    'assets/images/mychild.png',
+    'assets/images/students.png',
     'assets/images/about.png',
     // 'assets/images/addhw.png',
   ];
@@ -309,7 +385,7 @@ class AppFunction {
   static var adminTransportIcons = [
     'assets/images/transport.png',
     'assets/images/transport.png',
-    'assets/images/addhw.png',
+    'assets/images/transport.png',
     'assets/images/transport.png',
   ];
 
@@ -319,8 +395,8 @@ class AppFunction {
     'Room List',
   ];
   static var adminDormitoryIcons = [
-    'assets/images/addhw.png',
-    'assets/images/addhw.png',
+    'assets/images/no_image.png',
+    'assets/images/no_image.png',
     'assets/images/dormitory.png',
   ];
 
@@ -328,17 +404,28 @@ class AppFunction {
     'Book List',
     'Books Issued',
   ];
+  static var digitalLibrarys = [
+    'E-Book List',
+    'Audio-Book List',
+    'Video-Book List',
+  ];
   static var libraryIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/book_list.png',
+    'assets/images/book_issued.png',
+  ];
+  static var digitalLibraryIcons = [
+    'assets/images/eBook.jpeg',
+    'assets/images/audioBook.png',
+    'assets/images/videoBook.jpeg',
+    //'assets/images/book_issued.png',
   ];
   static var examinations = [
     'Schedule',
-    'Result',
+    'Performance',
   ];
   static var examinationIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/class_schedule.png',
+    'assets/images/results.png',
   ];
 
   static var onlineExaminations = [
@@ -346,8 +433,8 @@ class AppFunction {
     'Exam Result',
   ];
   static var onlineExaminationIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/examination.png',
+    'assets/images/results.png',
   ];
 
   static var homework = [
@@ -355,8 +442,8 @@ class AppFunction {
     'HW List',
   ];
   static var homeworkIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/add_hw.png',
+    'assets/images/hw_list.png',
   ];
 
   static var zoomMeeting = [
@@ -364,17 +451,17 @@ class AppFunction {
     'meeting',
   ];
   static var zoomMeetingIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/zoom.png',
+    'assets/images/zoom.png',
   ];
 
   static var contents = [
     'Add Content',
-    'Content List',
+    //'Content List',
   ];
   static var contentsIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
+    'assets/images/add_content.png',
+    // 'assets/images/content_list.png',
   ];
 
   static var leaves = [
@@ -382,8 +469,8 @@ class AppFunction {
     'Leave List',
   ];
   static var leavesIcons = [
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/apply_leave.png',
+    'assets/images/leave_list.png',
   ];
 
   static var adminFees = [
@@ -391,8 +478,8 @@ class AppFunction {
     'Fee List',
   ];
   static var adminFeeIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/addhw.png',
+    'assets/images/payments.png',
+    'assets/images/payments.png',
   ];
 
   static var adminLibrary = [
@@ -401,9 +488,9 @@ class AppFunction {
     'Add Member',
   ];
   static var adminLibraryIcons = [
-    'assets/images/addhw.png',
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/books.png',
+    'assets/images/books.png',
+    'assets/images/students.png',
   ];
 
   static var academics = [
@@ -412,25 +499,25 @@ class AppFunction {
     'Subjects',
   ];
   static var academicsIcons = [
-    'assets/images/myroutine.png',
-    'assets/images/classroutine.png',
+    'assets/images/class_schedule.png',
+    'assets/images/class_routine.png',
     'assets/images/subjects.png',
   ];
 
   static var attendance = [
-    'Class Atten',
-    'Search Atten',
+    'Class Attendance',
+    'Search Attendance',
   ];
   static var attendanceIcons = [
-    'assets/images/classattendance.png',
-    'assets/images/searchattendance.png',
+    'assets/images/attendance.png',
+    'assets/images/search_attendance.png',
   ];
 
   static var downloadLists = ['Assignment', 'Syllabus'];
   static var downloadListIcons = [
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
-    'assets/images/fees_icon.png',
+    'assets/images/books.png',
+    'assets/images/study_material.png',
+    'assets/images/payments.png',
   ];
 
   static var studentLeaves = [
@@ -439,8 +526,8 @@ class AppFunction {
   ];
 
   static var studentLeavesIcons = [
-    'assets/images/hwlist.png',
-    'assets/images/addhw.png',
+    'assets/images/leave.png',
+    'assets/images/leave.png',
   ];
 
   static void getFunctions(BuildContext context, String rule, String zoom) {
@@ -497,6 +584,9 @@ class AppFunction {
   static void getDashboardPage(BuildContext context, String title,
       {var id, String image, int zoom, String token}) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(context, ScaleRoute(page: Calendar()));
+        break;
       case 'Profile':
         Navigator.push(
             context,
@@ -505,6 +595,14 @@ class AppFunction {
               id: id,
               image: image,
             )));
+        break;
+      case 'Events':
+
+        // print('hey');
+        Navigator.push(context, ScaleRoute(page: Events()));
+        break;
+      case 'Alexa':
+        Navigator.push(context, ScaleRoute(page: Alexa(id: id)));
         break;
       case 'Payment':
         Navigator.push(context, ScaleRoute(page: FeeScreen(id: id)));
@@ -530,6 +628,9 @@ class AppFunction {
         break;
       case 'Gallery':
         Navigator.push(context, ScaleRoute(page: Albums(id: id)));
+        break;
+      case 'Weather':
+        // Navigator.push(context, ScaleRoute(page: Weather(id: id)));
         break;
       case 'Dormitory':
         Navigator.push(context, ScaleRoute(page: DormitoryScreen()));
@@ -558,13 +659,20 @@ class AppFunction {
         Navigator.push(
             context,
             ScaleRoute(
+                page:
+                    DigitalLibraryHome(digitalLibrarys, digitalLibraryIcons)));
+        break;
+      case 'Library':
+        Navigator.push(
+            context,
+            ScaleRoute(
                 page: LibraryHome(
               librarys,
               libraryIcons,
               id: id,
             )));
         break;
-      case 'Zoom':
+      case 'Online Classes':
         Navigator.push(
             context,
             ScaleRoute(
@@ -574,6 +682,7 @@ class AppFunction {
         break;
       case 'School News':
         Navigator.push(context, ScaleRoute(page: NoticeScreen()));
+        print("School News Called");
         break;
       case 'Timeline':
         Navigator.push(context, ScaleRoute(page: TimelineScreen(id: id)));
@@ -783,9 +892,66 @@ class AppFunction {
   static void getTeacherDashboardPage(
       BuildContext context, String title, String uid) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(context, ScaleRoute(page: Calendar()));
+        break;
+      case 'Class Schedule':
+        //Navigator.push(context, ScaleRoute(page: Routine(id: uid)));
+        Navigator.push(context, ScaleRoute(page: TeacherMyRoutineScreen()));
+        break;
       case 'Students':
         Navigator.push(context, ScaleRoute(page: StudentSearch()));
         break;
+      case 'Gallery':
+        Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
+        break;
+      case 'Online Exam':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: OnlineExaminationHome(
+              onlineExaminations,
+              onlineExaminationIcons,
+              id: uid,
+            )));
+        break;
+      case 'Digital Library':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page:
+                    DigitalLibraryHome(digitalLibrarys, digitalLibraryIcons)));
+        break;
+      case 'Library':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: LibraryHome(
+              librarys,
+              libraryIcons,
+              id: uid,
+            )));
+        break;
+      case 'Performance':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: OnlineExamResultScreen(
+              id: uid,
+              // page: ClassExamResultScreen(
+              // id: uid,
+            )));
+        break;
+      case 'Events':
+        //  print('hey');
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: Events(
+              profileName: 'Teachers',
+            )));
+        break;
+
       case 'Academic':
         Navigator.push(context,
             ScaleRoute(page: AcademicHomeScreen(academics, academicsIcons)));
@@ -808,10 +974,8 @@ class AppFunction {
         Navigator.push(
             context, ScaleRoute(page: LeaveHomeScreen(leaves, leavesIcons)));
         break;
-      case 'Library':
-        Navigator.push(context, ScaleRoute(page: BookListScreen()));
-        break;
-      case 'Notice':
+
+      case 'School News':
         Navigator.push(context, ScaleRoute(page: NoticeScreen()));
         break;
       case 'About':
@@ -834,14 +998,23 @@ class AppFunction {
   static void getParentDashboardPage(
       BuildContext context, String title, String uid) {
     switch (title) {
+      case 'Calendar':
+        Navigator.push(context, ScaleRoute(page: Calendar()));
+        break;
       case 'Child':
         Navigator.push(context, ScaleRoute(page: ChildListScreen()));
         break;
       case 'About':
         Navigator.push(context, ScaleRoute(page: AboutScreen()));
         break;
+      case 'Gallery':
+        Navigator.push(context, ScaleRoute(page: Albums(id: uid)));
+        break;
       case 'Settings':
         Navigator.push(context, ScaleRoute(page: SettingScreen()));
+        break;
+      case 'School News':
+        Navigator.push(context, ScaleRoute(page: NoticeScreen()));
         break;
       case 'Zoom':
         Navigator.push(
@@ -856,10 +1029,10 @@ class AppFunction {
 
   static void getAttendanceDashboardPage(BuildContext context, String title) {
     switch (title) {
-      case 'Class Atten':
+      case 'Class Attendance':
         Navigator.push(context, ScaleRoute(page: StudentAttendanceHome()));
         break;
-      case 'Search Atten':
+      case 'Search Attendance':
         Navigator.push(
             context,
             ScaleRoute(
@@ -867,7 +1040,7 @@ class AppFunction {
               status: 'attendance',
             )));
         break;
-      case 'My Atten':
+      case 'My Attendance':
         Navigator.push(context, ScaleRoute(page: TeacherAttendanceScreen()));
         break;
     }
@@ -876,10 +1049,10 @@ class AppFunction {
   static void getAdminAttendanceDashboardPage(
       BuildContext context, String title) {
     switch (title) {
-      case 'Class Atten':
+      case 'Class Attendance':
         Navigator.push(context, ScaleRoute(page: StudentAttendanceHome()));
         break;
-      case 'Search Atten':
+      case 'Search Attendance':
         Navigator.push(
             context,
             ScaleRoute(
@@ -921,6 +1094,32 @@ class AppFunction {
     }
   }
 
+  static void getDigitalLibraryDashboardPage(BuildContext context, String title,
+      {var id}) {
+    switch (title) {
+      case 'E-Book List':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: DigitalBookListScreen(
+              id: "3",
+            )));
+        break;
+      case 'Audio-Book List':
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: DigitalBookListScreen(
+              id: '1',
+            )));
+        break;
+      case 'Video-Book List':
+        Navigator.push(
+            context, ScaleRoute(page: DigitalBookListScreen(id: '2')));
+        break;
+    }
+  }
+
   static void getHomeworkDashboardPage(BuildContext context, String title) {
     switch (title) {
       case 'HW List':
@@ -936,6 +1135,7 @@ class AppFunction {
     switch (title) {
       case 'Content List':
         Navigator.push(context, ScaleRoute(page: ContentListScreen()));
+        print("content List getting called");
         break;
       case 'Add Content':
         Navigator.push(context, ScaleRoute(page: AddContentScreeen()));
@@ -965,7 +1165,7 @@ class AppFunction {
               id: id,
             )));
         break;
-      case 'Result':
+      case 'Performance':
         Navigator.push(
             context,
             ScaleRoute(
@@ -1104,5 +1304,50 @@ class AppFunction {
   static String getDay(String date) {
     var parts = date.split("-");
     return parts[parts.length - 1];
+  }
+
+  //get alphabetic month
+  static String getMonth(int no) {
+    switch (no) {
+      case 1:
+        return "Jan";
+        break;
+      case 2:
+        return "Feb";
+        break;
+      case 3:
+        return "Mar";
+        break;
+      case 4:
+        return "Apr";
+        break;
+      case 5:
+        return "May";
+        break;
+      case 6:
+        return "Jun";
+        break;
+      case 7:
+        return "Jul";
+        break;
+      case 8:
+        return "Aug";
+        break;
+      case 9:
+        return "Sep";
+        break;
+      case 10:
+        return "Oct";
+        break;
+      case 11:
+        return "Nov";
+        break;
+      case 12:
+        return "Dec";
+        break;
+      default:
+        return "Jan";
+        break;
+    }
   }
 }

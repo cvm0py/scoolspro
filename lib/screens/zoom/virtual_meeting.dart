@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -28,16 +29,12 @@ class VirtualMeetingScreen extends StatefulWidget {
 class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
 //
 //  String _id;
-//
-//  @override
-//  void initState() {
-//    Utils.getStringValue('id').then((value){
-//      _id = value;
-//    });
-//    super.initState();
-//  }
+
+  String notAvailable ="Not available";
+
 
   String _token;
+  String _id;
 
   @override
   void initState() {
@@ -46,6 +43,19 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
         _token = value;
       });
     });
+    Utils.getStringValue('id').then((value) {
+      setState(() {
+        _id = value;
+      });
+    });
+     Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Not available").then((value) {
+        notAvailable = value;
+      });
+    
+    });
+
+
     super.initState();
   }
 
@@ -53,7 +63,7 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -70,7 +80,7 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
               if (snapshot.data.meetings.length < 1) {
                 return Center(
                     child: Text(
-                  "Not available",
+                  notAvailable,
                   style: Theme.of(context).textTheme.subtitle1,
                 ));
               }
@@ -91,16 +101,15 @@ class _VirtualMeetingScreenState extends State<VirtualMeetingScreen> {
   }
 
   Future<ZoomMeetingList> getAllMeeting() async {
-    print('Meeting:' +
-        InfixApi.getMeeting(uid: widget.uid, param: InfixApi.zoomMakeMeeting));
+    print('Meeting:' + InfixApi.getAllZoomMeetingsByUserID(_id));
     final response = await http.get(
-        Uri.parse(InfixApi.getMeeting(uid: widget.uid, param: InfixApi.zoomMakeMeeting)),
+        Uri.parse(InfixApi.getAllZoomMeetingsByUserID('4')),
         headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
 
-      return ZoomMeetingList.fromJson(jsonData['data']['meetings']);
+      return ZoomMeetingList.fromJson(jsonData['data']['meeting']);
     } else {
       throw Exception('Failed to load');
     }

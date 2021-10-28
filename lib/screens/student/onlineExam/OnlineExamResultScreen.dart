@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/ONlineExamResult.dart';
 import 'package:infixedu/utils/widget/OnlineExamResultRow.dart';
+
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class OnlineExamResultScreen extends StatefulWidget {
@@ -48,11 +51,11 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
     Utils.getStringValue('id').then((value) {
       setState(() {
         id = widget.id != null ? widget.id : value;
-        exams = getAllOnlineExam(id);
+        exams = getAllOnlineExam(2);
         exams.then((val) {
-          _selected = val.names.length !=0 ? val.names[0].title: '';
-          code = val.names.length !=0 ? val.names[0].id: 0;
-          results = getAllOnlineExamResult(id, code);
+          _selected = val.names.length != 0 ? val.names[0].title : '';
+          code = val.names.length != 0 ? val.names[0].id : 0;
+          results = getAllOnlineExamResult(2, code);
         });
       });
     });
@@ -63,19 +66,20 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Result'),
         backgroundColor: Colors.white,
         body: FutureBuilder<OnlineExamNameList>(
           future: exams,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if(snapshot.data.names.length >0){
+              if (snapshot.data.names.length > 0) {
                 return Column(
                   children: <Widget>[
                     getDropdown(snapshot.data.names),
@@ -85,7 +89,7 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
                     Expanded(child: getExamResultList())
                   ],
                 );
-              }else{
+              } else {
                 return Utils.noDataWidget();
               }
             } else {
@@ -107,10 +111,13 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
         items: names.map((item) {
           return DropdownMenuItem<String>(
             value: item.title,
-            child: Text(item.title,style: Theme.of(context)
-                .textTheme
-                .headline4
-                .copyWith(fontWeight: FontWeight.w500),),
+            child: Text(
+              item.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4
+                  .copyWith(fontWeight: FontWeight.w500),
+            ),
           );
         }).toList(),
         style: Theme.of(context).textTheme.headline4.copyWith(fontSize: 15.0),
@@ -122,7 +129,7 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
 
             debugPrint('User select $code');
 
-            results = getAllOnlineExamResult(id, code);
+            results = getAllOnlineExamResult(2, code);
 
             getExamResultList();
           });
@@ -132,9 +139,11 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
     );
   }
 
-  Future<OnlineExamResultList> getAllOnlineExamResult(var id, dynamic code) async {
-    final response =
-        await http.get(Uri.parse(InfixApi.getStudentOnlineActiveExamResult(id, code)),headers: Utils.setHeader(_token.toString()));
+  Future<OnlineExamResultList> getAllOnlineExamResult(
+      var id, dynamic code) async {
+    final response = await http.get(
+        Uri.parse(InfixApi.getStudentOnlineActiveExamResult(2, code)),
+        headers: Utils.setHeader(_token.toString()));
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       return OnlineExamResultList.fromJson(jsonData['data']['exam_result']);
@@ -144,8 +153,9 @@ class _OnlineExamResultScreenState extends State<OnlineExamResultScreen> {
   }
 
   Future<OnlineExamNameList> getAllOnlineExam(var id) async {
-    final response =
-        await http.get(Uri.parse(InfixApi.getStudentOnlineActiveExamName(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(
+        Uri.parse(InfixApi.getStudentOnlineActiveExamName(2)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);

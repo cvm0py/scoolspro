@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/localization/app_translations.dart';
 
 // Project imports:
 import 'package:infixedu/localization/application.dart';
@@ -18,6 +20,11 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   List<bool> isSelected = [false, false];
   GlobalKey _scaffold = GlobalKey();
+  AppTranslations appTranslation;
+  String languageSet;
+  String changeLanguage = "Change Language";
+  String language = "Language";
+  String systemLocale = 'System Locale';
 
   @override
   void initState() {
@@ -29,13 +36,31 @@ class _SettingScreenState extends State<SettingScreen> {
         //Utils.showToast('$value');
       });
     });
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Change Language").then((value) {
+        setState(() {
+          changeLanguage = value.toString();
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Language").then((value) {
+        setState(() {
+          language = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'System Locale').then((value) {
+        setState(() {
+          systemLocale = value.toString();
+        });
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
@@ -58,7 +83,7 @@ class _SettingScreenState extends State<SettingScreen> {
             BottomLine(),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.deepPurpleAccent,
+                backgroundColor: AppConfig.primary,
                 child: Icon(
                   Icons.language,
                   color: Colors.white,
@@ -66,7 +91,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
               title: Text(
-                'Change Language',
+                changeLanguage,
                 style: Theme.of(context).textTheme.headline6,
               ),
               trailing: GestureDetector(
@@ -75,12 +100,12 @@ class _SettingScreenState extends State<SettingScreen> {
                 },
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.redAccent,
+                        color: AppConfig.primary,
                         borderRadius: BorderRadius.circular(8)),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'Language',
+                        language,
                         style: Theme.of(context)
                             .textTheme
                             .headline6
@@ -105,15 +130,15 @@ class _SettingScreenState extends State<SettingScreen> {
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
-              'System Locale',
+              systemLocale,
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
           ToggleButtons(
-            borderColor: Colors.deepPurple,
-            fillColor: Colors.deepPurple.shade200,
+            borderColor: Colors.blueAccent,
+            fillColor: AppConfig.primary,
             borderWidth: 2,
-            selectedBorderColor: Colors.deepPurple,
+            selectedBorderColor: AppConfig.primary,
             selectedColor: Colors.white,
             borderRadius: BorderRadius.circular(0),
             children: <Widget>[

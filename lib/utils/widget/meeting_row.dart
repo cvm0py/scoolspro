@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/zoom_meeting.dart';
 import 'package:infixedu/webview/zoom_launch_meeting.dart';
+import '../Utils.dart';
 import 'ScaleRoute.dart';
 
 // ignore: must_be_immutable
@@ -28,10 +29,31 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
   ZoomMeeting zoomMeeting;
 
   _DormitoryScreenState(this.zoomMeeting);
+  String youMust = "You must grant all permission to use this application";
+  String permissionDenied = 'Permission Denied';
+  String startDate = 'Start Date';
+  String time = 'Time';
+  String password = 'Password';
+  String join = 'Join';
 
   @override
   void initState() {
     checkPermissions(context);
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(
+              value, "You must grant all permission to use this application")
+          .then((val) {
+        setState(() {
+          youMust = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, "Permission Denied").then((val) {
+        setState(() {
+          permissionDenied = val;
+        });
+      });
+    });
     super.initState();
   }
 
@@ -66,13 +88,13 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
         context: context,
         builder: (BuildContext _context) {
           return SimpleDialog(
-            title: const Text("Permission denied"),
+            title: Text(permissionDenied),
             children: <Widget>[
               Container(
                 padding:
                     EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-                child: const Text(
-                  "You must grant all permission to use this application",
+                child: Text(
+                  youMust,
                   style: TextStyle(fontSize: 18, color: Colors.black54),
                 ),
               )
@@ -106,7 +128,7 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Start Date',
+                          startDate,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -131,7 +153,7 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Text(
-                          'Time',
+                          time,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -153,7 +175,7 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Password',
+                          password,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -174,7 +196,7 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                   Expanded(
                     child: OutlinedButton(
                         child: Text(
-                          'Join',
+                          join,
                           style: Theme.of(context).textTheme.headline4,
                         ),
                         // borderSide:
@@ -183,8 +205,10 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                           final _url = InfixApi.getJoinMeetingUrlApp(
                               mid: zoomMeeting.meetingId);
 
-                          print('App URL: ${InfixApi.getJoinMeetingUrlApp(mid: zoomMeeting.meetingId)}');
-                          print('Web URL: ${InfixApi.getJoinMeetingUrlWeb(mid: zoomMeeting.meetingId)}');
+                          print(
+                              'App URL: ${InfixApi.getJoinMeetingUrlApp(mid: zoomMeeting.meetingId)}');
+                          print(
+                              'Web URL: ${InfixApi.getJoinMeetingUrlWeb(mid: zoomMeeting.meetingId)}');
                           if (await canLaunch(_url)) {
                             await launch(_url);
                           } else {
@@ -192,8 +216,10 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
                                 context,
                                 ScaleRoute(
                                     page: ZoomLaunchMeeting(
-                                        meetingUrl: InfixApi.getJoinMeetingUrlWeb(
-                                            mid: zoomMeeting.meetingId),meetingName: zoomMeeting.topic,)));
+                                  meetingUrl: InfixApi.getJoinMeetingUrlWeb(
+                                      mid: zoomMeeting.meetingId),
+                                  meetingName: zoomMeeting.topic,
+                                )));
                           }
                         }),
                   ),

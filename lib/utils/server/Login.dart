@@ -30,6 +30,7 @@ class Login {
     String zoom;
     String token;
     String classId;
+    String sectionID;
 
     Response response = await get(Uri.parse(InfixApi.login(email, password)));
     if (response.statusCode == 200) {
@@ -42,8 +43,11 @@ class Login {
       isAdministrator = user['data']['user']['is_administrator'];
       token = user['data']['accessToken'];
       classId = user['data']['userDetails']['class_id'].toString();
+      sectionID = user['data']['userDetails']['section_id'].toString();
+
       print(user['data']['device_token']);
       print('Class ID ->' + classId);
+      print('Section ID ->' + sectionID);
       // print('Access token: $token');
       // print("RULE: $rule");
 
@@ -74,6 +78,7 @@ class Login {
       if (isSuccessed) {
         saveBooleanValue('isLogged', isSuccessed);
         //saveBooleanValue('classId', classId.toString());
+        saveStringValue('sectionID', sectionID);
         saveStringValue('email', email);
         saveStringValue('classId', classId);
         saveStringValue('password', password);
@@ -96,6 +101,7 @@ class Login {
     dynamic rule;
     dynamic schoolId;
     String classId;
+    String sectionID;
     String image;
     String isAdministrator;
     String zoom;
@@ -118,6 +124,7 @@ class Login {
         isSuccessed = user['success'];
         message = user['message'];
         classId = user['data']['userDetails']['class_id'].toString();
+        sectionID = user['data']['userDetails']['section_id'].toString();
         id = user['data']['user']['id'];
         rule = user['data']['user']['role_id'];
         schoolId = user['data']['user']['school_id'];
@@ -154,6 +161,7 @@ class Login {
           saveStringValue('rule', '$rule');
           saveStringValue('schoolId', '$schoolId');
           saveStringValue('classId', classId);
+          saveStringValue('sectionID', sectionID);
           saveStringValue('image', '$image');
           saveStringValue('isAdministrator', '$isAdministrator');
           saveStringValue('lang', 'en');
@@ -161,7 +169,7 @@ class Login {
           saveStringValue('zoom', zoom.toString());
           AppFunction.getFunctions(context, rule.toString(), zoom.toString());
         }
-        
+
         return message;
       }
     } catch (e) {

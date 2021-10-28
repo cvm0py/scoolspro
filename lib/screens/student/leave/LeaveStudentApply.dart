@@ -13,6 +13,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 import 'package:permissions_plugin/permissions_plugin.dart';
 
 // Project imports:
@@ -95,7 +96,7 @@ class _LeaveStudentApplyState extends State<LeaveStudentApply> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
