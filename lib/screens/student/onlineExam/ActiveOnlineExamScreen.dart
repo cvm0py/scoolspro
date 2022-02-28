@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/ActiveOnlineExam.dart';
 import 'package:infixedu/utils/widget/ActiveOnlineExam.dart';
+
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class ActiveOnlineExamScreen extends StatefulWidget {
@@ -29,12 +32,12 @@ class ActiveOnlineExamScreen extends StatefulWidget {
 
 class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
   Future<ActiveExamList> exams;
+  String onlineExam = "Online Exam";
   var id;
 
   String _token;
 
   _ActiveOnlineExamScreenState({this.id});
-
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
     });
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -52,6 +56,13 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
         exams = getAllActiveExam(id);
       });
     });
+
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Online Exam").then((value) {
+        setState(() {});
+        onlineExam = value;
+      });
+    });
   }
 
   @override
@@ -59,23 +70,24 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        appBar: CustomAppBarWidget(title: 'Active Exam'),
+        bottomNavigationBar: MainScreen(),
+        appBar: CustomAppBarWidget(title: onlineExam),
         backgroundColor: Colors.white,
         body: FutureBuilder<ActiveExamList>(
           future: exams,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if(snapshot.data.activeExams.length > 0){
+              if (snapshot.data.activeExams.length > 0) {
                 return Column(
                   children: <Widget>[Expanded(child: getExamList())],
                 );
-              }else{
+              } else {
                 return Utils.noDataWidget();
               }
             } else {
@@ -107,7 +119,9 @@ class _ActiveOnlineExamScreenState extends State<ActiveOnlineExamScreen> {
   }
 
   Future<ActiveExamList> getAllActiveExam(var id) async {
-    final response = await http.get(Uri.parse(InfixApi.getStudentOnlineActiveExam(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(
+        Uri.parse(InfixApi.getStudentOnlineActiveExam(2)),
+        headers: Utils.setHeader(_token.toString()));
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       return ActiveExamList.fromJson(jsonData['data']['online_exams']);

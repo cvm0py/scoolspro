@@ -4,21 +4,95 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:infixedu/paymentGateway/FeePaymentMain.dart';
 import 'package:infixedu/utils/model/Fee.dart';
+import '../Utils.dart';
 import 'ScaleRoute.dart';
 
 // ignore: must_be_immutable
-class FeesRow extends StatelessWidget {
+class FeesRow extends StatefulWidget {
   Fee fee;
   String id;
 
   FeesRow(this.fee, this.id);
 
   @override
+  _FeesRowState createState() => _FeesRowState();
+}
+
+class _FeesRowState extends State<FeesRow> {
+  String dueDate = 'Due Date';
+
+  String amount = 'Amount';
+
+  String paid = 'Paid';
+
+  String balance = 'Balance';
+
+  String status = 'Status';
+
+  String discount = 'Discount';
+
+  String fine = 'Fine';
+
+  String payment = 'Payment';
+
+  String partial = 'Partial';
+
+  String unpaid = 'Unpaid';
+
+  @override
+  void initState() {
+    super.initState();
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, 'Due Date').then((val) {
+        dueDate = val;
+        print('Due Date -> ' + dueDate);
+      });
+
+      Utils.getTranslatedLanguage(language, "Amount").then((val) {
+        amount = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Paid").then((val) {
+        paid = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Balance").then((val) {
+        balance = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Status").then((val) {
+        status = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Discount").then((val) {
+        discount = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Fine").then((val) {
+        fine = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Payment").then((val) {
+        payment = val;
+      });
+
+      Utils.getTranslatedLanguage(language, "Partial").then((val) {
+        partial = val;
+        print('Partial -> ' + partial);
+      });
+
+      Utils.getTranslatedLanguage(language, "Unpaid").then((val) {
+        unpaid = val;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: (){
+        onTap: () {
           showAlertDialog(context);
         },
         child: Column(
@@ -27,7 +101,7 @@ class FeesRow extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    fee.title,
+                    widget.fee.title,
                     style: Theme.of(context).textTheme.headline5,
                     maxLines: 1,
                   ),
@@ -43,7 +117,8 @@ class FeesRow extends StatelessWidget {
                       textAlign: TextAlign.end,
                       style: Theme.of(context).textTheme.headline4.copyWith(
                           color: Colors.deepPurpleAccent,
-                          decoration: TextDecoration.underline,fontWeight: FontWeight.bold),
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -58,7 +133,7 @@ class FeesRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Due Date',
+                          dueDate,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -69,7 +144,7 @@ class FeesRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          fee.dueDate,
+                          widget.fee.dueDate,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -81,7 +156,7 @@ class FeesRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Amount',
+                          amount,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -92,7 +167,7 @@ class FeesRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          '\$' + fee.amount,
+                          '\$' + widget.fee.amount,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -104,7 +179,7 @@ class FeesRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Paid',
+                          paid,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -115,7 +190,7 @@ class FeesRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          '\$' + fee.paid,
+                          '\$' + widget.fee.paid,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -127,7 +202,7 @@ class FeesRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Balance',
+                          balance,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -138,7 +213,7 @@ class FeesRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          '\$' + fee.balance,
+                          '\$' + widget.fee.balance,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -150,7 +225,7 @@ class FeesRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Status',
+                          status,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -205,7 +280,7 @@ class FeesRow extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              fee.title,
+                              widget.fee.title,
                               style: Theme.of(context).textTheme.headline5,
                               maxLines: 1,
                             ),
@@ -221,7 +296,7 @@ class FeesRow extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Amount',
+                                    amount,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -232,7 +307,7 @@ class FeesRow extends StatelessWidget {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    '\$' + fee.amount,
+                                    '\$' + widget.fee.amount,
                                     maxLines: 1,
                                     style:
                                         Theme.of(context).textTheme.headline4,
@@ -245,7 +320,7 @@ class FeesRow extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Discount',
+                                    discount,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -256,9 +331,10 @@ class FeesRow extends StatelessWidget {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    fee.discount == null || fee.discount == ""
+                                    widget.fee.discount == null ||
+                                            widget.fee.discount == ""
                                         ? 'N/A'
-                                        : '\$' + fee.discount,
+                                        : '\$' + widget.fee.discount,
                                     maxLines: 1,
                                     style:
                                         Theme.of(context).textTheme.headline4,
@@ -271,7 +347,7 @@ class FeesRow extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Fine',
+                                    fine,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -282,7 +358,7 @@ class FeesRow extends StatelessWidget {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    '\$' + fee.fine,
+                                    '\$' + widget.fee.fine,
                                     maxLines: 1,
                                     style:
                                         Theme.of(context).textTheme.headline4,
@@ -295,7 +371,7 @@ class FeesRow extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Paid',
+                                    paid,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -306,7 +382,7 @@ class FeesRow extends StatelessWidget {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    '\$' + fee.paid,
+                                    '\$' + widget.fee.paid,
                                     maxLines: 1,
                                     style:
                                         Theme.of(context).textTheme.headline4,
@@ -319,7 +395,7 @@ class FeesRow extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    'Balance',
+                                    balance,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme
@@ -330,7 +406,7 @@ class FeesRow extends StatelessWidget {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    '\$' + fee.balance,
+                                    '\$' + widget.fee.balance,
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     style:
@@ -342,11 +418,14 @@ class FeesRow extends StatelessWidget {
                           ],
                         ),
                       ),
-                      int.parse(fee.balance) > 0
+                      int.parse(widget.fee.balance) > 0
                           ? GestureDetector(
                               onTap: () {
-                                Navigator.push(context,
-                                        ScaleRoute(page: FeePaymentMain(fee, id)))
+                                Navigator.push(
+                                        context,
+                                        ScaleRoute(
+                                            page: FeePaymentMain(
+                                                widget.fee, widget.id)))
                                     .then((result) {
                                   Navigator.of(context).pop();
                                 });
@@ -362,7 +441,7 @@ class FeesRow extends StatelessWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Center(
                                       child: Text(
-                                    'Payment',
+                                    payment,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline6
@@ -386,14 +465,14 @@ class FeesRow extends StatelessWidget {
   }
 
   Widget getStatus(BuildContext context) {
-    if (int.parse(fee.balance) == 0) {
+    if (int.parse(widget.fee.balance) == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(color: Colors.greenAccent),
         child: Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
           child: Text(
-            'Paid',
+            paid,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)
@@ -403,14 +482,14 @@ class FeesRow extends StatelessWidget {
           ),
         ),
       );
-    } else if (int.parse(fee.paid) > 0) {
+    } else if (int.parse(widget.fee.paid) > 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(color: Colors.amberAccent),
         child: Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
           child: Text(
-            'Partial',
+            partial,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)
@@ -420,19 +499,19 @@ class FeesRow extends StatelessWidget {
           ),
         ),
       );
-    } else if (int.parse(fee.balance) +
-                (int.tryParse(fee.discount ?? "") != null
-                    ? int.parse(fee.discount)
+    } else if (int.parse(widget.fee.balance) +
+                (int.tryParse(widget.fee.discount ?? "") != null
+                    ? int.parse(widget.fee.discount)
                     : 0) ==
-            int.parse(fee.amount) ||
-        int.parse(fee.balance) < 0) {
+            int.parse(widget.fee.amount) ||
+        int.parse(widget.fee.balance) < 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(color: Colors.redAccent),
         child: Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
           child: Text(
-            'unpaid',
+            unpaid,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)

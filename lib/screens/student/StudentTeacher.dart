@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -16,6 +17,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Teacher.dart';
 import 'package:infixedu/utils/server/About.dart';
 import 'package:infixedu/utils/widget/Student_teacher_row_layout.dart';
+
+import '../nav_main.dart';
 
 // ignore: must_be_immutable
 class StudentTeacher extends StatefulWidget {
@@ -64,12 +67,13 @@ class _StudentTeacherState extends State<StudentTeacher>
 
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo,
+      statusBarColor: AppConfig.primary,
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Teacher'),
         backgroundColor: Colors.white,
         body: Container(

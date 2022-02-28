@@ -1,4 +1,4 @@
-# infixedu
+# Scoolspro
 
 A new Flutter project.
 

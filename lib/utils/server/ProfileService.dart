@@ -19,29 +19,32 @@ class ProfileService {
   String schoolId;
   String token;
 
-  ProfileService({this.email, this.password, this.id, this.schoolId,this.token});
+  ProfileService(
+      {this.email, this.password, this.id, this.schoolId, this.token});
 
   List<InfixMap> infixMap = [];
 
   Future<List<InfixMap>> fetchPersonalServices(int index) async {
-
     infixMap.clear();
 
-    final response = await http.get(Uri.parse(id == null
-        ? InfixApi.login(email, password)
-        : InfixApi.getChildren(id)),headers: id == null ? null : Utils.setHeader(token.toString()));
+    final response = await http.get(
+        Uri.parse(id == null
+            ? InfixApi.login(email, password)
+            : InfixApi.getChildren(id)),
+        headers: id == null ? null : Utils.setHeader(token.toString()));
 
     print(response.statusCode);
     var jsonData = json.decode(response.body);
 
     var details = jsonData['data']['userDetails'];
-    var religion = jsonData['data']['religion'];
+    //var religion = jsonData['data']['religion'];
     var blood = jsonData['data']['blood_group'];
     var transport = jsonData['data']['transport'];
     String dob = details['date_of_birth'];
     String replaced = dob.replaceAll('-', '/');
     var formatted = DateFormat('y/M/d').parse(replaced);
-    DateTime birthday = DateTime(formatted.year,formatted.month,formatted.day);
+    DateTime birthday =
+        DateTime(formatted.year, formatted.month, formatted.day);
     DateTime today = DateTime.now();
     AgeDuration age;
     age = Age.dateDifference(
@@ -51,8 +54,8 @@ class ProfileService {
       case 0:
         infixMap.add(InfixMap('Date of birth', details['date_of_birth']));
         infixMap.add(InfixMap('Age', '${age.years.toString()} years'));
-        infixMap.add(
-            InfixMap('Religion', religion != null ? religion['name'] : null));
+        // infixMap.add(
+        //     InfixMap('Religion', religion != null ? religion['name'] : null));
         infixMap.add(InfixMap('Phone number', details['mobile']));
         infixMap.add(InfixMap('Email address', details['email']));
         infixMap.add(InfixMap('Present address', details['current_address']));
@@ -64,9 +67,9 @@ class ProfileService {
       case 1:
         details['fathers_photo'] != null
             ? infixMap
-            .add(InfixMap('Fathers\'s Photo', details['fathers_photo']))
+                .add(InfixMap('Fathers\'s Photo', details['fathers_photo']))
             : infixMap.add(InfixMap(
-            'Fathers\'s Photo', "https://i.imgur.com/7PqjiH7.jpg"));
+                'Fathers\'s Photo', "https://i.imgur.com/7PqjiH7.jpg"));
         infixMap.add(InfixMap('Father\'s name', details['fathers_name']));
         infixMap.add(InfixMap('Father\'s phone', details['fathers_mobile']));
         infixMap.add(
@@ -82,9 +85,9 @@ class ProfileService {
             InfixMap('Mother\'s occupation', details['mothers_occupation']));
         details['guardians_photo'] != null
             ? infixMap
-            .add(InfixMap('Guardians\'s Photo', details['guardians_photo']))
+                .add(InfixMap('Guardians\'s Photo', details['guardians_photo']))
             : infixMap.add(InfixMap(
-            'Guardians\'s Photo', "https://i.imgur.com/7PqjiH7.jpg"));
+                'Guardians\'s Photo', "https://i.imgur.com/7PqjiH7.jpg"));
         infixMap.add(InfixMap('Guardian\'s name', details['guardians_name']));
         infixMap.add(InfixMap('Guardian\'s email', details['guardians_email']));
         infixMap.add(InfixMap(

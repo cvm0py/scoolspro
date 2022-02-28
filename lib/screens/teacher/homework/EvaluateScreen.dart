@@ -18,6 +18,8 @@ import 'package:infixedu/utils/widget/Line.dart';
 // import 'package:infixedu/utils/pdf_flutter.dart';
 import 'package:pdf_flutter/pdf_flutter.dart';
 
+import '../../nav_main.dart';
+
 class EvaluateScreen extends StatefulWidget {
   final String studentName;
   final String marks;
@@ -90,6 +92,7 @@ class _EvaluateScreenState extends State<EvaluateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: MainScreen(),
       appBar: CustomAppBarWidget(
         title: widget.studentName,
       ),

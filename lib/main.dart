@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +12,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/screens/SplashScreen.dart';
@@ -22,7 +25,7 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-    statusBarColor: Color(0xff3575B6), //or set color with: Color(0xFF0000FF)
+    statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
   ));
 
   // DevicePreview(
@@ -87,7 +90,7 @@ class _MyAppState extends State<MyApp> {
                                   return Scaffold(
                                     body: Splash(),
                                   );
-                                }  
+                                }
                                 return CircularProgressIndicator();
                               }),
                         ],

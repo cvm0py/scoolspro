@@ -17,6 +17,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/provider/notification_provider.dart';
+import 'package:infixedu/screens/SplashScreen.dart';
+import 'package:infixedu/screens/nav_main.dart';
 import 'package:infixedu/utils/widget/bottom_navbar.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -70,7 +72,7 @@ class Home extends StatefulWidget {
   var _images;
 
   Home(this._titles, this._images);
-
+  
   @override
   _HomeState createState() => _HomeState(_titles, _images);
 }
@@ -90,6 +92,13 @@ class _HomeState extends State<Home> {
   var _token;
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  String changePassword = 'Change Password';
+  String logout = 'Logout';
+  String settings = 'Settings';
+  String logoutQues = "Would you like to Logout?";
+  String cancel = "Cancel";
+  String yes = "Yes";
+
   String _notificationToken;
 
   _HomeState(this._titles, this._images);
@@ -105,6 +114,44 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+   // print('here23');
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, "Change Password").then((value) {
+        setState(() {
+          changePassword = value.toString();
+          print('Change pswd -> ' + changePassword);
+        });
+      });
+      Utils.getTranslatedLanguage(value, "Settings").then((value) {
+        setState(() {
+          settings = value.toString();
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Logout').then((value) {
+        setState(() {
+          logout = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Would you like to Logout?').then((value) {
+        setState(() {
+          logoutQues = value;
+        });
+      });
+
+      Utils.getTranslatedLanguage(value, 'Cancel').then((value) {
+        setState(() {
+          cancel = value;
+        });
+      });
+
+        Utils.getTranslatedLanguage(value, 'Yes').then((value) {
+        setState(() {
+          yes = value;
+        });
+      });
+    });
     super.initState();
     Utils.getStringValue('token').then((value) {
       _token = value;
@@ -200,7 +247,7 @@ class _HomeState extends State<Home> {
     });
     print('User granted permission: ${settings.authorizationStatus}');
 
-    // sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
+    sendTokenToServer(_notificationToken); // TODO:: SEND TOKEN TO API
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       // print('Got a message whilst in the foreground!');
@@ -259,51 +306,49 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
-    final double statusBarHeight = MediaQuery.of(context).padding.top - 3;
+    //print('Status hieght ->' + MediaQuery.of(context).padding.top.toString());
+
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Color(0xFF3575B6), //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(30.h),
-          child: AppBar(
-            backgroundColor: Colors.white70,
-            centerTitle: false,
-            flexibleSpace: Container(
-              height: 70,
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     image: AssetImage(AppConfig.appToolbarBackground),
-              //     fit: BoxFit.fill,
-              //   ),
-              //   color: Colors.blueAccent,
-              // ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Image.asset(
-                      AppConfig.appLogo_blue,
-                      width: ScreenUtil().setWidth(65.0),
-                    ),
+        appBar: AppBar(
+          backgroundColor: Colors.white70,
+          centerTitle: false,
+          flexibleSpace: Container(
+            height: 70,
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     image: AssetImage(AppConfig.appToolbarBackground),
+            //     fit: BoxFit.fill,
+            //   ),
+            //   color: Colors.blueAccent,
+            // ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Image.asset(
+                    AppConfig.appLogo_blue,
+                    width: ScreenUtil().setWidth(65.0),
                   ),
-                  Container(
-                    child: Text(
-                      "SCOOLSPRO SCHOOL",
-                      style:
-                          TextStyle(color: Color(0xff3575B6), fontSize: 16.w),
-                    ),
+                ),
+                Container(
+                  child: Text(
+                    "SCOOLSPRO SCHOOL",
+                    style: TextStyle(color: Color(0xff3575B6), fontSize: 16.w),
                   ),
-                  Expanded(child: Container()),
-                  /*  Container(
+                ),
+                Expanded(child: Container()),
+                /*  Container(
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setHeight(50),
                     child: FutureBuilder(
@@ -421,25 +466,23 @@ class _HomeState extends State<Home> {
                           }
                         }),
                   ), */
-                  // SizedBox(
-                  //   width: 5,
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: FutureBuilder(
-                      future: Utils.getStringValue('email'),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<String> snapshot) {
-                        return getProfileImage(
-                            context, _email, _password, _rule);
-                      },
-                    ),
+                // SizedBox(
+                //   width: 5,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: FutureBuilder(
+                    future: Utils.getStringValue('email'),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      return getProfileImage(context, _email, _password, _rule);
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            elevation: 0.0,
           ),
+          elevation: 0.0,
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -456,7 +499,7 @@ class _HomeState extends State<Home> {
             child: GridView.builder(
               itemCount: _titles.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: (2 / 0.9)),
+                  crossAxisCount: 2, childAspectRatio: (1.8 / 1.05)),
               itemBuilder: (context, index) {
                 return CustomWidget(
                   index: index,
@@ -491,15 +534,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add_circle_sharp), label: '1'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: '2'),
-            BottomNavigationBarItem(icon: Icon(Icons.list), label: '3'),
-          ],
-        ),
+        bottomNavigationBar: MainScreen(),
       ),
     );
   }
@@ -757,7 +792,7 @@ class _HomeState extends State<Home> {
   showAlertDialog(BuildContext context) {
     Widget cancelButton = TextButton(
       child: Text(
-        "Cancel",
+        cancel,
         style: Theme.of(context).textTheme.headline5.copyWith(
               fontSize: ScreenUtil().setSp(12),
               color: Colors.red,
@@ -769,7 +804,7 @@ class _HomeState extends State<Home> {
     );
     Widget yesButton = TextButton(
       child: Text(
-        "Yes",
+        yes,
         style: Theme.of(context).textTheme.headline5.copyWith(
               fontSize: ScreenUtil().setSp(12),
               color: Colors.green,
@@ -785,16 +820,16 @@ class _HomeState extends State<Home> {
             headers: Utils.setHeader(_token.toString()));
         if (response.statusCode == 200) {
         } else {
-          Utils.showToast('logged-out');
+          Utils.showToast(' ');
         }
       },
     );
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Logout",
+        logout,
         style: Theme.of(context).textTheme.headline5,
       ),
-      content: Text("Would you like to logout?"),
+      content: Text(logoutQues),
       actions: [
         cancelButton,
         yesButton,
@@ -811,6 +846,7 @@ class _HomeState extends State<Home> {
   }
 
   showStudentProfileDialog(BuildContext context) {
+    print('12313');
     showDialog<void>(
       barrierDismissible: true,
       context: context,
@@ -823,7 +859,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 80.0),
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 7,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       shape: BoxShape
@@ -844,39 +880,44 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10.0),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, top: 20.0, right: 10.0),
+                            left: 10.0, top: 10.0, right: 10.0),
                         child: ListView(
                           children: <Widget>[
-                            InkWell(
-                              child: SizedBox(
-                                child: Text(
-                                  "Profile",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    ScaleRoute(
-                                        page: Profile(
-                                      id: _id,
-                                    )));
-                              },
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
+                            // InkWell(
+                            //   // child: SizedBox(
+                            //   //   child: Text(
+                            //   //     "Profile",
+                            //   //     textAlign: TextAlign.center,
+                            //   //     style: Theme.of(context).textTheme.headline5,
+                            //   //   ),
+                            //   // ),
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         ScaleRoute(
+                            //             page: Profile(
+                            //           id: _id,
+                            //         )));
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   height: 8,
+                            // ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
                                     .push(ScaleRoute(page: ChangePassword()));
                               },
                               child: SizedBox(
-                                child: Text(
-                                  "Change Password",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.vpn_key,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    changePassword,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                             ),
@@ -885,10 +926,15 @@ class _HomeState extends State<Home> {
                             ),
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Logout",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.power_settings_new,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    logout,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
@@ -901,10 +947,15 @@ class _HomeState extends State<Home> {
                             //Navigator.push(context, ScaleRoute(page: SettingScreen()));
                             InkWell(
                               child: SizedBox(
-                                child: Text(
-                                  "Settings",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.headline5,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings,
+                                      color: AppConfig.primary),
+                                  title: Text(
+                                    settings,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
                                 ),
                               ),
                               onTap: () {
@@ -970,7 +1021,7 @@ class _HomeState extends State<Home> {
                                   .push(ScaleRoute(page: ChangePassword()));
                             },
                             child: Text(
-                              "Change Password",
+                              changePassword,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -980,7 +1031,7 @@ class _HomeState extends State<Home> {
                           ),
                           GestureDetector(
                             child: Text(
-                              "Logout",
+                              logout,
                               textAlign: TextAlign.end,
                               style: Theme.of(context).textTheme.headline5,
                             ),
@@ -1011,9 +1062,8 @@ class _HomeState extends State<Home> {
           Utils.saveStringValue('image', snapshot.data);
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
+              //showOthersProfileDialog(context);
             },
             child: Container(
               alignment: Alignment.center,
@@ -1053,9 +1103,8 @@ class _HomeState extends State<Home> {
         } else {
           return GestureDetector(
             onTap: () {
-              rule == '2'
-                  ? showStudentProfileDialog(context)
-                  : showOthersProfileDialog(context);
+              showStudentProfileDialog(context);
+              //: showOthersProfileDialog(context);
             },
             child: CircleAvatar(
               radius: 22,
