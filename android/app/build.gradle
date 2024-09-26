@@ -1,3 +1,5 @@
+
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -25,9 +27,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
-def keyStorePropertiesFile = rootProject.file("key.properties")
-def keyStoreProperties = new Properties()
-    keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
+def keystoreProperties = new  Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    print('heyy');
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 android {
     compileSdkVersion 29
@@ -42,22 +47,22 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.edu.infix.infixedu"
+        applicationId "com.scoolspro.app"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
     }
 
-     signingConfigs{
-        release{
-            keyAlias keyStoreProperties['alias']
-            keyPassword keyStoreProperties['keyPassword']
-            storeFile file(keyStoreProperties['storeFile'])
-            storePassword keyStoreProperties['storePassword']
+    signingConfigs {
+        release {
+            storeFile file('cert/scoolspro.jks')
+            storePassword "123456"
+            keyAlias "upload"
+            keyPassword "123456"
         }
-
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -72,7 +77,7 @@ android {
         }
     }
 }
-}
+
 
 flutter {
     source '../..'

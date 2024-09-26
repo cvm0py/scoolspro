@@ -38,7 +38,7 @@
 //   Widget build(BuildContext context) {
 //     final double statusBarHeight = MediaQuery.of(context).padding.top;
 //     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-//       statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+//       statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
 //     ));
 //
 //     return Padding(
@@ -189,7 +189,7 @@
 //   Widget build(BuildContext context) {
 //     final double statusBarHeight = MediaQuery.of(context).padding.top;
 //     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-//       statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+//       statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
 //     ));
 //
 //     return Padding(

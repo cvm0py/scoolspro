@@ -10,6 +10,7 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -17,6 +18,8 @@ import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/StudentAttendance.dart';
+
+import '../nav_main.dart';
 
 // ignore: must_be_immutable
 class StudentAttendanceScreen extends StatefulWidget {
@@ -36,6 +39,12 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
   Future<StudentAttendanceList> attendances;
 
   _StudentAttendanceScreenState({this.id, this.token});
+  String present = 'Present';
+  String absent = 'Absent';
+  String late = 'Late';
+  String halfday = 'Halfday';
+  String holiday = 'Holiday';
+  String days = 'Days';
 
   @override
   void initState() {
@@ -44,6 +53,38 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
         token = value;
       });
       print('ATTENDANCE: $token');
+    });
+    Utils.getStringValue('lang').then((value) {
+      Utils.getTranslatedLanguage(value, 'Present').then((val) {
+        setState(() {
+          present = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Absent').then((val) {
+        setState(() {
+          absent = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Late').then((val) {
+        setState(() {
+          late = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Holiday').then((val) {
+        setState(() {
+          holiday = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Halfday').then((val) {
+        setState(() {
+          halfday = val;
+        });
+      });
+      Utils.getTranslatedLanguage(value, 'Days').then((val) {
+        setState(() {
+          days = val;
+        });
+      });
     });
     super.initState();
   }
@@ -74,12 +115,13 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Attendance'),
         backgroundColor: Colors.white,
         body: Column(
@@ -191,7 +233,8 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
                                             .headline4
                                             .copyWith(
                                               color: Color(0xFF727FC8),
-                                              fontSize: ScreenUtil().setSp(14.0),
+                                              fontSize:
+                                                  ScreenUtil().setSp(14.0),
                                             ),
                                       ),
                                       SizedBox(
@@ -222,8 +265,8 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
                                             .textTheme
                                             .headline4
                                             .copyWith(
-                                            fontSize:
-                                            ScreenUtil().setSp(14.0),
+                                                fontSize:
+                                                    ScreenUtil().setSp(14.0),
                                                 color: isToday == true
                                                     ? Colors.white
                                                     : Colors.grey)),
@@ -267,11 +310,11 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
               child: Column(
                 // physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  bottomDesign('Present', 'P', Colors.green),
-                  bottomDesign('Absent', 'A', Colors.red),
-                  bottomDesign('Late', 'L', Color(0xFFEDD200)),
-                  bottomDesign('Halfday', 'H', Colors.purpleAccent),
-                  bottomDesign('Holiday', 'F', Colors.deepPurpleAccent),
+                  bottomDesign(present, 'P', Colors.green),
+                  bottomDesign(absent, 'A', Colors.red),
+                  bottomDesign(late, 'L', Color(0xFFEDD200)),
+                  bottomDesign(halfday, 'H', Colors.purpleAccent),
+                  bottomDesign(holiday, 'F', Colors.deepPurpleAccent),
                 ],
               ),
             ),
@@ -387,6 +430,6 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
       }
     }
     //debugPrint('count $count');
-    return '$count days';
+    return '$count ' + days;
   }
 }

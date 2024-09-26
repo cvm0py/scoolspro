@@ -8,13 +8,82 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Project imports:
 import 'package:infixedu/utils/model/ActiveOnlineExam.dart';
 
+import '../Utils.dart';
+
 // ignore: must_be_immutable
-class ActiveOnlineExamRow extends StatelessWidget {
+class ActiveOnlineExamRow extends StatefulWidget {
   ActiveOnlineExam exam;
 
   ActiveOnlineExamRow(this.exam);
 
+  @override
+  _ActiveOnlineExamRowState createState() => _ActiveOnlineExamRowState();
+}
+
+class _ActiveOnlineExamRowState extends State<ActiveOnlineExamRow> {
+  String subject = "Subject";
+
+  String notAssigned = "not assigned";
+
+  String date = "Date";
+
+  String action = "Action";
+
+  String running = 'Running'; 
+
+  String pending = 'Pending';
+
+  String closed = 'Closed';
+
+  String submitted = 'Submitted';
+
+  String active = "Active";
+
   Random random = Random();
+
+  @override
+  void initState() {
+ 
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Subject").then((value) {
+        subject = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "not assigned").then((value) {
+        notAssigned = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Date").then((value) {
+        date = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Action").then((value) {
+        action = value;
+      });
+         Utils.getTranslatedLanguage(language, "Running").then((value) {
+        running = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Pending").then((value) {
+        pending = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Closed").then((value) {
+        closed = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Submitted").then((value) {
+        submitted = value;
+      });
+
+      Utils.getTranslatedLanguage(language, "Active").then((value) {
+        active = value;
+      });
+    
+    });
+  
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +96,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    exam.title == null ? 'not assigned' : exam.title,
+                    widget.exam.title == null ? notAssigned : widget.exam.title,
                     style: Theme.of(context)
                         .textTheme
                         .headline6
@@ -45,7 +114,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Subject',
+                          subject,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -56,7 +125,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          exam.subject == null ? 'not assigned' : exam.subject,
+                          widget.exam.subject == null ? notAssigned : widget.exam.subject,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -68,7 +137,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Date',
+                          date,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -79,7 +148,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                          exam.date == null ? 'not assigned' : exam.date,
+                          widget.exam.date == null ? notAssigned : widget.exam.date,
                           maxLines: 1,
                           style: Theme.of(context).textTheme.headline4,
                         ),
@@ -114,7 +183,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Action',
+                          action,
                           maxLines: 1,
                           style: Theme.of(context)
                               .textTheme
@@ -124,7 +193,8 @@ class ActiveOnlineExamRow extends StatelessWidget {
                         SizedBox(
                           height: 5.0,
                         ),
-                        getStatus(context, exam.status,exam.isRunning,exam.isClosed),
+                        getStatus(context, widget.exam.status, widget.exam.isRunning,
+                            widget.exam.isClosed),
                       ],
                     ),
                   ),
@@ -149,10 +219,9 @@ class ActiveOnlineExamRow extends StatelessWidget {
 
   Widget getExamStatusWidget(
       {BuildContext context, int isRunning, int isWaiting, int isClosed}) {
-
-    if(isRunning == 1){
-     return Text(
-        'Running',
+    if (isRunning == 1) {
+      return Text(
+        running,
         textAlign: TextAlign.center,
         maxLines: 1,
         style: Theme.of(context)
@@ -160,9 +229,9 @@ class ActiveOnlineExamRow extends StatelessWidget {
             .headline4
             .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
       );
-    }else if(isWaiting == 1){
+    } else if (isWaiting == 1) {
       return Text(
-        'Pending',
+        pending,
         textAlign: TextAlign.center,
         maxLines: 1,
         style: Theme.of(context)
@@ -170,9 +239,9 @@ class ActiveOnlineExamRow extends StatelessWidget {
             .headline4
             .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
       );
-    }else if(isClosed == 1){
+    } else if (isClosed == 1) {
       return Text(
-        'Closed',
+        closed,
         textAlign: TextAlign.center,
         maxLines: 1,
         style: Theme.of(context)
@@ -180,9 +249,9 @@ class ActiveOnlineExamRow extends StatelessWidget {
             .headline4
             .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
       );
-    }else {
+    } else {
       return Text(
-        'not assigned',
+        notAssigned,
         textAlign: TextAlign.center,
         maxLines: 1,
         style: Theme.of(context)
@@ -191,10 +260,10 @@ class ActiveOnlineExamRow extends StatelessWidget {
             .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
       );
     }
-
   }
 
-  Widget getStatus(BuildContext context, int status,int isRunning, int isClosed) {
+  Widget getStatus(
+      BuildContext context, int status, int isRunning, int isClosed) {
     if (status == 1) {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -202,7 +271,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
-            'Submitted',
+            submitted,
             textAlign: TextAlign.center,
             maxLines: 1,
             style: Theme.of(context)
@@ -213,10 +282,10 @@ class ActiveOnlineExamRow extends StatelessWidget {
         ),
       );
     } else if (status == 0) {
-      if(isClosed == 0){
+      if (isClosed == 0) {
         return InkWell(
-          onTap: (){
-            print('TAKE EXAM'); // TODO:: ONLINE EXAM TAKE
+          onTap: () {
+            print('Active'); // TODO:: ONLINE EXAM TAKE
           },
           child: Container(
             width: MediaQuery.of(context).size.width,
@@ -224,7 +293,7 @@ class ActiveOnlineExamRow extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Text(
-                'Take Exam',
+                active,
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 style: Theme.of(context)
@@ -235,14 +304,14 @@ class ActiveOnlineExamRow extends StatelessWidget {
             ),
           ),
         );
-      }else{
+      } else {
         return Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: Colors.red.shade500),
           child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
-              'Closed',
+              closed,
               textAlign: TextAlign.center,
               maxLines: 1,
               style: Theme.of(context)
@@ -253,7 +322,6 @@ class ActiveOnlineExamRow extends StatelessWidget {
           ),
         );
       }
-
     } else {
       return Container();
     }

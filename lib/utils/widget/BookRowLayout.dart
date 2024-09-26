@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infixedu/utils/Utils.dart';
 
 // Project imports:
 import 'package:infixedu/utils/model/Book.dart';
@@ -23,10 +24,44 @@ class _BookListRowState extends State<BookListRow>
   Book book;
 
   _BookListRowState(this.book);
+  String subject = 'Subject';
+  String bookNo = 'Book No';
+  String quantity = 'Quantity';
+  String price = 'Price';
+  String rackNo = 'Rack No';
 
   @override
   void initState() {
     super.initState();
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, 'Subject').then((val) {
+        setState(() {
+          subject = val;
+        });
+      });
+      Utils.getTranslatedLanguage(language, 'Book No').then((val) {
+        setState(() {
+          bookNo = val;
+        });
+      });
+      Utils.getTranslatedLanguage(language, 'Quantity').then((val) {
+        setState(() {
+          quantity = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Price').then((val) {
+        setState(() {
+          price = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, 'Rack No').then((val) {
+        setState(() {
+          rackNo = val;
+        });
+      });
+    });
 
     controller =
         AnimationController(duration: Duration(seconds: 2), vsync: this);
@@ -59,8 +94,8 @@ class _BookListRowState extends State<BookListRow>
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10.0, top: 20.0, right: 10.0),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 20.0, right: 10.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,12 +118,13 @@ class _BookListRowState extends State<BookListRow>
                         book.categoryName == null || book.categoryName == ''
                             ? Container()
                             : Text(
-                          '${book.categoryName}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontSize: ScreenUtil().setSp(15.0)),
-                        ),
+                                '${book.categoryName}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    .copyWith(
+                                        fontSize: ScreenUtil().setSp(15.0)),
+                              ),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -104,43 +140,57 @@ class _BookListRowState extends State<BookListRow>
                         SizedBox(
                           height: 10.0,
                         ),
-                        book.author == null || book.author == "" ? Container() : Text.rich(
-                          TextSpan(
-                            text: 'Author:',
-                            style: Theme.of(context).textTheme.headline4.copyWith(
-                                fontSize: ScreenUtil().setSp(14.0),
-                                decoration: TextDecoration.underline),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "  ${book.author}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4
-                                    .copyWith(fontSize: ScreenUtil().setSp(14.0)),
+                        book.author == null || book.author == ""
+                            ? Container()
+                            : Text.rich(
+                                TextSpan(
+                                  text: 'Author:',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(
+                                          fontSize: ScreenUtil().setSp(14.0),
+                                          decoration: TextDecoration.underline),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: "  ${book.author}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          .copyWith(
+                                              fontSize:
+                                                  ScreenUtil().setSp(14.0)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
                         SizedBox(
                           height: 10.0,
                         ),
-                        book.publication == null || book.publication == "" ? Container() :  Text.rich(
-                          TextSpan(
-                            text: 'Published by:',
-                            style: Theme.of(context).textTheme.headline4.copyWith(
-                                fontSize: ScreenUtil().setSp(14.0),
-                                decoration: TextDecoration.underline),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "  ${book.publication}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4
-                                    .copyWith(fontSize: ScreenUtil().setSp(14.0)),
+                        book.publication == null || book.publication == ""
+                            ? Container()
+                            : Text.rich(
+                                TextSpan(
+                                  text: 'Published by:',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(
+                                          fontSize: ScreenUtil().setSp(14.0),
+                                          decoration: TextDecoration.underline),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: "  ${book.publication}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4
+                                          .copyWith(
+                                              fontSize:
+                                                  ScreenUtil().setSp(14.0)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -171,7 +221,9 @@ class _BookListRowState extends State<BookListRow>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           AnimatedBuilder(
             animation: parentAnimation,
             builder: (context, child) {
@@ -257,7 +309,7 @@ class _BookListRowState extends State<BookListRow>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Subject',
+                                subject,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline4
@@ -282,7 +334,7 @@ class _BookListRowState extends State<BookListRow>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Book No',
+                              bookNo,
                               maxLines: 1,
                               style: Theme.of(context)
                                   .textTheme
@@ -307,7 +359,7 @@ class _BookListRowState extends State<BookListRow>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Quantity',
+                              quantity,
                               maxLines: 1,
                               style: Theme.of(context)
                                   .textTheme
@@ -332,7 +384,7 @@ class _BookListRowState extends State<BookListRow>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Price',
+                              price,
                               maxLines: 1,
                               style: Theme.of(context)
                                   .textTheme
@@ -357,7 +409,7 @@ class _BookListRowState extends State<BookListRow>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Rack No',
+                              rackNo,
                               maxLines: 1,
                               style: Theme.of(context)
                                   .textTheme
@@ -393,7 +445,9 @@ class _BookListRowState extends State<BookListRow>
                   colors: [Colors.purple, Colors.deepPurple]),
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
         ],
       ),
     );

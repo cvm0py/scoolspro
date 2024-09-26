@@ -19,10 +19,19 @@ class InfixApi {
   static String zoomMakeMeeting = "zoom-make-meeting";
   static String zoomMakeMeetingUrl = "zoom-meeting-room";
   static String getAlbum = baseApi + "album-list";
+  static String getEvents = baseApi + "events";
 
   static String login(String email, String password) {
     print('hi');
     return baseApi + 'login?email=' + email + '&password=' + password;
+  }
+
+  static String getAllZoomClassesByClass(String classID, String section) {
+    return baseApi + 'zoom-virtual-class/$classID/$section';
+  }
+
+  static String getAllZoomMeetingsByUserID(String userID) {
+    return baseApi + 'zoom-Meeting/$userID';
   }
 
   static String getFeesUrl(int id) {
@@ -47,8 +56,8 @@ class InfixApi {
   static String getStudentTeacherUrl(int id) {
     return baseApi + "studentTeacher/$id";
   }
-  static String getPhotos(String id) {
 
+  static String getPhotos(String id) {
     //TODO :: Set API call
     return baseApi + "get-album/$id";
   }
@@ -176,7 +185,7 @@ class InfixApi {
   static String about = baseApi + "parent-about";
 
   static String getHomeWorkListUrl(int id) {
-    return baseApi + "homework-list/$id";
+    return baseApi + "homework-list"; //TODO add id
   }
 
   static String getLeaveList(int id) {
@@ -350,7 +359,7 @@ class InfixApi {
   static String adminAddDormitory = baseApi + "add-dormitory";
 
   static String setToken(String id, String token) {
-    return baseApi + "set-fcm-token?id=$id&token=$token";
+    return baseApi + "set-token?id=$id&token=$token";
   }
 
   static String sentNotificationForAll(int role, String title, String body) {

@@ -1,11 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
 // import 'package:infixedu/utils/pdf_flutter.dart';
 import 'package:pdf_flutter/pdf_flutter.dart';
+
+import '../../nav_main.dart';
 
 class DownloadViewer extends StatefulWidget {
   final String title;
@@ -21,12 +24,14 @@ class _DownloadViewerState extends State<DownloadViewer> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: widget.title),
         body: PDF.network(
           widget.filePath,

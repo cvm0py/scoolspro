@@ -34,6 +34,8 @@ class _CustomWidgetState extends State<CustomWidget> {
 
   @override
   Widget build(BuildContext context) {
+    //print(widget.icon.toString());
+
     Utils.getStringValue('lang').then((value) {
       if (value == null) {
         Utils.getTranslatedLanguage('en', widget.headline).then((val) {
@@ -54,12 +56,12 @@ class _CustomWidgetState extends State<CustomWidget> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: 100.0,
+          //height: 200.0,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color:
-                    //widget.isSelected ? Color(0xffc8abfc) : Color(0xffc8abfc),
+                   // widget.isSelected ? AppConfig.primary: AppConfig.primary,
                     widget.isSelected ? Colors.blueAccent : Colors.blueAccent,
                 blurRadius: 9.0,
                 offset: Offset(2, 4),
@@ -68,60 +70,60 @@ class _CustomWidgetState extends State<CustomWidget> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              /*gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFFCCCCFF), Colors.white]),*/
-              color: Color(0xff3575B6),
+              color: AppConfig.primary,
               borderRadius: BorderRadius.circular(10.0),
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: Colors.deepPurple.withOpacity(0.3),
-              //     spreadRadius: 2,
-              //     blurRadius: 1,
-              //     offset: Offset(1, 1), // changes position of shadow
-              //   ),
-              // ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-              
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            title != null ? " " + title : '...',
-                            style: TextStyle(
-                              fontFamily: "QuickSand",
-                              letterSpacing: 1.3,
-                              color: Colors.white,
-                              fontSize: ScreenUtil().setSp(14),
-                              fontWeight: FontWeight.w300,
-                            ),
-                            // maxLines: 1,
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title != null ? " " + title : '...',
+                          style: TextStyle(
+                            fontFamily: "QuickSand",
+                            letterSpacing: 1.4,
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.height *
+                                0.02, //ScreenUtil().setSp(14),
+                            fontWeight: FontWeight.w500,
                           ),
+                          // maxLines: 1,
                         ),
                         SizedBox(
-                          width: 3,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset(
-                            widget.icon.toString(),
-                            color: Colors.white,
-                            width: 25.w,
-                            height: 25.h,
-                          ),
-
+                          width: 1,
                         ),
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          //color: Colors.green,
+                          color: AppConfig.primary,
+                          height: MediaQuery.of(context).size.height * 0.055,
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          child: Image.asset(
+                            widget.icon.toString(),
+                            // fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-               
-            ),
-          
+          ),
         ),
       ),
     );

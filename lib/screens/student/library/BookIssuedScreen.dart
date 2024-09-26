@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/BookIssued.dart';
 import 'package:infixedu/utils/widget/BookIssuedRow.dart';
+
+import '../../nav_main.dart';
 
 // ignore: must_be_immutable
 class BookIssuedScreen extends StatefulWidget {
@@ -54,19 +57,20 @@ class _BookIssuedScreenState extends State<BookIssuedScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Book Issued'),
         backgroundColor: Colors.white,
         body: FutureBuilder<BookIssuedList>(
           future: bookList,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if(snapshot.data.bookIssues.length > 0){
+              if (snapshot.data.bookIssues.length > 0) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.builder(
@@ -76,7 +80,7 @@ class _BookIssuedScreenState extends State<BookIssuedScreen> {
                     },
                   ),
                 );
-              }else{
+              } else {
                 return Utils.noDataWidget();
               }
             } else {
@@ -89,7 +93,10 @@ class _BookIssuedScreenState extends State<BookIssuedScreen> {
   }
 
   Future<BookIssuedList> getIssuedBooks(int id) async {
-    final response = await http.get(Uri.parse(InfixApi.getStudentIssuedBook(id)),headers: Utils.setHeader(_token.toString()));
+    print("ID-------" + id.toString());
+    final response = await http.get(
+        Uri.parse(InfixApi.getStudentIssuedBook(2)), //TODO add dynammic id
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);

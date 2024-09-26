@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -16,6 +17,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Subject.dart';
 import 'package:infixedu/utils/widget/SubjectRowLayout.dart';
+
+import '../nav_main.dart';
 
 // ignore: must_be_immutable
 class SubjectScreen extends StatefulWidget {
@@ -31,12 +34,35 @@ class _SubjectScreenState extends State<SubjectScreen> {
   Future<SubjectList> subjects;
 
   String _token;
+  String subject = 'Subjects';
+  String teacher = "Teacher";
+  String type = "Type";
 
   @override
   void initState() {
     Utils.getStringValue('token').then((value) {
       _token = value;
     });
+    Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Teacher").then((val) {
+        setState(() {
+          teacher = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Subject").then((val) {
+        setState(() {
+          subject = val;
+        });
+      });
+
+      Utils.getTranslatedLanguage(language, "Type").then((val) {
+        setState(() {
+          type = val;
+        });
+      });
+    });
+
     super.initState();
   }
 
@@ -55,12 +81,13 @@ class _SubjectScreenState extends State<SubjectScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Subjects'),
         backgroundColor: Colors.white,
         body: Container(
@@ -72,19 +99,22 @@ class _SubjectScreenState extends State<SubjectScreen> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Text('Subject',
+                      child: Text(subject,
                           style: Theme.of(context).textTheme.headline4.copyWith(
-                              fontSize: ScreenUtil().setSp(16), fontWeight: FontWeight.bold)),
+                              fontSize: ScreenUtil().setSp(16),
+                              fontWeight: FontWeight.bold)),
                     ),
                     Expanded(
-                      child: Text('Teacher',
+                      child: Text(teacher,
                           style: Theme.of(context).textTheme.headline4.copyWith(
-                              fontSize: ScreenUtil().setSp(16), fontWeight: FontWeight.bold)),
+                              fontSize: ScreenUtil().setSp(16),
+                              fontWeight: FontWeight.bold)),
                     ),
                     Expanded(
-                      child: Text('Type',
+                      child: Text(type,
                           style: Theme.of(context).textTheme.headline4.copyWith(
-                              fontSize: ScreenUtil().setSp(16), fontWeight: FontWeight.bold)),
+                              fontSize: ScreenUtil().setSp(16),
+                              fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -93,15 +123,16 @@ class _SubjectScreenState extends State<SubjectScreen> {
                 future: subjects,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    if(snapshot.data.subjects.length > 0){
+                    if (snapshot.data.subjects.length > 0) {
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: snapshot.data.subjects.length,
                         itemBuilder: (context, index) {
-                          return SubjectRowLayout(snapshot.data.subjects[index]);
+                          return SubjectRowLayout(
+                              snapshot.data.subjects[index]);
                         },
                       );
-                    }else{
+                    } else {
                       return Utils.noDataWidget();
                     }
                   } else {
@@ -117,7 +148,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
   }
 
   Future<SubjectList> getAllSubject(int id) async {
-    final response = await http.get(Uri.parse(InfixApi.getSubjectsUrl(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(Uri.parse(InfixApi.getSubjectsUrl(id)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);

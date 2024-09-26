@@ -11,7 +11,7 @@ class Homework {
   int classId;
   int sectionId;
   int subjectId;
-  String obtainedMarks;
+  
 
   Homework(
       {this.id,this.description,
@@ -21,7 +21,7 @@ class Homework {
       this.evaluationDate,
       this.fileUrl,
       this.status,
-      this.marks,this.classId,this.sectionId,this.subjectId,this.obtainedMarks});
+      this.marks,this.classId,this.sectionId,this.subjectId});
 
   factory Homework.fromJson(Map<String, dynamic> json) {
     return Homework(
@@ -32,9 +32,9 @@ class Homework {
       submissionDate: json['submission_date'],
       evaluationDate: json['evaluation_date'],
       fileUrl: json['file'],
-      status: json['status'],
+      status: json['active_status'],
       marks: json['marks'],
-      obtainedMarks: json['obtained_marks'],
+      //obtainedMarks: json['obtained_marks'],
       classId: json['class_id'],
       sectionId: json['section_id'],
       subjectId: json['subject_id'],
