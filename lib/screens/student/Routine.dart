@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infixedu/config/app_config.dart';
+import 'package:infixedu/screens/nav_main.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -10,6 +12,7 @@ import 'package:infixedu/utils/widget/Routine_row.dart';
 // ignore: must_be_immutable
 class Routine extends StatelessWidget {
   List<String> weeks = AppFunction.weeks;
+
   String id;
 
   Routine({this.id});
@@ -18,12 +21,13 @@ class Routine extends StatelessWidget {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Class Schedule'),
         backgroundColor: Colors.white,
         body: Padding(

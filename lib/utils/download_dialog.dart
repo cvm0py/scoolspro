@@ -31,7 +31,14 @@ class DownloadDialog extends StatefulWidget {
 
 class _DownloadDialogState extends State<DownloadDialog> {
   var progress = "Download";
-
+  String downloadComplete =
+      "Download Completed. File is also available in your download folder.";
+  String downloading = "Downloading...";
+  String download = "Download";
+  String downloadQues = "Would you like to download the file?";
+  String no = "No";
+  String file = 'no file found';
+  String dialog='dialog';
   var received;
 
   Future<void> downloadFile(
@@ -48,7 +55,7 @@ class _DownloadDialogState extends State<DownloadDialog> {
 
     try {
       FileUtils.mkdir([dirloc]);
-      Utils.showToast("Downloading...");
+      Utils.showToast(downloading);
 
       await dio.download(
           InfixApi.root + url, dirloc + AppFunction.getExtention(url),
@@ -61,8 +68,7 @@ class _DownloadDialogState extends State<DownloadDialog> {
         // });
         if (received == 100.0) {
           if (url.contains('.pdf')) {
-            Utils.showToast(
-                "Download Completed. File is also available in your download folder.");
+            Utils.showToast(downloadComplete);
             Navigator.push(
                 context,
                 ScaleRoute(
@@ -73,8 +79,7 @@ class _DownloadDialogState extends State<DownloadDialog> {
                 await DefaultCacheManager().getSingleFile(InfixApi.root + url);
             OpenFile.open(file.path);
 
-            Utils.showToast(
-                "Download Completed. File is also available in your download folder.");
+            Utils.showToast(downloadComplete);
           }
         }
       });
@@ -84,28 +89,67 @@ class _DownloadDialogState extends State<DownloadDialog> {
     // progress = "Download Completed.Go to the download folder to find the file";
   }
 
+   @override
+  void initState() {
+
+     Utils.getStringValue('lang').then((language) {
+      Utils.getTranslatedLanguage(language, "Download Completed. File is also available in your download folder.").then((value) {
+        downloadComplete = value;
+      });
+
+     Utils.getTranslatedLanguage(language, "Downloading...").then((value) {
+        downloading = value;
+      });
+       Utils.getTranslatedLanguage(language, "Download").then((value) {
+        download = value;
+      });
+
+       Utils.getTranslatedLanguage(language, "Would you like to download the file?").then((value) {
+        downloadQues = value;
+      });
+
+       Utils.getTranslatedLanguage(language, "No").then((value) {
+        no = value;
+      });
+
+       Utils.getTranslatedLanguage(language, "no file found").then((value) {
+        file = value;
+      });
+
+       Utils.getTranslatedLanguage(language, "dialog").then((value) {
+        dialog = value;
+      });
+    
+    });
+
+
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        "Download",
+        download,
         style: Theme.of(context).textTheme.headline5,
       ),
-      content: Text("Would you like to download the file?"),
+      content: Text(downloadQues),
       actions: [
         TextButton(
-          child: Text("No"),
+          child: Text(no),
           onPressed: () {
             Navigator.of(context, rootNavigator: true).pop('dialog');
           },
         ),
         TextButton(
-          child: Text("Download"),
+          child: Text(download),
           onPressed: () {
             widget.file != null
                 ? downloadFile(widget.file, context, widget.title)
-                : Utils.showToast('no file found');
-            Navigator.of(context, rootNavigator: true).pop('dialog');
+                : Utils.showToast(file);
+            Navigator.of(context, rootNavigator: true).pop(dialog);
           },
         ),
       ],

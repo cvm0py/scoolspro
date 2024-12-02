@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:245055879465:android:774be88e50a9774e905f38",
         "android_client_info": {
-          "package_name": "com.edu.infix.infixedu"
+          "package_name": "com.scoolspro.app"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "245055879465-0llrt0vmt1eod802f24civoev7d6147s.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.edu.infix.infixedu"
+                "bundle_id": "com.scoolspro.app"
               }
             }
           ]

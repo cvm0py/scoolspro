@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Content.dart';
 import 'package:infixedu/utils/widget/Content_row.dart';
+
+import '../../nav_main.dart';
 
 class ContentListScreen extends StatefulWidget {
   @override
@@ -42,12 +45,14 @@ class _ContentListScreenState extends State<ContentListScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(
           title: 'Contents',
         ),
@@ -64,7 +69,7 @@ class _ContentListScreenState extends State<ContentListScreen> {
                     snapshot.data.contents[index],
                     animation,
                     onPressed: () async{
-//                     snapshot.data.contents.removeAt(index);
+            //         snapshot.data.contents.removeAt(index);
                       Utils.showToast('${snapshot.data.contents[index].title} deleted');
                       _removeItem(index, snapshot.data.contents);
                     },

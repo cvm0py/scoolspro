@@ -17,6 +17,8 @@ import 'package:infixedu/screens/Login.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/Utils.dart';
 
+import 'SchoolSelectScreen.dart';
+
 class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
@@ -62,7 +64,8 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             });
           });
         } else {
-          route = MaterialPageRoute(builder: (context) => LoginScreen());
+          route = MaterialPageRoute(builder: (context) => SchoolSelectScreen());
+          //route = MaterialPageRoute(builder: (context) => LoginScreen());
           Navigator.pushReplacement(context, route);
         }
       });
@@ -96,12 +99,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             Container(
               alignment: Alignment.topCenter,
               height: 10.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(AppConfig.splashTopLine),
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
             ),
             Align(
               alignment: Alignment.topCenter,
@@ -110,20 +107,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('Welcome to')
-                            : 'Welcome to',
-                        style: TextStyle(
-                          color: Color(0xFF3575B6),
-                          fontSize: 20.0,
-                          fontFamily: 'popins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
                     AnimatedBuilder(
                       animation: animation,
                       builder: (context, child) {
@@ -137,19 +120,6 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                           ),
                         );
                       },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 60.0),
-                      child: Text(
-                        appTranslations != null
-                            ? appTranslations.text('UNLIMITED EDUCATION ERP')
-                            : 'SCOOLSPRO EDUCATION ERP',
-                        style: TextStyle(
-                            color: Color(0xFF3575B6),
-                            fontSize: 10.0,
-                            fontFamily: 'popins',
-                            fontStyle: FontStyle.normal),
-                      ),
                     ),
                   ],
                 ),

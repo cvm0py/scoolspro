@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -15,6 +16,8 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/model/Book.dart';
 import 'package:infixedu/utils/widget/BookRowLayout.dart';
+
+import '../../nav_main.dart';
 
 class BookListScreen extends StatefulWidget {
   @override
@@ -31,23 +34,25 @@ class _BookListState extends State<BookListScreen> {
       setState(() {
         _token = value;
       });
-    })..then((value) {
-      setState(() {
-        books = getAllBooks();
+    })
+      ..then((value) {
+        setState(() {
+          books = getAllBooks();
+        });
       });
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
+        bottomNavigationBar: MainScreen(),
         appBar: CustomAppBarWidget(title: 'Book List'),
         backgroundColor: Colors.white,
         body: Padding(
@@ -56,14 +61,14 @@ class _BookListState extends State<BookListScreen> {
             future: books,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                if(snapshot.data.books.length > 0){
+                if (snapshot.data.books.length > 0) {
                   return ListView.builder(
                     itemCount: snapshot.data.books.length,
                     itemBuilder: (context, index) {
                       return BookListRow(snapshot.data.books[index]);
                     },
                   );
-                }else{
+                } else {
                   return Utils.noDataWidget();
                 }
               } else {
@@ -77,7 +82,8 @@ class _BookListState extends State<BookListScreen> {
   }
 
   Future<BookList> getAllBooks() async {
-    final response = await http.get(Uri.parse(InfixApi.bookList),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(Uri.parse(InfixApi.bookList),
+        headers: Utils.setHeader(_token.toString()));
 
     print(response.statusCode);
     if (response.statusCode == 200) {

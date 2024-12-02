@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/config/app_config.dart';
 
 // Project imports:
 import 'package:infixedu/utils/CustomAppBarWidget.dart';
@@ -63,7 +64,7 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.indigo, //or set color with: Color(0xFF0000FF)
+      statusBarColor: AppConfig.primary, //or set color with: Color(0xFF0000FF)
     ));
 
     return Padding(
@@ -110,14 +111,13 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
               decoration: Utils.gradientBtnDecoration,
               child: Text(
                 "Search",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline4
-                    .copyWith(color: Colors.white, fontSize: ScreenUtil().setSp(16)),
+                style: Theme.of(context).textTheme.headline4.copyWith(
+                    color: Colors.white, fontSize: ScreenUtil().setSp(16)),
               ),
             ),
           ),
           onTap: () {
+            //print('Class Id -> ' + classId + " Section id -> " + sectionId);
             Navigator.push(
                 context, ScaleRoute(page: StudentRoutine(classId, sectionId)));
           },
@@ -138,13 +138,17 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
             value: item.name,
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: Text(item.name,style: Theme.of(context)
-                  .textTheme
-                  .headline4,),
+              child: Text(
+                item.name,
+                style: Theme.of(context).textTheme.headline4,
+              ),
             ),
           );
         }).toList(),
-        style: Theme.of(context).textTheme.headline4.copyWith(fontSize: ScreenUtil().setSp(15)),
+        style: Theme.of(context)
+            .textTheme
+            .headline4
+            .copyWith(fontSize: ScreenUtil().setSp(15)),
         onChanged: (value) {
           setState(() {
             _selectedClass = value;
@@ -171,13 +175,15 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
             value: item.name,
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: Text(item.name,style: Theme.of(context)
-                  .textTheme
-                  .headline4),
+              child:
+                  Text(item.name, style: Theme.of(context).textTheme.headline4),
             ),
           );
         }).toList(),
-        style: Theme.of(context).textTheme.headline4.copyWith(fontSize: ScreenUtil().setSp(15)),
+        style: Theme.of(context)
+            .textTheme
+            .headline4
+            .copyWith(fontSize: ScreenUtil().setSp(15)),
         onChanged: (value) {
           setState(() {
             _selectedSection = value;
@@ -204,7 +210,8 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
   }
 
   Future<ClassList> getAllClass(int id) async {
-    final response = await http.get(Uri.parse(InfixApi.getClassById(id)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(Uri.parse(InfixApi.getClassById(id)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
@@ -215,7 +222,9 @@ class _SearchRoutineScreenState extends State<SearchRoutineScreen> {
   }
 
   Future<SectionList> getAllSection(int id, int classId) async {
-    final response = await http.get(Uri.parse(InfixApi.getSectionById(id, classId)),headers: Utils.setHeader(_token.toString()));
+    final response = await http.get(
+        Uri.parse(InfixApi.getSectionById(id, classId)),
+        headers: Utils.setHeader(_token.toString()));
 
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
